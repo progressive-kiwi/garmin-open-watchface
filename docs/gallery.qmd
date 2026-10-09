@@ -1,0 +1,111 @@
+---
+title: Gallery
+---
+
+Rendered by the Connect IQ simulator (Forerunner 970 unless noted) with the clock pinned to 10:09:36.
+Simulated sensor values; weather is unavailable in the simulator. The exact settings behind each image
+are listed in `VARIANTS` in `tools/screenshots.py`.
+
+## Analog
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Analog · Classic layout, baton hands, bar ticks, date window](images/analog-classic.png){fig-alt="Analog · Classic layout, baton hands, bar ticks, date window"}
+:::
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Analog · Chronograph subdials, dauphine hands, bezel, Ocean theme](images/analog-chronograph.png){fig-alt="Analog · Chronograph subdials, dauphine hands, bezel, Ocean theme"}
+:::
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Analog · Pilot layout, sword hands, full numerals](images/analog-pilot.png){fig-alt="Analog · Pilot layout, sword hands, full numerals"}
+:::
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Analog · Roman numerals, Breguet hands, railway track, Gold theme](images/analog-roman.png){fig-alt="Analog · Roman numerals, Breguet hands, railway track, Gold theme"}
+:::
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Analog · Gauges layout, skeleton hands, dot-matrix numerals, Neon theme](images/analog-gauges.png){fig-alt="Analog · Gauges layout, skeleton hands, dot-matrix numerals, Neon theme"}
+:::
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Analog · Minimal layout, rounded hands, dot ticks, Paper theme](images/analog-minimal.png){fig-alt="Analog · Minimal layout, rounded hands, dot ticks, Paper theme"}
+:::
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Analog · Arrow and leaf hands, triangle ticks, Forest theme](images/analog-forest.png){fig-alt="Analog · Arrow and leaf hands, triangle ticks, Forest theme"}
+:::
+
+:::
+
+## Digital
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Digital · Classic layout, condensed bold](images/digital-classic.png){fig-alt="Digital · Classic layout, condensed bold"}
+:::
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Digital · Quartz LCD with unlit segments, Sport layout, gauges](images/digital-quartz.png){fig-alt="Digital · Quartz LCD with unlit segments, Sport layout, gauges"}
+:::
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Digital · Dot matrix, Racing theme](images/digital-dotmatrix.png){fig-alt="Digital · Dot matrix, Racing theme"}
+:::
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Digital · Pixel blocks, Minimal layout, Ice theme](images/digital-pixel.png){fig-alt="Digital · Pixel blocks, Minimal layout, Ice theme"}
+:::
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Digital · Stacked layout, Roboto black, two-tone](images/digital-stacked.png){fig-alt="Digital · Stacked layout, Roboto black, two-tone"}
+:::
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Digital · Side layout, field column, Ocean theme](images/digital-side.png){fig-alt="Digital · Side layout, field column, Ocean theme"}
+:::
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Digital · Big layout, thin quartz, Stealth theme](images/digital-big.png){fig-alt="Digital · Big layout, thin quartz, Stealth theme"}
+:::
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Digital · Quartz outline, Classic theme, seconds](images/digital-outline.png){fig-alt="Digital · Quartz outline, Classic theme, seconds"}
+:::
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Digital · Serif, Minimal layout, Gold theme](images/digital-serif.png){fig-alt="Digital · Serif, Minimal layout, Gold theme"}
+:::
+
+:::
+
+## Always-on (AMOLED)
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Always-on · Analog, outline hands, quarter markers, date](images/aod-analog.png){fig-alt="Always-on · Analog, outline hands, quarter markers, date"}
+:::
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![Always-on · Digital, quartz outline](images/aod-digital.png){fig-alt="Always-on · Digital, quartz outline"}
+:::
+
+:::
+
+## Memory-in-pixel displays
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![MIP display (fēnix 8 Solar) · Analog classic](images/mip-analog.png){fig-alt="MIP display (fēnix 8 Solar) · Analog classic"}
+:::
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
+![MIP display (fēnix 8 Solar) · Digital quartz](images/mip-digital.png){fig-alt="MIP display (fēnix 8 Solar) · Digital quartz"}
+:::
+
+:::

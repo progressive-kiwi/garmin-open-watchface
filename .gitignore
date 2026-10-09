@@ -1,0 +1,9 @@
+bin/
+build/
+*.der
+*.pem
+*.prg
+*.iq
+docs/_site/
+docs/.quarto/
+__pycache__/

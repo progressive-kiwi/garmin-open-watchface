@@ -1,0 +1,143 @@
+---
+title: Settings reference
+---
+
+Every setting is available in the Garmin Connect app, Garmin Express, and on the watch
+(hold the menu button on the watch face → **Watch Face** → **Customize**).
+Colors set to **Auto (theme)** follow the selected color theme.
+
+This page is generated from `tools/gen_settings.py`.
+
+## General
+
+Mode, theme and base colors.
+
+| Key | Setting | Default | Options |
+|---|---|---|---|
+| `Mode` | Watch mode | Analog | Analog, Digital |
+| `Theme` | Color theme | Classic | Custom, Classic, Racing, Ocean, Forest, Gold, Ice, Neon, Paper, Stealth, Tactical |
+| `BgColor` | Custom background | Black | 28 colors |
+| `PrimaryColor` | Custom primary | White | 28 colors |
+| `SecondaryColor` | Custom secondary | Light gray | 28 colors |
+| `AccentColor` | Custom accent | Orange | 28 colors |
+| `SecondsMode` | Seconds | Awake only | Off, Awake only, Always (MIP) |
+| `StatusIcons` | Status icons | on | on / off |
+
+## Analog
+
+Layout and hands.
+
+| Key | Setting | Default | Options |
+|---|---|---|---|
+| `AnalogLayout` | Analog layout | Classic | Classic, Chronograph, Top + bottom, Minimal, Gauges, Pilot |
+| `HourHand` | Hour hand | Baton | Baton, Dauphine, Sword, Leaf, Skeleton, Arrow, Needle, Rounded, Breguet |
+| `MinuteHand` | Minute hand | Baton | Baton, Dauphine, Sword, Leaf, Skeleton, Arrow, Needle, Rounded, Breguet |
+| `SecondHand` | Second hand | Lollipop | Needle, Lollipop, Counterweight, Arrow tip, Square tip |
+| `HandSize` | Hand width | Regular | Slim, Regular, Bold |
+| `HandLength` | Hand length | Regular | Short, Regular, Long |
+| `HandOutline` | Hand outline | on | on / off |
+| `CenterCap` | Center cap | Dot | None, Dot, Ring, Large |
+| `HourHandColor` | Hour hand color | Auto (theme) | 28 colors + Auto |
+| `MinuteHandColor` | Minute hand color | Auto (theme) | 28 colors + Auto |
+| `SecondHandColor` | Second hand color | Auto (theme) | 28 colors + Auto |
+
+## Dial
+
+Ticks, numerals and ring.
+
+| Key | Setting | Default | Options |
+|---|---|---|---|
+| `HourTicks` | Hour ticks | Bar | None, Line, Bar, Dot, Triangle, Double line, Diamond |
+| `MinuteTicks` | Minute ticks | Line | None, Line, Dot, Railway |
+| `TickLength` | Tick length | Medium | Small, Medium, Large |
+| `QuarterEmphasis` | Emphasize 12/3/6/9 | on | on / off |
+| `Numerals` | Numerals | None | None, Quarters, All, Roman quarters, Roman all, 12 only |
+| `NumeralFont` | Numeral font | Condensed bold | System, Condensed bold, Roboto, Roboto black, Bionic, Serif, Condensed italic, Quartz LCD, Quartz outline, Quartz thin, Dot matrix, Pixel blocks, Dotted fine, Segment upright |
+| `NumeralSize` | Numeral size | Medium | Small, Medium, Large |
+| `DialRing` | Dial ring | None | None, Thin, Bezel, Double |
+| `HourTickColor` | Hour tick color | Auto (theme) | 28 colors + Auto |
+| `MinuteTickColor` | Minute tick color | Auto (theme) | 28 colors + Auto |
+| `NumeralColor` | Numeral color | Auto (theme) | 28 colors + Auto |
+
+## Digital
+
+Time font and layout.
+
+| Key | Setting | Default | Options |
+|---|---|---|---|
+| `DigitalLayout` | Digital layout | Classic | Classic, Stacked, Big, Sport, Minimal, Side |
+| `TimeFont` | Time font | Condensed bold | System, Condensed bold, Roboto, Roboto black, Bionic, Serif, Condensed italic, Quartz LCD, Quartz outline, Quartz thin, Dot matrix, Pixel blocks, Dotted fine, Segment upright |
+| `TimeSize` | Time size | Large | Small, Medium, Large, Extra large |
+| `HourFormat` | Hour format | System | System, 12 hour, 24 hour |
+| `LeadingZero` | Leading zero | off | on / off |
+| `Separator` | Separator | Colon | Colon, None, Space |
+| `Ghost` | Unlit segments / dots | on | on / off |
+| `GhostColor` | Unlit color | Dark gray | 28 colors |
+| `HourDigitColor` | Hours color | Auto (theme) | 28 colors + Auto |
+| `MinuteDigitColor` | Minutes color | Auto (theme) | 28 colors + Auto |
+
+## Data
+
+Fields, gauges and date.
+
+| Key | Setting | Default | Options |
+|---|---|---|---|
+| `Field1` | Field 1 | Date | Off, Date, Weekday + day, Battery %, Battery days, Steps, Heart rate, Calories, Distance, Floors, Active minutes, Body Battery, Stress, Notifications, Altitude, Temperature, Sunrise / sunset, Week number, Digital time, Seconds, Respiration, Recovery time, Day progress |
+| `Field2` | Field 2 | Heart rate | Off, Date, Weekday + day, Battery %, Battery days, Steps, Heart rate, Calories, Distance, Floors, Active minutes, Body Battery, Stress, Notifications, Altitude, Temperature, Sunrise / sunset, Week number, Digital time, Seconds, Respiration, Recovery time, Day progress |
+| `Field3` | Field 3 | Steps | Off, Date, Weekday + day, Battery %, Battery days, Steps, Heart rate, Calories, Distance, Floors, Active minutes, Body Battery, Stress, Notifications, Altitude, Temperature, Sunrise / sunset, Week number, Digital time, Seconds, Respiration, Recovery time, Day progress |
+| `Field4` | Field 4 | Battery % | Off, Date, Weekday + day, Battery %, Battery days, Steps, Heart rate, Calories, Distance, Floors, Active minutes, Body Battery, Stress, Notifications, Altitude, Temperature, Sunrise / sunset, Week number, Digital time, Seconds, Respiration, Recovery time, Day progress |
+| `FieldFont` | Field font | System | System, Condensed bold, Roboto, Roboto black, Bionic, Serif, Condensed italic, Quartz LCD, Quartz outline, Quartz thin, Dot matrix, Pixel blocks, Dotted fine, Segment upright |
+| `FieldLabels` | Field labels | Text | None, Text |
+| `FieldColor` | Field value color | Auto (theme) | 28 colors + Auto |
+| `LabelColor` | Field label color | Auto (theme) | 28 colors + Auto |
+| `GaugeLeft` | Left gauge | Off | Off, Battery, Steps goal, Body Battery, Stress, Active minutes goal, Floors goal, Seconds, Heart rate, Day progress |
+| `GaugeRight` | Right gauge | Off | Off, Battery, Steps goal, Body Battery, Stress, Active minutes goal, Floors goal, Seconds, Heart rate, Day progress |
+| `DateFormat` | Date format | FRI 9 | FRI 9, 9 OCT, FRI 9 OCT, 2026-10-09, 09.10, 10/09 |
+
+## Always on
+
+Always-on / low power display.
+
+| Key | Setting | Default | Options |
+|---|---|---|---|
+| `AodStyle` | AOD style | Auto | Auto, Full face, Minimal, Minimal + date, Time only |
+| `AodColor` | AOD color | Light gray | 28 colors |
+| `AodFont` | AOD font | Same as time | Same as time, System, Condensed bold, Roboto, Roboto black, Bionic, Serif, Condensed italic, Quartz LCD, Quartz outline, Quartz thin, Dot matrix, Pixel blocks, Dotted fine, Segment upright |
+| `AodOutline` | Outline hands / digits | on | on / off |
+| `AodMarkers` | AOD markers | Quarters | None, Quarters, Hours |
+| `AodShift` | Pixel shift | on | on / off |
+
+## Color palette
+
+Values come from the 64-color MIP palette, so they render identically on MIP and AMOLED.
+
+| Color | Hex |
+|---|---|
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#000000"></span> Black | `#000000` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#000055"></span> Midnight | `#000055` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#0000AA"></span> Navy | `#0000AA` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#005555"></span> Deep teal | `#005555` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#555555"></span> Dark gray | `#555555` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#AAAAAA"></span> Light gray | `#AAAAAA` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#FFFFFF"></span> White | `#FFFFFF` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#FFFFAA"></span> Cream | `#FFFFAA` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#FF0000"></span> Red | `#FF0000` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#AA0000"></span> Dark red | `#AA0000` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#FF5500"></span> Orange | `#FF5500` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#FFAA00"></span> Amber | `#FFAA00` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#FFFF00"></span> Yellow | `#FFFF00` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#AAFF00"></span> Lime | `#AAFF00` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#00FF00"></span> Green | `#00FF00` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#00AA00"></span> Forest | `#00AA00` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#00AA55"></span> Emerald | `#00AA55` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#00FFAA"></span> Mint | `#00FFAA` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#00FFFF"></span> Cyan | `#00FFFF` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#00AAFF"></span> Sky | `#00AAFF` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#0055FF"></span> Blue | `#0055FF` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#5500FF"></span> Indigo | `#5500FF` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#AA00FF"></span> Purple | `#AA00FF` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#FF00FF"></span> Magenta | `#FF00FF` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#FF55AA"></span> Pink | `#FF55AA` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#FFAA55"></span> Peach | `#FFAA55` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#AA5500"></span> Bronze | `#AA5500` |
+| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#55AAAA"></span> Steel | `#55AAAA` |

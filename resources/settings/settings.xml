@@ -1,0 +1,976 @@
+<settings>
+    <group id="General" title="@Strings.g_General" description="@Strings.gd_General">
+        <setting propertyKey="@Properties.Mode" title="@Strings.t_Mode">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Analog</listEntry>
+                <listEntry value="1">@Strings.o_Digital</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.Theme" title="@Strings.t_Theme">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Custom</listEntry>
+                <listEntry value="1">@Strings.o_Classic</listEntry>
+                <listEntry value="2">@Strings.o_Racing</listEntry>
+                <listEntry value="3">@Strings.o_Ocean</listEntry>
+                <listEntry value="4">@Strings.o_Forest</listEntry>
+                <listEntry value="5">@Strings.o_Gold</listEntry>
+                <listEntry value="6">@Strings.o_Ice</listEntry>
+                <listEntry value="7">@Strings.o_Neon</listEntry>
+                <listEntry value="8">@Strings.o_Paper</listEntry>
+                <listEntry value="9">@Strings.o_Stealth</listEntry>
+                <listEntry value="10">@Strings.o_Tactical</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.BgColor" title="@Strings.t_BgColor">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Black</listEntry>
+                <listEntry value="85">@Strings.o_Midnight</listEntry>
+                <listEntry value="170">@Strings.o_Navy</listEntry>
+                <listEntry value="21845">@Strings.o_DeepTeal</listEntry>
+                <listEntry value="5592405">@Strings.o_DarkGray</listEntry>
+                <listEntry value="11184810">@Strings.o_LightGray</listEntry>
+                <listEntry value="16777215">@Strings.o_White</listEntry>
+                <listEntry value="16777130">@Strings.o_Cream</listEntry>
+                <listEntry value="16711680">@Strings.o_Red</listEntry>
+                <listEntry value="11141120">@Strings.o_DarkRed</listEntry>
+                <listEntry value="16733440">@Strings.o_Orange</listEntry>
+                <listEntry value="16755200">@Strings.o_Amber</listEntry>
+                <listEntry value="16776960">@Strings.o_Yellow</listEntry>
+                <listEntry value="11206400">@Strings.o_Lime</listEntry>
+                <listEntry value="65280">@Strings.o_Green</listEntry>
+                <listEntry value="43520">@Strings.o_Forest</listEntry>
+                <listEntry value="43605">@Strings.o_Emerald</listEntry>
+                <listEntry value="65450">@Strings.o_Mint</listEntry>
+                <listEntry value="65535">@Strings.o_Cyan</listEntry>
+                <listEntry value="43775">@Strings.o_Sky</listEntry>
+                <listEntry value="22015">@Strings.o_Blue</listEntry>
+                <listEntry value="5570815">@Strings.o_Indigo</listEntry>
+                <listEntry value="11141375">@Strings.o_Purple</listEntry>
+                <listEntry value="16711935">@Strings.o_Magenta</listEntry>
+                <listEntry value="16733610">@Strings.o_Pink</listEntry>
+                <listEntry value="16755285">@Strings.o_Peach</listEntry>
+                <listEntry value="11162880">@Strings.o_Bronze</listEntry>
+                <listEntry value="5614250">@Strings.o_Steel</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.PrimaryColor" title="@Strings.t_PrimaryColor">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Black</listEntry>
+                <listEntry value="85">@Strings.o_Midnight</listEntry>
+                <listEntry value="170">@Strings.o_Navy</listEntry>
+                <listEntry value="21845">@Strings.o_DeepTeal</listEntry>
+                <listEntry value="5592405">@Strings.o_DarkGray</listEntry>
+                <listEntry value="11184810">@Strings.o_LightGray</listEntry>
+                <listEntry value="16777215">@Strings.o_White</listEntry>
+                <listEntry value="16777130">@Strings.o_Cream</listEntry>
+                <listEntry value="16711680">@Strings.o_Red</listEntry>
+                <listEntry value="11141120">@Strings.o_DarkRed</listEntry>
+                <listEntry value="16733440">@Strings.o_Orange</listEntry>
+                <listEntry value="16755200">@Strings.o_Amber</listEntry>
+                <listEntry value="16776960">@Strings.o_Yellow</listEntry>
+                <listEntry value="11206400">@Strings.o_Lime</listEntry>
+                <listEntry value="65280">@Strings.o_Green</listEntry>
+                <listEntry value="43520">@Strings.o_Forest</listEntry>
+                <listEntry value="43605">@Strings.o_Emerald</listEntry>
+                <listEntry value="65450">@Strings.o_Mint</listEntry>
+                <listEntry value="65535">@Strings.o_Cyan</listEntry>
+                <listEntry value="43775">@Strings.o_Sky</listEntry>
+                <listEntry value="22015">@Strings.o_Blue</listEntry>
+                <listEntry value="5570815">@Strings.o_Indigo</listEntry>
+                <listEntry value="11141375">@Strings.o_Purple</listEntry>
+                <listEntry value="16711935">@Strings.o_Magenta</listEntry>
+                <listEntry value="16733610">@Strings.o_Pink</listEntry>
+                <listEntry value="16755285">@Strings.o_Peach</listEntry>
+                <listEntry value="11162880">@Strings.o_Bronze</listEntry>
+                <listEntry value="5614250">@Strings.o_Steel</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.SecondaryColor" title="@Strings.t_SecondaryColor">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Black</listEntry>
+                <listEntry value="85">@Strings.o_Midnight</listEntry>
+                <listEntry value="170">@Strings.o_Navy</listEntry>
+                <listEntry value="21845">@Strings.o_DeepTeal</listEntry>
+                <listEntry value="5592405">@Strings.o_DarkGray</listEntry>
+                <listEntry value="11184810">@Strings.o_LightGray</listEntry>
+                <listEntry value="16777215">@Strings.o_White</listEntry>
+                <listEntry value="16777130">@Strings.o_Cream</listEntry>
+                <listEntry value="16711680">@Strings.o_Red</listEntry>
+                <listEntry value="11141120">@Strings.o_DarkRed</listEntry>
+                <listEntry value="16733440">@Strings.o_Orange</listEntry>
+                <listEntry value="16755200">@Strings.o_Amber</listEntry>
+                <listEntry value="16776960">@Strings.o_Yellow</listEntry>
+                <listEntry value="11206400">@Strings.o_Lime</listEntry>
+                <listEntry value="65280">@Strings.o_Green</listEntry>
+                <listEntry value="43520">@Strings.o_Forest</listEntry>
+                <listEntry value="43605">@Strings.o_Emerald</listEntry>
+                <listEntry value="65450">@Strings.o_Mint</listEntry>
+                <listEntry value="65535">@Strings.o_Cyan</listEntry>
+                <listEntry value="43775">@Strings.o_Sky</listEntry>
+                <listEntry value="22015">@Strings.o_Blue</listEntry>
+                <listEntry value="5570815">@Strings.o_Indigo</listEntry>
+                <listEntry value="11141375">@Strings.o_Purple</listEntry>
+                <listEntry value="16711935">@Strings.o_Magenta</listEntry>
+                <listEntry value="16733610">@Strings.o_Pink</listEntry>
+                <listEntry value="16755285">@Strings.o_Peach</listEntry>
+                <listEntry value="11162880">@Strings.o_Bronze</listEntry>
+                <listEntry value="5614250">@Strings.o_Steel</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.AccentColor" title="@Strings.t_AccentColor">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Black</listEntry>
+                <listEntry value="85">@Strings.o_Midnight</listEntry>
+                <listEntry value="170">@Strings.o_Navy</listEntry>
+                <listEntry value="21845">@Strings.o_DeepTeal</listEntry>
+                <listEntry value="5592405">@Strings.o_DarkGray</listEntry>
+                <listEntry value="11184810">@Strings.o_LightGray</listEntry>
+                <listEntry value="16777215">@Strings.o_White</listEntry>
+                <listEntry value="16777130">@Strings.o_Cream</listEntry>
+                <listEntry value="16711680">@Strings.o_Red</listEntry>
+                <listEntry value="11141120">@Strings.o_DarkRed</listEntry>
+                <listEntry value="16733440">@Strings.o_Orange</listEntry>
+                <listEntry value="16755200">@Strings.o_Amber</listEntry>
+                <listEntry value="16776960">@Strings.o_Yellow</listEntry>
+                <listEntry value="11206400">@Strings.o_Lime</listEntry>
+                <listEntry value="65280">@Strings.o_Green</listEntry>
+                <listEntry value="43520">@Strings.o_Forest</listEntry>
+                <listEntry value="43605">@Strings.o_Emerald</listEntry>
+                <listEntry value="65450">@Strings.o_Mint</listEntry>
+                <listEntry value="65535">@Strings.o_Cyan</listEntry>
+                <listEntry value="43775">@Strings.o_Sky</listEntry>
+                <listEntry value="22015">@Strings.o_Blue</listEntry>
+                <listEntry value="5570815">@Strings.o_Indigo</listEntry>
+                <listEntry value="11141375">@Strings.o_Purple</listEntry>
+                <listEntry value="16711935">@Strings.o_Magenta</listEntry>
+                <listEntry value="16733610">@Strings.o_Pink</listEntry>
+                <listEntry value="16755285">@Strings.o_Peach</listEntry>
+                <listEntry value="11162880">@Strings.o_Bronze</listEntry>
+                <listEntry value="5614250">@Strings.o_Steel</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.SecondsMode" title="@Strings.t_SecondsMode">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Off</listEntry>
+                <listEntry value="1">@Strings.o_AwakeOnly</listEntry>
+                <listEntry value="2">@Strings.o_AlwaysMip</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.StatusIcons" title="@Strings.t_StatusIcons">
+            <settingConfig type="boolean" />
+        </setting>
+    </group>
+    <group id="Analog" title="@Strings.g_Analog" description="@Strings.gd_Analog">
+        <setting propertyKey="@Properties.AnalogLayout" title="@Strings.t_AnalogLayout">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Classic</listEntry>
+                <listEntry value="1">@Strings.o_Chronograph</listEntry>
+                <listEntry value="2">@Strings.o_TopPlusBottom</listEntry>
+                <listEntry value="3">@Strings.o_Minimal</listEntry>
+                <listEntry value="4">@Strings.o_Gauges</listEntry>
+                <listEntry value="5">@Strings.o_Pilot</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.HourHand" title="@Strings.t_HourHand">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Baton</listEntry>
+                <listEntry value="1">@Strings.o_Dauphine</listEntry>
+                <listEntry value="2">@Strings.o_Sword</listEntry>
+                <listEntry value="3">@Strings.o_Leaf</listEntry>
+                <listEntry value="4">@Strings.o_Skeleton</listEntry>
+                <listEntry value="5">@Strings.o_Arrow</listEntry>
+                <listEntry value="6">@Strings.o_Needle</listEntry>
+                <listEntry value="7">@Strings.o_Rounded</listEntry>
+                <listEntry value="8">@Strings.o_Breguet</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.MinuteHand" title="@Strings.t_MinuteHand">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Baton</listEntry>
+                <listEntry value="1">@Strings.o_Dauphine</listEntry>
+                <listEntry value="2">@Strings.o_Sword</listEntry>
+                <listEntry value="3">@Strings.o_Leaf</listEntry>
+                <listEntry value="4">@Strings.o_Skeleton</listEntry>
+                <listEntry value="5">@Strings.o_Arrow</listEntry>
+                <listEntry value="6">@Strings.o_Needle</listEntry>
+                <listEntry value="7">@Strings.o_Rounded</listEntry>
+                <listEntry value="8">@Strings.o_Breguet</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.SecondHand" title="@Strings.t_SecondHand">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Needle</listEntry>
+                <listEntry value="1">@Strings.o_Lollipop</listEntry>
+                <listEntry value="2">@Strings.o_Counterweight</listEntry>
+                <listEntry value="3">@Strings.o_ArrowTip</listEntry>
+                <listEntry value="4">@Strings.o_SquareTip</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.HandSize" title="@Strings.t_HandSize">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Slim</listEntry>
+                <listEntry value="1">@Strings.o_Regular</listEntry>
+                <listEntry value="2">@Strings.o_Bold</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.HandLength" title="@Strings.t_HandLength">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Short</listEntry>
+                <listEntry value="1">@Strings.o_Regular</listEntry>
+                <listEntry value="2">@Strings.o_Long</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.HandOutline" title="@Strings.t_HandOutline">
+            <settingConfig type="boolean" />
+        </setting>
+        <setting propertyKey="@Properties.CenterCap" title="@Strings.t_CenterCap">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_None</listEntry>
+                <listEntry value="1">@Strings.o_Dot</listEntry>
+                <listEntry value="2">@Strings.o_Ring</listEntry>
+                <listEntry value="3">@Strings.o_Large</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.HourHandColor" title="@Strings.t_HourHandColor">
+            <settingConfig type="list">
+                <listEntry value="-1">@Strings.o_AutoTheme</listEntry>
+                <listEntry value="0">@Strings.o_Black</listEntry>
+                <listEntry value="85">@Strings.o_Midnight</listEntry>
+                <listEntry value="170">@Strings.o_Navy</listEntry>
+                <listEntry value="21845">@Strings.o_DeepTeal</listEntry>
+                <listEntry value="5592405">@Strings.o_DarkGray</listEntry>
+                <listEntry value="11184810">@Strings.o_LightGray</listEntry>
+                <listEntry value="16777215">@Strings.o_White</listEntry>
+                <listEntry value="16777130">@Strings.o_Cream</listEntry>
+                <listEntry value="16711680">@Strings.o_Red</listEntry>
+                <listEntry value="11141120">@Strings.o_DarkRed</listEntry>
+                <listEntry value="16733440">@Strings.o_Orange</listEntry>
+                <listEntry value="16755200">@Strings.o_Amber</listEntry>
+                <listEntry value="16776960">@Strings.o_Yellow</listEntry>
+                <listEntry value="11206400">@Strings.o_Lime</listEntry>
+                <listEntry value="65280">@Strings.o_Green</listEntry>
+                <listEntry value="43520">@Strings.o_Forest</listEntry>
+                <listEntry value="43605">@Strings.o_Emerald</listEntry>
+                <listEntry value="65450">@Strings.o_Mint</listEntry>
+                <listEntry value="65535">@Strings.o_Cyan</listEntry>
+                <listEntry value="43775">@Strings.o_Sky</listEntry>
+                <listEntry value="22015">@Strings.o_Blue</listEntry>
+                <listEntry value="5570815">@Strings.o_Indigo</listEntry>
+                <listEntry value="11141375">@Strings.o_Purple</listEntry>
+                <listEntry value="16711935">@Strings.o_Magenta</listEntry>
+                <listEntry value="16733610">@Strings.o_Pink</listEntry>
+                <listEntry value="16755285">@Strings.o_Peach</listEntry>
+                <listEntry value="11162880">@Strings.o_Bronze</listEntry>
+                <listEntry value="5614250">@Strings.o_Steel</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.MinuteHandColor" title="@Strings.t_MinuteHandColor">
+            <settingConfig type="list">
+                <listEntry value="-1">@Strings.o_AutoTheme</listEntry>
+                <listEntry value="0">@Strings.o_Black</listEntry>
+                <listEntry value="85">@Strings.o_Midnight</listEntry>
+                <listEntry value="170">@Strings.o_Navy</listEntry>
+                <listEntry value="21845">@Strings.o_DeepTeal</listEntry>
+                <listEntry value="5592405">@Strings.o_DarkGray</listEntry>
+                <listEntry value="11184810">@Strings.o_LightGray</listEntry>
+                <listEntry value="16777215">@Strings.o_White</listEntry>
+                <listEntry value="16777130">@Strings.o_Cream</listEntry>
+                <listEntry value="16711680">@Strings.o_Red</listEntry>
+                <listEntry value="11141120">@Strings.o_DarkRed</listEntry>
+                <listEntry value="16733440">@Strings.o_Orange</listEntry>
+                <listEntry value="16755200">@Strings.o_Amber</listEntry>
+                <listEntry value="16776960">@Strings.o_Yellow</listEntry>
+                <listEntry value="11206400">@Strings.o_Lime</listEntry>
+                <listEntry value="65280">@Strings.o_Green</listEntry>
+                <listEntry value="43520">@Strings.o_Forest</listEntry>
+                <listEntry value="43605">@Strings.o_Emerald</listEntry>
+                <listEntry value="65450">@Strings.o_Mint</listEntry>
+                <listEntry value="65535">@Strings.o_Cyan</listEntry>
+                <listEntry value="43775">@Strings.o_Sky</listEntry>
+                <listEntry value="22015">@Strings.o_Blue</listEntry>
+                <listEntry value="5570815">@Strings.o_Indigo</listEntry>
+                <listEntry value="11141375">@Strings.o_Purple</listEntry>
+                <listEntry value="16711935">@Strings.o_Magenta</listEntry>
+                <listEntry value="16733610">@Strings.o_Pink</listEntry>
+                <listEntry value="16755285">@Strings.o_Peach</listEntry>
+                <listEntry value="11162880">@Strings.o_Bronze</listEntry>
+                <listEntry value="5614250">@Strings.o_Steel</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.SecondHandColor" title="@Strings.t_SecondHandColor">
+            <settingConfig type="list">
+                <listEntry value="-1">@Strings.o_AutoTheme</listEntry>
+                <listEntry value="0">@Strings.o_Black</listEntry>
+                <listEntry value="85">@Strings.o_Midnight</listEntry>
+                <listEntry value="170">@Strings.o_Navy</listEntry>
+                <listEntry value="21845">@Strings.o_DeepTeal</listEntry>
+                <listEntry value="5592405">@Strings.o_DarkGray</listEntry>
+                <listEntry value="11184810">@Strings.o_LightGray</listEntry>
+                <listEntry value="16777215">@Strings.o_White</listEntry>
+                <listEntry value="16777130">@Strings.o_Cream</listEntry>
+                <listEntry value="16711680">@Strings.o_Red</listEntry>
+                <listEntry value="11141120">@Strings.o_DarkRed</listEntry>
+                <listEntry value="16733440">@Strings.o_Orange</listEntry>
+                <listEntry value="16755200">@Strings.o_Amber</listEntry>
+                <listEntry value="16776960">@Strings.o_Yellow</listEntry>
+                <listEntry value="11206400">@Strings.o_Lime</listEntry>
+                <listEntry value="65280">@Strings.o_Green</listEntry>
+                <listEntry value="43520">@Strings.o_Forest</listEntry>
+                <listEntry value="43605">@Strings.o_Emerald</listEntry>
+                <listEntry value="65450">@Strings.o_Mint</listEntry>
+                <listEntry value="65535">@Strings.o_Cyan</listEntry>
+                <listEntry value="43775">@Strings.o_Sky</listEntry>
+                <listEntry value="22015">@Strings.o_Blue</listEntry>
+                <listEntry value="5570815">@Strings.o_Indigo</listEntry>
+                <listEntry value="11141375">@Strings.o_Purple</listEntry>
+                <listEntry value="16711935">@Strings.o_Magenta</listEntry>
+                <listEntry value="16733610">@Strings.o_Pink</listEntry>
+                <listEntry value="16755285">@Strings.o_Peach</listEntry>
+                <listEntry value="11162880">@Strings.o_Bronze</listEntry>
+                <listEntry value="5614250">@Strings.o_Steel</listEntry>
+            </settingConfig>
+        </setting>
+    </group>
+    <group id="Dial" title="@Strings.g_Dial" description="@Strings.gd_Dial">
+        <setting propertyKey="@Properties.HourTicks" title="@Strings.t_HourTicks">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_None</listEntry>
+                <listEntry value="1">@Strings.o_Line</listEntry>
+                <listEntry value="2">@Strings.o_Bar</listEntry>
+                <listEntry value="3">@Strings.o_Dot</listEntry>
+                <listEntry value="4">@Strings.o_Triangle</listEntry>
+                <listEntry value="5">@Strings.o_DoubleLine</listEntry>
+                <listEntry value="6">@Strings.o_Diamond</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.MinuteTicks" title="@Strings.t_MinuteTicks">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_None</listEntry>
+                <listEntry value="1">@Strings.o_Line</listEntry>
+                <listEntry value="2">@Strings.o_Dot</listEntry>
+                <listEntry value="3">@Strings.o_Railway</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.TickLength" title="@Strings.t_TickLength">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Small</listEntry>
+                <listEntry value="1">@Strings.o_Medium</listEntry>
+                <listEntry value="2">@Strings.o_Large</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.QuarterEmphasis" title="@Strings.t_QuarterEmphasis">
+            <settingConfig type="boolean" />
+        </setting>
+        <setting propertyKey="@Properties.Numerals" title="@Strings.t_Numerals">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_None</listEntry>
+                <listEntry value="1">@Strings.o_Quarters</listEntry>
+                <listEntry value="2">@Strings.o_All</listEntry>
+                <listEntry value="3">@Strings.o_RomanQuarters</listEntry>
+                <listEntry value="4">@Strings.o_RomanAll</listEntry>
+                <listEntry value="5">@Strings.o_12OnlyN</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.NumeralFont" title="@Strings.t_NumeralFont">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_System</listEntry>
+                <listEntry value="1">@Strings.o_CondensedBold</listEntry>
+                <listEntry value="2">@Strings.o_Roboto</listEntry>
+                <listEntry value="3">@Strings.o_RobotoBlack</listEntry>
+                <listEntry value="4">@Strings.o_Bionic</listEntry>
+                <listEntry value="5">@Strings.o_Serif</listEntry>
+                <listEntry value="6">@Strings.o_CondensedItalic</listEntry>
+                <listEntry value="7">@Strings.o_QuartzLcd</listEntry>
+                <listEntry value="8">@Strings.o_QuartzOutline</listEntry>
+                <listEntry value="9">@Strings.o_QuartzThin</listEntry>
+                <listEntry value="10">@Strings.o_DotMatrix</listEntry>
+                <listEntry value="11">@Strings.o_PixelBlocks</listEntry>
+                <listEntry value="12">@Strings.o_DottedFine</listEntry>
+                <listEntry value="13">@Strings.o_SegmentUpright</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.NumeralSize" title="@Strings.t_NumeralSize">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Small</listEntry>
+                <listEntry value="1">@Strings.o_Medium</listEntry>
+                <listEntry value="2">@Strings.o_Large</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.DialRing" title="@Strings.t_DialRing">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_None</listEntry>
+                <listEntry value="1">@Strings.o_Thin</listEntry>
+                <listEntry value="2">@Strings.o_Bezel</listEntry>
+                <listEntry value="3">@Strings.o_Double</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.HourTickColor" title="@Strings.t_HourTickColor">
+            <settingConfig type="list">
+                <listEntry value="-1">@Strings.o_AutoTheme</listEntry>
+                <listEntry value="0">@Strings.o_Black</listEntry>
+                <listEntry value="85">@Strings.o_Midnight</listEntry>
+                <listEntry value="170">@Strings.o_Navy</listEntry>
+                <listEntry value="21845">@Strings.o_DeepTeal</listEntry>
+                <listEntry value="5592405">@Strings.o_DarkGray</listEntry>
+                <listEntry value="11184810">@Strings.o_LightGray</listEntry>
+                <listEntry value="16777215">@Strings.o_White</listEntry>
+                <listEntry value="16777130">@Strings.o_Cream</listEntry>
+                <listEntry value="16711680">@Strings.o_Red</listEntry>
+                <listEntry value="11141120">@Strings.o_DarkRed</listEntry>
+                <listEntry value="16733440">@Strings.o_Orange</listEntry>
+                <listEntry value="16755200">@Strings.o_Amber</listEntry>
+                <listEntry value="16776960">@Strings.o_Yellow</listEntry>
+                <listEntry value="11206400">@Strings.o_Lime</listEntry>
+                <listEntry value="65280">@Strings.o_Green</listEntry>
+                <listEntry value="43520">@Strings.o_Forest</listEntry>
+                <listEntry value="43605">@Strings.o_Emerald</listEntry>
+                <listEntry value="65450">@Strings.o_Mint</listEntry>
+                <listEntry value="65535">@Strings.o_Cyan</listEntry>
+                <listEntry value="43775">@Strings.o_Sky</listEntry>
+                <listEntry value="22015">@Strings.o_Blue</listEntry>
+                <listEntry value="5570815">@Strings.o_Indigo</listEntry>
+                <listEntry value="11141375">@Strings.o_Purple</listEntry>
+                <listEntry value="16711935">@Strings.o_Magenta</listEntry>
+                <listEntry value="16733610">@Strings.o_Pink</listEntry>
+                <listEntry value="16755285">@Strings.o_Peach</listEntry>
+                <listEntry value="11162880">@Strings.o_Bronze</listEntry>
+                <listEntry value="5614250">@Strings.o_Steel</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.MinuteTickColor" title="@Strings.t_MinuteTickColor">
+            <settingConfig type="list">
+                <listEntry value="-1">@Strings.o_AutoTheme</listEntry>
+                <listEntry value="0">@Strings.o_Black</listEntry>
+                <listEntry value="85">@Strings.o_Midnight</listEntry>
+                <listEntry value="170">@Strings.o_Navy</listEntry>
+                <listEntry value="21845">@Strings.o_DeepTeal</listEntry>
+                <listEntry value="5592405">@Strings.o_DarkGray</listEntry>
+                <listEntry value="11184810">@Strings.o_LightGray</listEntry>
+                <listEntry value="16777215">@Strings.o_White</listEntry>
+                <listEntry value="16777130">@Strings.o_Cream</listEntry>
+                <listEntry value="16711680">@Strings.o_Red</listEntry>
+                <listEntry value="11141120">@Strings.o_DarkRed</listEntry>
+                <listEntry value="16733440">@Strings.o_Orange</listEntry>
+                <listEntry value="16755200">@Strings.o_Amber</listEntry>
+                <listEntry value="16776960">@Strings.o_Yellow</listEntry>
+                <listEntry value="11206400">@Strings.o_Lime</listEntry>
+                <listEntry value="65280">@Strings.o_Green</listEntry>
+                <listEntry value="43520">@Strings.o_Forest</listEntry>
+                <listEntry value="43605">@Strings.o_Emerald</listEntry>
+                <listEntry value="65450">@Strings.o_Mint</listEntry>
+                <listEntry value="65535">@Strings.o_Cyan</listEntry>
+                <listEntry value="43775">@Strings.o_Sky</listEntry>
+                <listEntry value="22015">@Strings.o_Blue</listEntry>
+                <listEntry value="5570815">@Strings.o_Indigo</listEntry>
+                <listEntry value="11141375">@Strings.o_Purple</listEntry>
+                <listEntry value="16711935">@Strings.o_Magenta</listEntry>
+                <listEntry value="16733610">@Strings.o_Pink</listEntry>
+                <listEntry value="16755285">@Strings.o_Peach</listEntry>
+                <listEntry value="11162880">@Strings.o_Bronze</listEntry>
+                <listEntry value="5614250">@Strings.o_Steel</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.NumeralColor" title="@Strings.t_NumeralColor">
+            <settingConfig type="list">
+                <listEntry value="-1">@Strings.o_AutoTheme</listEntry>
+                <listEntry value="0">@Strings.o_Black</listEntry>
+                <listEntry value="85">@Strings.o_Midnight</listEntry>
+                <listEntry value="170">@Strings.o_Navy</listEntry>
+                <listEntry value="21845">@Strings.o_DeepTeal</listEntry>
+                <listEntry value="5592405">@Strings.o_DarkGray</listEntry>
+                <listEntry value="11184810">@Strings.o_LightGray</listEntry>
+                <listEntry value="16777215">@Strings.o_White</listEntry>
+                <listEntry value="16777130">@Strings.o_Cream</listEntry>
+                <listEntry value="16711680">@Strings.o_Red</listEntry>
+                <listEntry value="11141120">@Strings.o_DarkRed</listEntry>
+                <listEntry value="16733440">@Strings.o_Orange</listEntry>
+                <listEntry value="16755200">@Strings.o_Amber</listEntry>
+                <listEntry value="16776960">@Strings.o_Yellow</listEntry>
+                <listEntry value="11206400">@Strings.o_Lime</listEntry>
+                <listEntry value="65280">@Strings.o_Green</listEntry>
+                <listEntry value="43520">@Strings.o_Forest</listEntry>
+                <listEntry value="43605">@Strings.o_Emerald</listEntry>
+                <listEntry value="65450">@Strings.o_Mint</listEntry>
+                <listEntry value="65535">@Strings.o_Cyan</listEntry>
+                <listEntry value="43775">@Strings.o_Sky</listEntry>
+                <listEntry value="22015">@Strings.o_Blue</listEntry>
+                <listEntry value="5570815">@Strings.o_Indigo</listEntry>
+                <listEntry value="11141375">@Strings.o_Purple</listEntry>
+                <listEntry value="16711935">@Strings.o_Magenta</listEntry>
+                <listEntry value="16733610">@Strings.o_Pink</listEntry>
+                <listEntry value="16755285">@Strings.o_Peach</listEntry>
+                <listEntry value="11162880">@Strings.o_Bronze</listEntry>
+                <listEntry value="5614250">@Strings.o_Steel</listEntry>
+            </settingConfig>
+        </setting>
+    </group>
+    <group id="Digital" title="@Strings.g_Digital" description="@Strings.gd_Digital">
+        <setting propertyKey="@Properties.DigitalLayout" title="@Strings.t_DigitalLayout">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Classic</listEntry>
+                <listEntry value="1">@Strings.o_Stacked</listEntry>
+                <listEntry value="2">@Strings.o_Big</listEntry>
+                <listEntry value="3">@Strings.o_Sport</listEntry>
+                <listEntry value="4">@Strings.o_Minimal</listEntry>
+                <listEntry value="5">@Strings.o_Side</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.TimeFont" title="@Strings.t_TimeFont">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_System</listEntry>
+                <listEntry value="1">@Strings.o_CondensedBold</listEntry>
+                <listEntry value="2">@Strings.o_Roboto</listEntry>
+                <listEntry value="3">@Strings.o_RobotoBlack</listEntry>
+                <listEntry value="4">@Strings.o_Bionic</listEntry>
+                <listEntry value="5">@Strings.o_Serif</listEntry>
+                <listEntry value="6">@Strings.o_CondensedItalic</listEntry>
+                <listEntry value="7">@Strings.o_QuartzLcd</listEntry>
+                <listEntry value="8">@Strings.o_QuartzOutline</listEntry>
+                <listEntry value="9">@Strings.o_QuartzThin</listEntry>
+                <listEntry value="10">@Strings.o_DotMatrix</listEntry>
+                <listEntry value="11">@Strings.o_PixelBlocks</listEntry>
+                <listEntry value="12">@Strings.o_DottedFine</listEntry>
+                <listEntry value="13">@Strings.o_SegmentUpright</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.TimeSize" title="@Strings.t_TimeSize">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Small</listEntry>
+                <listEntry value="1">@Strings.o_Medium</listEntry>
+                <listEntry value="2">@Strings.o_Large</listEntry>
+                <listEntry value="3">@Strings.o_ExtraLarge</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.HourFormat" title="@Strings.t_HourFormat">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_System</listEntry>
+                <listEntry value="1">@Strings.o_12HourN</listEntry>
+                <listEntry value="2">@Strings.o_24HourN</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.LeadingZero" title="@Strings.t_LeadingZero">
+            <settingConfig type="boolean" />
+        </setting>
+        <setting propertyKey="@Properties.Separator" title="@Strings.t_Separator">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Colon</listEntry>
+                <listEntry value="1">@Strings.o_None</listEntry>
+                <listEntry value="2">@Strings.o_Space</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.Ghost" title="@Strings.t_Ghost">
+            <settingConfig type="boolean" />
+        </setting>
+        <setting propertyKey="@Properties.GhostColor" title="@Strings.t_GhostColor">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Black</listEntry>
+                <listEntry value="85">@Strings.o_Midnight</listEntry>
+                <listEntry value="170">@Strings.o_Navy</listEntry>
+                <listEntry value="21845">@Strings.o_DeepTeal</listEntry>
+                <listEntry value="5592405">@Strings.o_DarkGray</listEntry>
+                <listEntry value="11184810">@Strings.o_LightGray</listEntry>
+                <listEntry value="16777215">@Strings.o_White</listEntry>
+                <listEntry value="16777130">@Strings.o_Cream</listEntry>
+                <listEntry value="16711680">@Strings.o_Red</listEntry>
+                <listEntry value="11141120">@Strings.o_DarkRed</listEntry>
+                <listEntry value="16733440">@Strings.o_Orange</listEntry>
+                <listEntry value="16755200">@Strings.o_Amber</listEntry>
+                <listEntry value="16776960">@Strings.o_Yellow</listEntry>
+                <listEntry value="11206400">@Strings.o_Lime</listEntry>
+                <listEntry value="65280">@Strings.o_Green</listEntry>
+                <listEntry value="43520">@Strings.o_Forest</listEntry>
+                <listEntry value="43605">@Strings.o_Emerald</listEntry>
+                <listEntry value="65450">@Strings.o_Mint</listEntry>
+                <listEntry value="65535">@Strings.o_Cyan</listEntry>
+                <listEntry value="43775">@Strings.o_Sky</listEntry>
+                <listEntry value="22015">@Strings.o_Blue</listEntry>
+                <listEntry value="5570815">@Strings.o_Indigo</listEntry>
+                <listEntry value="11141375">@Strings.o_Purple</listEntry>
+                <listEntry value="16711935">@Strings.o_Magenta</listEntry>
+                <listEntry value="16733610">@Strings.o_Pink</listEntry>
+                <listEntry value="16755285">@Strings.o_Peach</listEntry>
+                <listEntry value="11162880">@Strings.o_Bronze</listEntry>
+                <listEntry value="5614250">@Strings.o_Steel</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.HourDigitColor" title="@Strings.t_HourDigitColor">
+            <settingConfig type="list">
+                <listEntry value="-1">@Strings.o_AutoTheme</listEntry>
+                <listEntry value="0">@Strings.o_Black</listEntry>
+                <listEntry value="85">@Strings.o_Midnight</listEntry>
+                <listEntry value="170">@Strings.o_Navy</listEntry>
+                <listEntry value="21845">@Strings.o_DeepTeal</listEntry>
+                <listEntry value="5592405">@Strings.o_DarkGray</listEntry>
+                <listEntry value="11184810">@Strings.o_LightGray</listEntry>
+                <listEntry value="16777215">@Strings.o_White</listEntry>
+                <listEntry value="16777130">@Strings.o_Cream</listEntry>
+                <listEntry value="16711680">@Strings.o_Red</listEntry>
+                <listEntry value="11141120">@Strings.o_DarkRed</listEntry>
+                <listEntry value="16733440">@Strings.o_Orange</listEntry>
+                <listEntry value="16755200">@Strings.o_Amber</listEntry>
+                <listEntry value="16776960">@Strings.o_Yellow</listEntry>
+                <listEntry value="11206400">@Strings.o_Lime</listEntry>
+                <listEntry value="65280">@Strings.o_Green</listEntry>
+                <listEntry value="43520">@Strings.o_Forest</listEntry>
+                <listEntry value="43605">@Strings.o_Emerald</listEntry>
+                <listEntry value="65450">@Strings.o_Mint</listEntry>
+                <listEntry value="65535">@Strings.o_Cyan</listEntry>
+                <listEntry value="43775">@Strings.o_Sky</listEntry>
+                <listEntry value="22015">@Strings.o_Blue</listEntry>
+                <listEntry value="5570815">@Strings.o_Indigo</listEntry>
+                <listEntry value="11141375">@Strings.o_Purple</listEntry>
+                <listEntry value="16711935">@Strings.o_Magenta</listEntry>
+                <listEntry value="16733610">@Strings.o_Pink</listEntry>
+                <listEntry value="16755285">@Strings.o_Peach</listEntry>
+                <listEntry value="11162880">@Strings.o_Bronze</listEntry>
+                <listEntry value="5614250">@Strings.o_Steel</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.MinuteDigitColor" title="@Strings.t_MinuteDigitColor">
+            <settingConfig type="list">
+                <listEntry value="-1">@Strings.o_AutoTheme</listEntry>
+                <listEntry value="0">@Strings.o_Black</listEntry>
+                <listEntry value="85">@Strings.o_Midnight</listEntry>
+                <listEntry value="170">@Strings.o_Navy</listEntry>
+                <listEntry value="21845">@Strings.o_DeepTeal</listEntry>
+                <listEntry value="5592405">@Strings.o_DarkGray</listEntry>
+                <listEntry value="11184810">@Strings.o_LightGray</listEntry>
+                <listEntry value="16777215">@Strings.o_White</listEntry>
+                <listEntry value="16777130">@Strings.o_Cream</listEntry>
+                <listEntry value="16711680">@Strings.o_Red</listEntry>
+                <listEntry value="11141120">@Strings.o_DarkRed</listEntry>
+                <listEntry value="16733440">@Strings.o_Orange</listEntry>
+                <listEntry value="16755200">@Strings.o_Amber</listEntry>
+                <listEntry value="16776960">@Strings.o_Yellow</listEntry>
+                <listEntry value="11206400">@Strings.o_Lime</listEntry>
+                <listEntry value="65280">@Strings.o_Green</listEntry>
+                <listEntry value="43520">@Strings.o_Forest</listEntry>
+                <listEntry value="43605">@Strings.o_Emerald</listEntry>
+                <listEntry value="65450">@Strings.o_Mint</listEntry>
+                <listEntry value="65535">@Strings.o_Cyan</listEntry>
+                <listEntry value="43775">@Strings.o_Sky</listEntry>
+                <listEntry value="22015">@Strings.o_Blue</listEntry>
+                <listEntry value="5570815">@Strings.o_Indigo</listEntry>
+                <listEntry value="11141375">@Strings.o_Purple</listEntry>
+                <listEntry value="16711935">@Strings.o_Magenta</listEntry>
+                <listEntry value="16733610">@Strings.o_Pink</listEntry>
+                <listEntry value="16755285">@Strings.o_Peach</listEntry>
+                <listEntry value="11162880">@Strings.o_Bronze</listEntry>
+                <listEntry value="5614250">@Strings.o_Steel</listEntry>
+            </settingConfig>
+        </setting>
+    </group>
+    <group id="Data" title="@Strings.g_Data" description="@Strings.gd_Data">
+        <setting propertyKey="@Properties.Field1" title="@Strings.t_Field1">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Off</listEntry>
+                <listEntry value="1">@Strings.o_Date</listEntry>
+                <listEntry value="2">@Strings.o_WeekdayPlusDay</listEntry>
+                <listEntry value="3">@Strings.o_BatteryPct</listEntry>
+                <listEntry value="4">@Strings.o_BatteryDays</listEntry>
+                <listEntry value="5">@Strings.o_Steps</listEntry>
+                <listEntry value="6">@Strings.o_HeartRate</listEntry>
+                <listEntry value="7">@Strings.o_Calories</listEntry>
+                <listEntry value="8">@Strings.o_Distance</listEntry>
+                <listEntry value="9">@Strings.o_Floors</listEntry>
+                <listEntry value="10">@Strings.o_ActiveMinutes</listEntry>
+                <listEntry value="11">@Strings.o_BodyBattery</listEntry>
+                <listEntry value="12">@Strings.o_Stress</listEntry>
+                <listEntry value="13">@Strings.o_Notifications</listEntry>
+                <listEntry value="14">@Strings.o_Altitude</listEntry>
+                <listEntry value="15">@Strings.o_Temperature</listEntry>
+                <listEntry value="16">@Strings.o_SunriseSlashSunset</listEntry>
+                <listEntry value="17">@Strings.o_WeekNumber</listEntry>
+                <listEntry value="18">@Strings.o_DigitalTime</listEntry>
+                <listEntry value="19">@Strings.o_Seconds</listEntry>
+                <listEntry value="20">@Strings.o_Respiration</listEntry>
+                <listEntry value="21">@Strings.o_RecoveryTime</listEntry>
+                <listEntry value="22">@Strings.o_DayProgress</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.Field2" title="@Strings.t_Field2">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Off</listEntry>
+                <listEntry value="1">@Strings.o_Date</listEntry>
+                <listEntry value="2">@Strings.o_WeekdayPlusDay</listEntry>
+                <listEntry value="3">@Strings.o_BatteryPct</listEntry>
+                <listEntry value="4">@Strings.o_BatteryDays</listEntry>
+                <listEntry value="5">@Strings.o_Steps</listEntry>
+                <listEntry value="6">@Strings.o_HeartRate</listEntry>
+                <listEntry value="7">@Strings.o_Calories</listEntry>
+                <listEntry value="8">@Strings.o_Distance</listEntry>
+                <listEntry value="9">@Strings.o_Floors</listEntry>
+                <listEntry value="10">@Strings.o_ActiveMinutes</listEntry>
+                <listEntry value="11">@Strings.o_BodyBattery</listEntry>
+                <listEntry value="12">@Strings.o_Stress</listEntry>
+                <listEntry value="13">@Strings.o_Notifications</listEntry>
+                <listEntry value="14">@Strings.o_Altitude</listEntry>
+                <listEntry value="15">@Strings.o_Temperature</listEntry>
+                <listEntry value="16">@Strings.o_SunriseSlashSunset</listEntry>
+                <listEntry value="17">@Strings.o_WeekNumber</listEntry>
+                <listEntry value="18">@Strings.o_DigitalTime</listEntry>
+                <listEntry value="19">@Strings.o_Seconds</listEntry>
+                <listEntry value="20">@Strings.o_Respiration</listEntry>
+                <listEntry value="21">@Strings.o_RecoveryTime</listEntry>
+                <listEntry value="22">@Strings.o_DayProgress</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.Field3" title="@Strings.t_Field3">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Off</listEntry>
+                <listEntry value="1">@Strings.o_Date</listEntry>
+                <listEntry value="2">@Strings.o_WeekdayPlusDay</listEntry>
+                <listEntry value="3">@Strings.o_BatteryPct</listEntry>
+                <listEntry value="4">@Strings.o_BatteryDays</listEntry>
+                <listEntry value="5">@Strings.o_Steps</listEntry>
+                <listEntry value="6">@Strings.o_HeartRate</listEntry>
+                <listEntry value="7">@Strings.o_Calories</listEntry>
+                <listEntry value="8">@Strings.o_Distance</listEntry>
+                <listEntry value="9">@Strings.o_Floors</listEntry>
+                <listEntry value="10">@Strings.o_ActiveMinutes</listEntry>
+                <listEntry value="11">@Strings.o_BodyBattery</listEntry>
+                <listEntry value="12">@Strings.o_Stress</listEntry>
+                <listEntry value="13">@Strings.o_Notifications</listEntry>
+                <listEntry value="14">@Strings.o_Altitude</listEntry>
+                <listEntry value="15">@Strings.o_Temperature</listEntry>
+                <listEntry value="16">@Strings.o_SunriseSlashSunset</listEntry>
+                <listEntry value="17">@Strings.o_WeekNumber</listEntry>
+                <listEntry value="18">@Strings.o_DigitalTime</listEntry>
+                <listEntry value="19">@Strings.o_Seconds</listEntry>
+                <listEntry value="20">@Strings.o_Respiration</listEntry>
+                <listEntry value="21">@Strings.o_RecoveryTime</listEntry>
+                <listEntry value="22">@Strings.o_DayProgress</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.Field4" title="@Strings.t_Field4">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Off</listEntry>
+                <listEntry value="1">@Strings.o_Date</listEntry>
+                <listEntry value="2">@Strings.o_WeekdayPlusDay</listEntry>
+                <listEntry value="3">@Strings.o_BatteryPct</listEntry>
+                <listEntry value="4">@Strings.o_BatteryDays</listEntry>
+                <listEntry value="5">@Strings.o_Steps</listEntry>
+                <listEntry value="6">@Strings.o_HeartRate</listEntry>
+                <listEntry value="7">@Strings.o_Calories</listEntry>
+                <listEntry value="8">@Strings.o_Distance</listEntry>
+                <listEntry value="9">@Strings.o_Floors</listEntry>
+                <listEntry value="10">@Strings.o_ActiveMinutes</listEntry>
+                <listEntry value="11">@Strings.o_BodyBattery</listEntry>
+                <listEntry value="12">@Strings.o_Stress</listEntry>
+                <listEntry value="13">@Strings.o_Notifications</listEntry>
+                <listEntry value="14">@Strings.o_Altitude</listEntry>
+                <listEntry value="15">@Strings.o_Temperature</listEntry>
+                <listEntry value="16">@Strings.o_SunriseSlashSunset</listEntry>
+                <listEntry value="17">@Strings.o_WeekNumber</listEntry>
+                <listEntry value="18">@Strings.o_DigitalTime</listEntry>
+                <listEntry value="19">@Strings.o_Seconds</listEntry>
+                <listEntry value="20">@Strings.o_Respiration</listEntry>
+                <listEntry value="21">@Strings.o_RecoveryTime</listEntry>
+                <listEntry value="22">@Strings.o_DayProgress</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.FieldFont" title="@Strings.t_FieldFont">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_System</listEntry>
+                <listEntry value="1">@Strings.o_CondensedBold</listEntry>
+                <listEntry value="2">@Strings.o_Roboto</listEntry>
+                <listEntry value="3">@Strings.o_RobotoBlack</listEntry>
+                <listEntry value="4">@Strings.o_Bionic</listEntry>
+                <listEntry value="5">@Strings.o_Serif</listEntry>
+                <listEntry value="6">@Strings.o_CondensedItalic</listEntry>
+                <listEntry value="7">@Strings.o_QuartzLcd</listEntry>
+                <listEntry value="8">@Strings.o_QuartzOutline</listEntry>
+                <listEntry value="9">@Strings.o_QuartzThin</listEntry>
+                <listEntry value="10">@Strings.o_DotMatrix</listEntry>
+                <listEntry value="11">@Strings.o_PixelBlocks</listEntry>
+                <listEntry value="12">@Strings.o_DottedFine</listEntry>
+                <listEntry value="13">@Strings.o_SegmentUpright</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.FieldLabels" title="@Strings.t_FieldLabels">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_None</listEntry>
+                <listEntry value="1">@Strings.o_Text</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.FieldColor" title="@Strings.t_FieldColor">
+            <settingConfig type="list">
+                <listEntry value="-1">@Strings.o_AutoTheme</listEntry>
+                <listEntry value="0">@Strings.o_Black</listEntry>
+                <listEntry value="85">@Strings.o_Midnight</listEntry>
+                <listEntry value="170">@Strings.o_Navy</listEntry>
+                <listEntry value="21845">@Strings.o_DeepTeal</listEntry>
+                <listEntry value="5592405">@Strings.o_DarkGray</listEntry>
+                <listEntry value="11184810">@Strings.o_LightGray</listEntry>
+                <listEntry value="16777215">@Strings.o_White</listEntry>
+                <listEntry value="16777130">@Strings.o_Cream</listEntry>
+                <listEntry value="16711680">@Strings.o_Red</listEntry>
+                <listEntry value="11141120">@Strings.o_DarkRed</listEntry>
+                <listEntry value="16733440">@Strings.o_Orange</listEntry>
+                <listEntry value="16755200">@Strings.o_Amber</listEntry>
+                <listEntry value="16776960">@Strings.o_Yellow</listEntry>
+                <listEntry value="11206400">@Strings.o_Lime</listEntry>
+                <listEntry value="65280">@Strings.o_Green</listEntry>
+                <listEntry value="43520">@Strings.o_Forest</listEntry>
+                <listEntry value="43605">@Strings.o_Emerald</listEntry>
+                <listEntry value="65450">@Strings.o_Mint</listEntry>
+                <listEntry value="65535">@Strings.o_Cyan</listEntry>
+                <listEntry value="43775">@Strings.o_Sky</listEntry>
+                <listEntry value="22015">@Strings.o_Blue</listEntry>
+                <listEntry value="5570815">@Strings.o_Indigo</listEntry>
+                <listEntry value="11141375">@Strings.o_Purple</listEntry>
+                <listEntry value="16711935">@Strings.o_Magenta</listEntry>
+                <listEntry value="16733610">@Strings.o_Pink</listEntry>
+                <listEntry value="16755285">@Strings.o_Peach</listEntry>
+                <listEntry value="11162880">@Strings.o_Bronze</listEntry>
+                <listEntry value="5614250">@Strings.o_Steel</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.LabelColor" title="@Strings.t_LabelColor">
+            <settingConfig type="list">
+                <listEntry value="-1">@Strings.o_AutoTheme</listEntry>
+                <listEntry value="0">@Strings.o_Black</listEntry>
+                <listEntry value="85">@Strings.o_Midnight</listEntry>
+                <listEntry value="170">@Strings.o_Navy</listEntry>
+                <listEntry value="21845">@Strings.o_DeepTeal</listEntry>
+                <listEntry value="5592405">@Strings.o_DarkGray</listEntry>
+                <listEntry value="11184810">@Strings.o_LightGray</listEntry>
+                <listEntry value="16777215">@Strings.o_White</listEntry>
+                <listEntry value="16777130">@Strings.o_Cream</listEntry>
+                <listEntry value="16711680">@Strings.o_Red</listEntry>
+                <listEntry value="11141120">@Strings.o_DarkRed</listEntry>
+                <listEntry value="16733440">@Strings.o_Orange</listEntry>
+                <listEntry value="16755200">@Strings.o_Amber</listEntry>
+                <listEntry value="16776960">@Strings.o_Yellow</listEntry>
+                <listEntry value="11206400">@Strings.o_Lime</listEntry>
+                <listEntry value="65280">@Strings.o_Green</listEntry>
+                <listEntry value="43520">@Strings.o_Forest</listEntry>
+                <listEntry value="43605">@Strings.o_Emerald</listEntry>
+                <listEntry value="65450">@Strings.o_Mint</listEntry>
+                <listEntry value="65535">@Strings.o_Cyan</listEntry>
+                <listEntry value="43775">@Strings.o_Sky</listEntry>
+                <listEntry value="22015">@Strings.o_Blue</listEntry>
+                <listEntry value="5570815">@Strings.o_Indigo</listEntry>
+                <listEntry value="11141375">@Strings.o_Purple</listEntry>
+                <listEntry value="16711935">@Strings.o_Magenta</listEntry>
+                <listEntry value="16733610">@Strings.o_Pink</listEntry>
+                <listEntry value="16755285">@Strings.o_Peach</listEntry>
+                <listEntry value="11162880">@Strings.o_Bronze</listEntry>
+                <listEntry value="5614250">@Strings.o_Steel</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.GaugeLeft" title="@Strings.t_GaugeLeft">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Off</listEntry>
+                <listEntry value="1">@Strings.o_Battery</listEntry>
+                <listEntry value="2">@Strings.o_StepsGoal</listEntry>
+                <listEntry value="3">@Strings.o_BodyBattery</listEntry>
+                <listEntry value="4">@Strings.o_Stress</listEntry>
+                <listEntry value="5">@Strings.o_ActiveMinutesGoal</listEntry>
+                <listEntry value="6">@Strings.o_FloorsGoal</listEntry>
+                <listEntry value="7">@Strings.o_Seconds</listEntry>
+                <listEntry value="8">@Strings.o_HeartRate</listEntry>
+                <listEntry value="9">@Strings.o_DayProgress</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.GaugeRight" title="@Strings.t_GaugeRight">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Off</listEntry>
+                <listEntry value="1">@Strings.o_Battery</listEntry>
+                <listEntry value="2">@Strings.o_StepsGoal</listEntry>
+                <listEntry value="3">@Strings.o_BodyBattery</listEntry>
+                <listEntry value="4">@Strings.o_Stress</listEntry>
+                <listEntry value="5">@Strings.o_ActiveMinutesGoal</listEntry>
+                <listEntry value="6">@Strings.o_FloorsGoal</listEntry>
+                <listEntry value="7">@Strings.o_Seconds</listEntry>
+                <listEntry value="8">@Strings.o_HeartRate</listEntry>
+                <listEntry value="9">@Strings.o_DayProgress</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.DateFormat" title="@Strings.t_DateFormat">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Fri9</listEntry>
+                <listEntry value="1">@Strings.o_9OctN</listEntry>
+                <listEntry value="2">@Strings.o_Fri9Oct</listEntry>
+                <listEntry value="3">@Strings.o_2026Dash10Dash09N</listEntry>
+                <listEntry value="4">@Strings.o_09Dot10N</listEntry>
+                <listEntry value="5">@Strings.o_10Slash09N</listEntry>
+            </settingConfig>
+        </setting>
+    </group>
+    <group id="AlwaysOn" title="@Strings.g_AlwaysOn" description="@Strings.gd_AlwaysOn">
+        <setting propertyKey="@Properties.AodStyle" title="@Strings.t_AodStyle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Auto</listEntry>
+                <listEntry value="1">@Strings.o_FullFace</listEntry>
+                <listEntry value="2">@Strings.o_Minimal</listEntry>
+                <listEntry value="3">@Strings.o_MinimalPlusDate</listEntry>
+                <listEntry value="4">@Strings.o_TimeOnly</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.AodColor" title="@Strings.t_AodColor">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Black</listEntry>
+                <listEntry value="85">@Strings.o_Midnight</listEntry>
+                <listEntry value="170">@Strings.o_Navy</listEntry>
+                <listEntry value="21845">@Strings.o_DeepTeal</listEntry>
+                <listEntry value="5592405">@Strings.o_DarkGray</listEntry>
+                <listEntry value="11184810">@Strings.o_LightGray</listEntry>
+                <listEntry value="16777215">@Strings.o_White</listEntry>
+                <listEntry value="16777130">@Strings.o_Cream</listEntry>
+                <listEntry value="16711680">@Strings.o_Red</listEntry>
+                <listEntry value="11141120">@Strings.o_DarkRed</listEntry>
+                <listEntry value="16733440">@Strings.o_Orange</listEntry>
+                <listEntry value="16755200">@Strings.o_Amber</listEntry>
+                <listEntry value="16776960">@Strings.o_Yellow</listEntry>
+                <listEntry value="11206400">@Strings.o_Lime</listEntry>
+                <listEntry value="65280">@Strings.o_Green</listEntry>
+                <listEntry value="43520">@Strings.o_Forest</listEntry>
+                <listEntry value="43605">@Strings.o_Emerald</listEntry>
+                <listEntry value="65450">@Strings.o_Mint</listEntry>
+                <listEntry value="65535">@Strings.o_Cyan</listEntry>
+                <listEntry value="43775">@Strings.o_Sky</listEntry>
+                <listEntry value="22015">@Strings.o_Blue</listEntry>
+                <listEntry value="5570815">@Strings.o_Indigo</listEntry>
+                <listEntry value="11141375">@Strings.o_Purple</listEntry>
+                <listEntry value="16711935">@Strings.o_Magenta</listEntry>
+                <listEntry value="16733610">@Strings.o_Pink</listEntry>
+                <listEntry value="16755285">@Strings.o_Peach</listEntry>
+                <listEntry value="11162880">@Strings.o_Bronze</listEntry>
+                <listEntry value="5614250">@Strings.o_Steel</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.AodFont" title="@Strings.t_AodFont">
+            <settingConfig type="list">
+                <listEntry value="99">@Strings.o_SameAsTime</listEntry>
+                <listEntry value="0">@Strings.o_System</listEntry>
+                <listEntry value="1">@Strings.o_CondensedBold</listEntry>
+                <listEntry value="2">@Strings.o_Roboto</listEntry>
+                <listEntry value="3">@Strings.o_RobotoBlack</listEntry>
+                <listEntry value="4">@Strings.o_Bionic</listEntry>
+                <listEntry value="5">@Strings.o_Serif</listEntry>
+                <listEntry value="6">@Strings.o_CondensedItalic</listEntry>
+                <listEntry value="7">@Strings.o_QuartzLcd</listEntry>
+                <listEntry value="8">@Strings.o_QuartzOutline</listEntry>
+                <listEntry value="9">@Strings.o_QuartzThin</listEntry>
+                <listEntry value="10">@Strings.o_DotMatrix</listEntry>
+                <listEntry value="11">@Strings.o_PixelBlocks</listEntry>
+                <listEntry value="12">@Strings.o_DottedFine</listEntry>
+                <listEntry value="13">@Strings.o_SegmentUpright</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.AodOutline" title="@Strings.t_AodOutline">
+            <settingConfig type="boolean" />
+        </setting>
+        <setting propertyKey="@Properties.AodMarkers" title="@Strings.t_AodMarkers">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_None</listEntry>
+                <listEntry value="1">@Strings.o_Quarters</listEntry>
+                <listEntry value="2">@Strings.o_Hours</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.AodShift" title="@Strings.t_AodShift">
+            <settingConfig type="boolean" />
+        </setting>
+    </group>
+</settings>

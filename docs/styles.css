@@ -1,0 +1,16 @@
+.shot img {
+  width: 100%;
+  max-width: 340px;
+  display: block;
+  margin: 0 auto;
+}
+.shot figcaption, .shot .figure-caption {
+  text-align: center;
+  font-size: 0.85rem;
+}
+.hero img {
+  width: 100%;
+  max-width: 220px;
+  display: block;
+  margin: 0 auto;
+}

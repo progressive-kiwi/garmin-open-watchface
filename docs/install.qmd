@@ -1,0 +1,93 @@
+---
+title: Install
+---
+
+## From a GitHub release (side-load)
+
+1. Open the [latest release](https://github.com/progressive-kiwi/open-garmin-watchface/releases/latest)
+   and download `OpenFace-prg.zip`.
+2. Unzip it and pick `OpenFace-<device>.prg` for your watch (device ids are listed below).
+3. Connect the watch over USB. Copy the file into `GARMIN/APPS/` on the watch
+   (on macOS use [OpenMTP](https://openmtp.ganeshrvel.com/) or Android File Transfer).
+4. Disconnect. On the watch, hold the menu button on the watch face, choose **Watch Face**, and select **Open Face**.
+
+Side-loaded apps cannot be configured from the Garmin Connect phone app. Use the on-watch settings
+(**Watch Face** → **Open Face** → **Customize**) instead; every setting is there.
+
+## Store package
+
+`OpenFace.iq` in each release is the store package for the Connect IQ Store upload flow.
+
+## Configure
+
+- **Garmin Connect app** (store installs): *Device → Watch Faces → Open Face → Settings*.
+- **On the watch**: hold the menu button on the face → **Watch Face** → **Open Face** → **Customize**.
+  Settings are grouped like the [settings reference](settings.qmd): General, Analog, Dial, Digital, Data, Always-on.
+
+## Supported devices
+
+| Device | Id | Display | Resolution |
+|---|---|---|---|
+| Approach® S50 | `approachs50` | AMOLED | 390×390 |
+| Approach® S70 42mm | `approachs7042mm` | AMOLED | 390×390 |
+| Approach® S70 47mm | `approachs7047mm` | AMOLED | 454×454 |
+| D2™ Air X10 | `d2airx10` | AMOLED | 416×416 |
+| D2™ Mach 1 | `d2mach1` | AMOLED | 416×416 |
+| D2™ Mach 2 | `d2mach2` | AMOLED | 454×454 |
+| D2™ Mach 2 Pro | `d2mach2pro` | AMOLED | 454×454 |
+| Descent™ G2 | `descentg2` | AMOLED | 390×390 |
+| Descent™ Mk3 43mm / Mk3i 43mm | `descentmk343mm` | AMOLED | 390×390 |
+| Descent™ Mk3i 51mm | `descentmk351mm` | AMOLED | 454×454 |
+| Enduro™ 3 | `enduro3` | MIP | 280×280 |
+| Forerunner® 165 | `fr165` | AMOLED | 390×390 |
+| Forerunner® 165 Music | `fr165m` | AMOLED | 390×390 |
+| Forerunner® 170 | `fr170` | AMOLED | 390×390 |
+| Forerunner® 170 Music | `fr170m` | AMOLED | 390×390 |
+| Forerunner® 255 | `fr255` | MIP | 260×260 |
+| Forerunner® 255 Music | `fr255m` | MIP | 260×260 |
+| Forerunner® 255s | `fr255s` | MIP | 218×218 |
+| Forerunner® 255s Music | `fr255sm` | MIP | 218×218 |
+| Forerunner® 265 | `fr265` | AMOLED | 416×416 |
+| Forerunner® 265s | `fr265s` | AMOLED | 360×360 |
+| Forerunner® 570 42mm | `fr57042mm` | AMOLED | 390×390 |
+| Forerunner® 570 47mm | `fr57047mm` | AMOLED | 454×454 |
+| Forerunner® 70 | `fr70` | AMOLED | 390×390 |
+| Forerunner® 955 / Solar | `fr955` | MIP | 260×260 |
+| Forerunner® 965 | `fr965` | AMOLED | 454×454 |
+| Forerunner® 970 | `fr970` | AMOLED | 454×454 |
+| Instinct® 3 AMOLED 45mm | `instinct3amoled45mm` | AMOLED | 390×390 |
+| Instinct® 3 AMOLED 50mm | `instinct3amoled50mm` | AMOLED | 416×416 |
+| Instinct® Crossover AMOLED | `instinctcrossoveramoled` | AMOLED | 390×390 |
+| MARQ® (Gen 2) Athlete / Adventurer / Captain / Golfer / Carbon Edition / Commander - Carbon Edition | `marq2` | AMOLED | 390×390 |
+| MARQ® (Gen 2) Aviator | `marq2aviator` | AMOLED | 390×390 |
+| Venu® 2 | `venu2` | AMOLED | 416×416 |
+| Venu® 2 Plus | `venu2plus` | AMOLED | 416×416 |
+| Venu® 2S | `venu2s` | AMOLED | 360×360 |
+| Venu® 3 | `venu3` | AMOLED | 454×454 |
+| Venu® 3S | `venu3s` | AMOLED | 390×390 |
+| Venu® 4 41mm | `venu441mm` | AMOLED | 390×390 |
+| Venu® 4 45mm / D2™ Air X15 | `venu445mm` | AMOLED | 454×454 |
+| epix™ (Gen 2) / quatix® 7 Sapphire | `epix2` | AMOLED | 416×416 |
+| epix™ Pro (Gen 2) 42mm | `epix2pro42mm` | AMOLED | 390×390 |
+| epix™ Pro (Gen 2) 47mm / quatix® 7 Pro | `epix2pro47mm` | AMOLED | 416×416 |
+| epix™ Pro (Gen 2) 51mm / D2™ Mach 1 Pro / tactix® 7 – AMOLED Edition | `epix2pro51mm` | AMOLED | 454×454 |
+| fēnix® 7 Pro | `fenix7pro` | MIP | 260×260 |
+| fēnix® 7 Pro - Solar Edition (no Wi-Fi) | `fenix7pronowifi` | MIP | 260×260 |
+| fēnix® 7S Pro | `fenix7spro` | MIP | 240×240 |
+| fēnix® 7X Pro | `fenix7xpro` | MIP | 280×280 |
+| fēnix® 7X Pro - Solar Edition (no Wi-Fi) | `fenix7xpronowifi` | MIP | 280×280 |
+| fēnix® 8 43mm | `fenix843mm` | AMOLED | 416×416 |
+| fēnix® 8 47mm / 51mm / tactix® 8 47mm / 51mm / quatix® 8 47mm / 51mm | `fenix847mm` | AMOLED | 454×454 |
+| fēnix® 8 Pro 47mm / 51mm / MicroLED / quatix® 8 Pro 47mm / 51mm | `fenix8pro47mm` | AMOLED | 454×454 |
+| fēnix® 8 Solar 47mm | `fenix8solar47mm` | MIP | 260×260 |
+| fēnix® 8 Solar 51mm / tactix® 8 Solar 51mm | `fenix8solar51mm` | MIP | 280×280 |
+| fēnix® 9 43mm | `fenix943mm` | AMOLED | 416×416 |
+| fēnix® 9 47mm / 51mm | `fenix947mm` | AMOLED | 454×454 |
+| fēnix® 9 Pro 43mm | `fenix9pro43mm` | AMOLED | 416×416 |
+| fēnix® 9 Pro 47mm | `fenix9pro47mm` | AMOLED | 454×454 |
+| fēnix® 9 Pro 51mm | `fenix9pro51mm` | AMOLED | 466×466 |
+| fēnix® 9 Pro Solar 47mm | `fenix9prosolar47mm` | MIP | 260×260 |
+| fēnix® 9 Pro Solar 51mm | `fenix9prosolar51mm` | MIP | 280×280 |
+| fēnix® E | `fenixe` | AMOLED | 416×416 |
+| vívoactive® 5 | `vivoactive5` | AMOLED | 390×390 |
+| vívoactive® 6 | `vivoactive6` | AMOLED | 390×390 |

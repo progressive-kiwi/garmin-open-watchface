@@ -1,0 +1,58 @@
+---
+title: "Open Face"
+subtitle: "A highly configurable analog and digital watch face for Garmin Connect IQ"
+toc: false
+---
+
+::: {.grid}
+::: {.g-col-6 .g-col-md-3 .hero}
+![](images/analog-chronograph.png){fig-alt="Analog chronograph layout"}
+:::
+::: {.g-col-6 .g-col-md-3 .hero}
+![](images/digital-quartz.png){fig-alt="Digital quartz LCD"}
+:::
+::: {.g-col-6 .g-col-md-3 .hero}
+![](images/analog-roman.png){fig-alt="Analog Roman numerals"}
+:::
+::: {.g-col-6 .g-col-md-3 .hero}
+![](images/digital-stacked.png){fig-alt="Digital stacked layout"}
+:::
+:::
+
+Open Face is one watch face with 60+ settings. Analog and digital modes share the data fields, gauges,
+color themes and always-on behavior, and every option is available both in the Garmin Connect app and
+on the watch itself.
+
+[Download the latest release](https://github.com/progressive-kiwi/open-garmin-watchface/releases/latest){.btn .btn-primary}
+[Browse the gallery](gallery.qmd){.btn .btn-outline-secondary}
+
+## Features
+
+| Area | Options |
+|---|---|
+| Modes | Analog, Digital |
+| Analog layouts | Classic (date window), Chronograph (4 subdials), Top + bottom, Minimal, Gauges, Pilot |
+| Digital layouts | Classic, Stacked, Big, Sport, Minimal, Side |
+| Hands | Baton, Dauphine, Sword, Leaf, Skeleton, Arrow, Needle, Rounded, Breguet; width, length, outline, color per hand |
+| Second hand | Needle, Lollipop, Counterweight, Arrow tip, Square tip; off / awake only / always (MIP) |
+| Dial | Hour ticks (7 styles), minute ticks (4 styles), tick length, 12/3/6/9 emphasis, numerals (Arabic/Roman, quarters/all/12), dial ring |
+| Fonts | System, Condensed bold, Roboto, Roboto black, Bionic, Serif, Condensed italic, **Quartz LCD**, Quartz outline, Quartz thin, Segment upright, **Dot matrix**, Pixel blocks, Dotted fine |
+| Font effects | Unlit LCD segments / dots ("ghost"), two-tone hours/minutes, separator style |
+| Data | 4 fields from 22 sources (date, battery, steps, heart rate, Body Battery, stress, weather, sunrise/sunset, …), 2 edge gauges, status icons |
+| Colors | 10 themes + custom; 28-color MIP-safe palette; per-element overrides |
+| Always-on | Style (auto, full, minimal, minimal + date, time only), color, font, outline hands/digits, markers, pixel shift |
+
+## Supported devices
+
+Round Connect IQ watches from the Forerunner 965 generation onward: Forerunner 165/170/255/265/570/955/965/970,
+fēnix 7 Pro/8/9/E, epix Pro (Gen 2), enduro 3, Venu 2/3/4, vívoactive 5/6, MARQ (Gen 2), D2 Mach,
+Descent Mk3/G2, Approach S50/S70, Instinct 3 AMOLED and Instinct Crossover AMOLED.
+See [Install](install.qmd) for the full list.
+
+## Display handling
+
+- **AMOLED**: while the watch sleeps, the face switches to a low-pixel always-on rendering (outline hands or
+  hollow digits, a few markers) and shifts by a few pixels every minute, keeping within Garmin's burn-in
+  rules (≤ 10 % lit pixels, no pixel lit for over 3 minutes).
+- **MIP**: the full face stays visible in low power. With *Seconds → Always (MIP)*, the second hand or
+  seconds digits keep updating every second through partial updates from an off-screen buffer.

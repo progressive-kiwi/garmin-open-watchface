@@ -1,0 +1,36 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Open Face"
+  description: "A highly configurable analog and digital watch face for Garmin Connect IQ."
+  repo-url: https://github.com/progressive-kiwi/open-garmin-watchface
+  repo-actions: [source, issue]
+  navbar:
+    left:
+      - href: index.qmd
+        text: Overview
+      - href: gallery.qmd
+        text: Gallery
+      - href: settings.qmd
+        text: Settings
+      - href: install.qmd
+        text: Install
+      - href: development.qmd
+        text: Development
+    right:
+      - icon: github
+        href: https://github.com/progressive-kiwi/open-garmin-watchface
+      - icon: download
+        href: https://github.com/progressive-kiwi/open-garmin-watchface/releases/latest
+  page-footer:
+    center: "Open Face · Not affiliated with Garmin."
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    css: styles.css
+    toc: true

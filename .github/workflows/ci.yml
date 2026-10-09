@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generated files are up to date
+        run: |
+          python3 tools/gen_settings.py
+          git diff --exit-code -- resources source docs/settings.qmd
+
+      - name: Cache SDK and device definitions
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.ciq
+            ~/.Garmin/ConnectIQ/Devices
+          key: ciq-${{ runner.os }}-v1
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Connect IQ SDK
+        run: echo "SDK=$(tools/setup_sdk.sh | tail -n1)" >> "$GITHUB_ENV"
+
+      - name: Developer key
+        run: |
+          openssl genrsa -out key.pem 4096
+          openssl pkcs8 -topk8 -inform PEM -outform DER -in key.pem -out developer_key.der -nocrypt
+
+      - name: Strict type check
+        run: tools/build.sh "$SDK" developer_key.der build check
+
+      - name: Store package
+        run: tools/build.sh "$SDK" developer_key.der build iq

@@ -1,0 +1,102 @@
+[
+  {
+    "slug": "analog-classic",
+    "caption": "Analog \u00b7 Classic layout, baton hands, bar ticks, date window",
+    "device": "fr970"
+  },
+  {
+    "slug": "analog-chronograph",
+    "caption": "Analog \u00b7 Chronograph subdials, dauphine hands, bezel, Ocean theme",
+    "device": "fr970"
+  },
+  {
+    "slug": "analog-pilot",
+    "caption": "Analog \u00b7 Pilot layout, sword hands, full numerals",
+    "device": "fr970"
+  },
+  {
+    "slug": "analog-roman",
+    "caption": "Analog \u00b7 Roman numerals, Breguet hands, railway track, Gold theme",
+    "device": "fr970"
+  },
+  {
+    "slug": "analog-gauges",
+    "caption": "Analog \u00b7 Gauges layout, skeleton hands, dot-matrix numerals, Neon theme",
+    "device": "fr970"
+  },
+  {
+    "slug": "analog-minimal",
+    "caption": "Analog \u00b7 Minimal layout, rounded hands, dot ticks, Paper theme",
+    "device": "fr970"
+  },
+  {
+    "slug": "analog-forest",
+    "caption": "Analog \u00b7 Arrow and leaf hands, triangle ticks, Forest theme",
+    "device": "fr970"
+  },
+  {
+    "slug": "digital-classic",
+    "caption": "Digital \u00b7 Classic layout, condensed bold",
+    "device": "fr970"
+  },
+  {
+    "slug": "digital-quartz",
+    "caption": "Digital \u00b7 Quartz LCD with unlit segments, Sport layout, gauges",
+    "device": "fr970"
+  },
+  {
+    "slug": "digital-dotmatrix",
+    "caption": "Digital \u00b7 Dot matrix, Racing theme",
+    "device": "fr970"
+  },
+  {
+    "slug": "digital-pixel",
+    "caption": "Digital \u00b7 Pixel blocks, Minimal layout, Ice theme",
+    "device": "fr970"
+  },
+  {
+    "slug": "digital-stacked",
+    "caption": "Digital \u00b7 Stacked layout, Roboto black, two-tone",
+    "device": "fr970"
+  },
+  {
+    "slug": "digital-side",
+    "caption": "Digital \u00b7 Side layout, field column, Ocean theme",
+    "device": "fr970"
+  },
+  {
+    "slug": "digital-big",
+    "caption": "Digital \u00b7 Big layout, thin quartz, Stealth theme",
+    "device": "fr970"
+  },
+  {
+    "slug": "digital-outline",
+    "caption": "Digital \u00b7 Quartz outline, Classic theme, seconds",
+    "device": "fr970"
+  },
+  {
+    "slug": "digital-serif",
+    "caption": "Digital \u00b7 Serif, Minimal layout, Gold theme",
+    "device": "fr970"
+  },
+  {
+    "slug": "aod-analog",
+    "caption": "Always-on \u00b7 Analog, outline hands, quarter markers, date",
+    "device": "fr970"
+  },
+  {
+    "slug": "aod-digital",
+    "caption": "Always-on \u00b7 Digital, quartz outline",
+    "device": "fr970"
+  },
+  {
+    "slug": "mip-analog",
+    "caption": "MIP display (f\u0113nix 8 Solar) \u00b7 Analog classic",
+    "device": "fenix8solar47mm"
+  },
+  {
+    "slug": "mip-digital",
+    "caption": "MIP display (f\u0113nix 8 Solar) \u00b7 Digital quartz",
+    "device": "fenix8solar47mm"
+  }
+]

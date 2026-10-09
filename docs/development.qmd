@@ -1,0 +1,69 @@
+---
+title: Development
+---
+
+## Layout
+
+| Path | Content |
+|---|---|
+| `source/FaceView.mc` | View: awake / always-on switching, off-screen buffer, partial updates (MIP seconds) |
+| `source/AnalogFace.mc` | Dial (ring, ticks, numerals, pilot marker), analog layouts, hands, analog always-on |
+| `source/DigitalFace.mc` | Digital layouts, two-tone time, seconds, digital always-on |
+| `source/Hands.mc` | Hand shapes as local polygons, second hands |
+| `source/Text.mc` | `TextKit`: system, vector (`Graphics.getVectorFont`) and procedural fonts (7-segment, 5×7 dot matrix) |
+| `source/Fields.mc` | Data field slots (stacked, window, subdial, inline), edge gauges, status icons |
+| `source/DataSource.mc` | Sensor and system data (ActivityMonitor, SensorHistory, Weather) |
+| `source/Config.mc` | Theme resolution on top of the generated `ConfigBase` |
+| `source/SettingsMenu.mc` | On-device settings (Menu2), driven by the generated `Schema` |
+| `tools/gen_settings.py` | **Single source of truth** for settings → properties, settings UI, strings, `ConfigBase`, `Schema`, docs |
+| `tools/setup_sdk.sh` | Headless SDK + device definitions + simulator font stand-ins |
+| `tools/build.sh` | Type-check, `.iq` and per-device `.prg` builds |
+| `tools/screenshots.py` | Simulator screenshots for this site |
+
+## Build locally
+
+```bash
+SDK=$(tools/setup_sdk.sh | tail -n1)          # SDK, devices, fonts into ~/.ciq and ~/.Garmin
+openssl genrsa -out key.pem 4096
+openssl pkcs8 -topk8 -inform PEM -outform DER -in key.pem -out developer_key.der -nocrypt
+tools/build.sh "$SDK" developer_key.der build check   # strict type check on representative devices
+tools/build.sh "$SDK" developer_key.der build all     # build/OpenFace.iq + build/OpenFace-prg.zip
+```
+
+Device definitions normally come from the SDK Manager (Garmin login). `setup_sdk.sh` pulls them from the
+public `ghcr.io/matco/connectiq-tester` image instead; with a local SDK Manager install, skip it and pass
+your SDK path.
+
+## Add a setting
+
+1. Add a row to `GROUPS` (and an enum to `ENUMS` if needed) in `tools/gen_settings.py`.
+2. Run `python3 tools/gen_settings.py`. The property, settings entry, strings, the field on `ConfigBase`,
+   the on-device menu entry and the settings reference page are regenerated.
+3. Read the value through `cfg.<Key>` in the renderer.
+
+CI fails if generated files are out of date.
+
+## Screenshots
+
+```bash
+sudo apt-get install xvfb imagemagick fonts-roboto-unhinted fonts-nanum fonts-noto-core libwebkit2gtk-4.0-37
+tools/screenshots.py --sdk "$SDK" --key developer_key.der --out docs/images
+```
+
+Each variant in `VARIANTS` is a patched copy of the project (property defaults replaced, clock pinned to
+10:09:36, optionally starting asleep) run in the simulator under Xvfb. Garmin's proprietary device fonts are
+replaced by open stand-ins (`tools/sim_fonts.py`), so text in screenshots differs slightly from a real watch.
+
+## Release
+
+Push a tag `vX.Y.Z`. The *Release* workflow builds `OpenFace.iq` and `OpenFace-prg.zip` and attaches them
+to a GitHub release. Set the repository secret `CIQ_DEVELOPER_KEY` (base64 of the DER key) so that every
+release is signed with the same key; without it, an ephemeral key is generated, which is fine for side-loading
+but not for Connect IQ Store updates.
+
+## Always-on rules
+
+| Display | Sleep behavior |
+|---|---|
+| AMOLED (`requiresBurnInProtection`) | Low-pixel face only: outline/thin hands or hollow digits, ≤ 12 markers, no fills, black background, 9-step pixel shift per minute. *Full face* is treated as *Minimal + date*. |
+| MIP | Full face (or the chosen minimal style). Seconds via `onPartialUpdate`: the face is drawn into a buffered bitmap, each second restores the previous hand's clip from it and draws the new hand. If the power budget is exceeded, partial updates stop. |
