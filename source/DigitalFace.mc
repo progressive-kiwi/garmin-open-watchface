@@ -14,6 +14,12 @@ class DigitalFace {
     //! Where seconds go for the current layout: [x, y, h, just]. Set by draw().
     var secAnchor as Array<Numeric> = [0, 0, 0, 0];
 
+    //! Pre-rendered seconds digits for procedural fonts (7-segment, dot matrix): drawing them takes
+    //! dozens of polygons or circles, a cached digit is one bitmap copy. Lives in the graphics pool.
+    private var _glyphs as Array<BufferedBitmapReference or BufferedBitmap or Null> = new Array<BufferedBitmapReference or BufferedBitmap or Null>[10];
+    private var _glyphKey as String = "";
+    private var _secBox as Array<Number>? = null;
+
     function initialize(config as Config, textKit as TextKit, f as Fields, source as DataSource) {
         cfg = config;
         kit = textKit;
@@ -68,6 +74,7 @@ class DigitalFace {
     }
 
     function draw(dc as Dc, cx as Numeric, cy as Numeric, r as Numeric) as Void {
+        _secBox = null;
         var parts = data.timeParts();
         var font = cfg.TimeFont;
         var t = timeHeight(r);
@@ -181,14 +188,78 @@ class DigitalFace {
 
     //! Seconds at the anchor computed by the last draw(). Returns its box for partial updates.
     function drawSeconds(dc as Dc) as Array<Number> {
-        var s = Clock.time().sec.format("%02d");
+        var sec = Clock.time().sec;
         var a = secAnchor;
         var font = cfg.TimeFont;
-        kit.draw(dc, a[0], a[1], s, font, a[2], cfg.accent, a[3] as Number);
+        if (!Fonts.isProcedural(font) || !drawCachedSeconds(dc, sec, font, a)) {
+            kit.draw(dc, a[0], a[1], sec.format("%02d"), font, a[2], cfg.accent, a[3] as Number);
+        }
         return secondsBox(dc);
     }
 
+    private function drawCachedSeconds(dc as Dc, sec as Number, font as Number, a as Array<Numeric>) as Boolean {
+        var h = a[2];
+        var key = font.toString() + "/" + h.toNumber() + "/" + cfg.accent + "/" + cfg.bg;
+        if (!key.equals(_glyphKey)) {
+            _glyphs = new Array<BufferedBitmapReference or BufferedBitmap or Null>[10];
+            _glyphKey = key;
+        }
+        var pad = (h * 0.12).toNumber() + 2;
+        var one = kit.width(dc, "8", font, h);
+        var total = kit.width(dc, "88", font, h);
+        var adv = total - one;
+        var just = a[3] as Number;
+        var x0 = a[0];
+        if (just == 1) {
+            x0 = a[0] - total / 2.0;
+        } else if (just == 2) {
+            x0 = a[0] - total;
+        }
+        var y = a[1] - h / 2 - pad;
+        for (var i = 0; i < 2; i++) {
+            var bmp = glyph(i == 0 ? sec / 10 : sec % 10, font, h, pad, one + pad * 2, h.toNumber() + pad * 2);
+            if (bmp == null) {
+                return false;
+            }
+            dc.drawBitmap(x0 + i * adv - pad, y, bmp);
+        }
+        return true;
+    }
+
+    private function glyph(d as Number, font as Number, h as Numeric, pad as Number, w as Number,
+                           gh as Number) as BufferedBitmapReference or BufferedBitmap or Null {
+        var b = _glyphs[d];
+        if (b instanceof Graphics.BufferedBitmapReference && b.get() == null) {
+            b = null;
+        }
+        if (b == null) {
+            try {
+                b = Graphics.createBufferedBitmap({:width => w, :height => gh});
+            } catch (e) {
+                return null;
+            }
+            var bb = b.get();
+            if (bb == null) {
+                return null;
+            }
+            var gdc = (bb as BufferedBitmap).getDc();
+            if (gdc has :setAntiAlias) {
+                gdc.setAntiAlias(true);
+            }
+            gdc.setColor(cfg.bg, cfg.bg);
+            gdc.clear();
+            kit.draw(gdc, pad, pad + h / 2.0, d.toString(), font, h, cfg.accent, 0);
+            _glyphs[d] = b;
+        }
+        return b;
+    }
+
+    //! Area the seconds occupy, for partial-update clipping. Cached until the next layout pass.
     function secondsBox(dc as Dc) as Array<Number> {
+        var box = _secBox;
+        if (box != null) {
+            return box;
+        }
         var a = secAnchor;
         var font = cfg.TimeFont;
         var w = kit.width(dc, "88", font, a[2]) + 6;
@@ -200,7 +271,9 @@ class DigitalFace {
         } else if (just == 2) {
             x = a[0] - w + 3;
         }
-        return [x.toNumber(), (a[1] - h / 2).toNumber(), w.toNumber(), h];
+        box = [x.toNumber(), (a[1] - h / 2).toNumber(), w.toNumber(), h];
+        _secBox = box;
+        return box;
     }
 
     // -------------------------------------------------------- always-on --

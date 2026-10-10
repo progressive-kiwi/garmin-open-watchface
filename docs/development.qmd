@@ -64,6 +64,20 @@ to a GitHub release. Set the repository secret `CIQ_DEVELOPER_KEY` (base64 of th
 release is signed with the same key; without it, an ephemeral key is generated, which is fine for side-loading
 but not for Connect IQ Store updates.
 
+## Compute budget
+
+| When | Work |
+|---|---|
+| Every second (awake) | Copy the off-screen buffer to the screen; draw the second hand (two polygons) or two seconds digits (cached bitmaps for Quartz / dot fonts) |
+| Every second (MIP low power) | `onPartialUpdate`: restore the previous seconds area from the buffer, draw the new one, both clipped |
+| Once per minute, on wrist raise, on settings or night-dimming change | Query sensors once (cached per refresh), draw dial, fields, gauges, hands and time into the buffer |
+| AMOLED always-on (once per minute) | Draw the low-pixel face directly (no buffer) |
+
+Hour and minute hands step once per minute. Only a *Seconds* field or a *Seconds* gauge forces a full
+redraw every second. Simulator measurements (Forerunner 970, ms per awake frame): analog 25 → 15,
+chronograph 45 → 16.5, Quartz digital 24 → 14, dot-matrix digital 118 → 16; what remains is the
+full-screen buffer copy, which is much cheaper on watch hardware than in the simulator.
+
 ## Always-on rules
 
 | Display | Sleep behavior |

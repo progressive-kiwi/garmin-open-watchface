@@ -225,8 +225,9 @@ class AnalogFace {
 
     function handAngles() as Array<Numeric> {
         var c = Clock.time();
-        var hour = ((c.hour % 12) * 60 + c.min + c.sec / 60.0) / 720.0 * Math.PI * 2;
-        var min = (c.min + c.sec / 60.0) / 60.0 * Math.PI * 2;
+        // Hour and minute hands step once per minute: they live in the per-minute buffer.
+        var hour = ((c.hour % 12) * 60 + c.min) / 720.0 * Math.PI * 2;
+        var min = c.min / 60.0 * Math.PI * 2;
         var sec = c.sec / 60.0 * Math.PI * 2;
         return [hour.toFloat(), min.toFloat(), sec.toFloat()];
     }
@@ -247,8 +248,12 @@ class AnalogFace {
     }
 
     //! Second hand plus center cap. Returns the dirty box.
+    private function secondAngle() as Numeric {
+        return Clock.time().sec * (Math.PI / 30);
+    }
+
     function drawSecond(dc as Dc, cx as Numeric, cy as Numeric, r as Numeric) as Array<Number> {
-        var a = handAngles()[2];
+        var a = secondAngle();
         var len = r * [0.78, 0.86, 0.92][cfg.HandLength];
         var box = Hands.drawSecond(dc, cx, cy, a, cfg.SecondHand, len, r, cfg.cSecondHand);
         drawCap(dc, cx, cy, r, cfg.cSecondHand);
@@ -257,7 +262,7 @@ class AnalogFace {
 
     //! Box the second hand at its current angle will cover (for clipping before drawing).
     function secondBox(cx as Numeric, cy as Numeric, r as Numeric) as Array<Number> {
-        var a = handAngles()[2];
+        var a = secondAngle();
         var len = r * [0.78, 0.86, 0.92][cfg.HandLength];
         var pts = [Geo.polar(cx, cy, -r * 0.25, a), Geo.polar(cx, cy, len + 2, a)] as Array<Point2D>;
         return Geo.union(Geo.bounds(pts, (r * 0.07).toNumber() + 2), secondCapBox(cx, cy, r));

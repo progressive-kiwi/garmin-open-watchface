@@ -37,8 +37,14 @@ module F {
 }
 
 //! Reads sensor and system data. Every getter is defensive: unsupported data yields "--".
+//! Values are cached until invalidate(), which the view calls once per minute and on wrist raise,
+//! so each sensor is queried at most once per refresh however many slots show it.
 class DataSource {
     var cfg as Config;
+
+    private var _values as Dictionary<Number, String> = {};
+    private var _fractions as Dictionary<Number, Float or Null> = {};
+    private var _am as ActivityMonitor.Info? = null;
 
     private const DAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
     private const MONTHS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
@@ -71,16 +77,39 @@ class DataSource {
         return "";
     }
 
-    function value(type as Number) as String {
-        try {
-            return valueUnsafe(type);
-        } catch (e) {
-            return "--";
+    function invalidate() as Void {
+        _values = {};
+        _fractions = {};
+        _am = null;
+    }
+
+    private function info() as ActivityMonitor.Info {
+        var am = _am;
+        if (am == null) {
+            am = ActivityMonitor.getInfo();
+            _am = am;
         }
+        return am;
+    }
+
+    function value(type as Number) as String {
+        var v = _values[type];
+        if (v != null) {
+            return v;
+        }
+        try {
+            v = valueUnsafe(type);
+        } catch (e) {
+            v = "--";
+        }
+        if (type != F.SECONDS) {
+            _values[type] = v;
+        }
+        return v;
     }
 
     private function valueUnsafe(type as Number) as String {
-        var am = ActivityMonitor.getInfo();
+        var am = info();
         switch (type) {
             case F.DATE:
                 return dateString(cfg.DateFormat);
@@ -169,8 +198,17 @@ class DataSource {
 
     //! Goal completion 0..1, or null if the type has no goal.
     function fraction(type as Number) as Float? {
+        if (type != F.SECONDS && _fractions.hasKey(type)) {
+            return _fractions[type];
+        }
+        var f = fractionUnsafe(type);
+        _fractions[type] = f;
+        return f;
+    }
+
+    private function fractionUnsafe(type as Number) as Float? {
         try {
-            var am = ActivityMonitor.getInfo();
+            var am = info();
             switch (type) {
                 case F.BATTERY:
                     return System.getSystemStats().battery / 100.0;

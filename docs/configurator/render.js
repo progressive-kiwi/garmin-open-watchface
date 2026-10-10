@@ -628,7 +628,7 @@ const OF = (() => {
 
     angles() {
       const c = this.clock;
-      return [((c.hour % 12) * 60 + c.min + c.sec / 60) / 720 * Math.PI * 2, (c.min + c.sec / 60) / 60 * Math.PI * 2, c.sec / 60 * Math.PI * 2];
+      return [((c.hour % 12) * 60 + c.min) / 720 * Math.PI * 2, c.min / 60 * Math.PI * 2, c.sec / 60 * Math.PI * 2];
     }
 
     drawHands(dc, cx, cy, r, aodColor) {

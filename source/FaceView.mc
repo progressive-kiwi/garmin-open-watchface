@@ -6,6 +6,10 @@ import Toybox.UserProfile;
 import Toybox.WatchUi;
 
 //! Main watch face view: chooses analog/digital, awake/low-power, and drives partial updates.
+//!
+//! Compute budget: everything except the seconds is drawn into an off-screen buffer once per minute
+//! (or after a settings, sleep/wake or night-dimming change). Every other frame only copies the buffer
+//! and draws the second hand or seconds digits.
 class FaceView extends WatchUi.WatchFace {
     var cfg as Config;
     var kit as TextKit;
@@ -20,6 +24,12 @@ class FaceView extends WatchUi.WatchFace {
     private var _buffer as BufferedBitmapReference or BufferedBitmap or Null = null;
     private var _lastBox as Array<Number>? = null;
     private var _night as Boolean = false;
+    //! Buffer content is stale: rebuild on the next onUpdate.
+    private var _dirty as Boolean = true;
+    //! Minute of day the buffer was built for.
+    private var _minute as Number = -1;
+    //! Some content changes every second (seconds field or gauge), so the buffer is rebuilt each frame.
+    private var _perSecond as Boolean = false;
     private var _w as Number = 0;
     private var _h as Number = 0;
 
@@ -47,7 +57,9 @@ class FaceView extends WatchUi.WatchFace {
     //! Re-read properties. Called on start and whenever settings change.
     function reload() as Void {
         loadConfig();
-        setupBuffer();
+        data.invalidate();
+        // Re-evaluate night dimming with the new settings on the next frame.
+        _minute = -1;
         WatchUi.requestUpdate();
     }
 
@@ -92,6 +104,9 @@ class FaceView extends WatchUi.WatchFace {
     }
 
     private function applySettings() as Void {
+        _dirty = true;
+        _perSecond = cfg.Field1 == F.SECONDS || cfg.Field2 == F.SECONDS || cfg.Field3 == F.SECONDS
+            || cfg.Field4 == F.SECONDS || cfg.GaugeLeft == 7 || cfg.GaugeRight == 7;
         kit.reset();
         kit.ghostColor = cfg.ghost;
         kit.bgColor = cfg.bg;
@@ -100,15 +115,13 @@ class FaceView extends WatchUi.WatchFace {
         digital.amoled = _burnIn;
     }
 
-    //! Seconds while sleeping (MIP only) need an off-screen copy of the face to erase the previous second.
-    private function useBuffer() as Boolean {
-        return _partialOk && cfg.SecondsMode == 2;
-    }
-
+    //! Off-screen copy of the face without seconds. Lives in the graphics pool, not the app heap.
+    //! Without it (allocation failed) every frame is drawn directly.
     private function setupBuffer() as Void {
         _buffer = null;
         _lastBox = null;
-        if (!useBuffer() || _w == 0) {
+        _dirty = true;
+        if (_w == 0) {
             return;
         }
         try {
@@ -129,7 +142,12 @@ class FaceView extends WatchUi.WatchFace {
         }
         if (b instanceof Graphics.BufferedBitmapReference) {
             var bb = b.get();
-            return (bb == null) ? null : (bb as BufferedBitmap).getDc();
+            if (bb == null) {
+                // The system reclaimed the pool memory; the content is gone.
+                _dirty = true;
+                return null;
+            }
+            return (bb as BufferedBitmap).getDc();
         }
         return (b as BufferedBitmap).getDc();
     }
@@ -145,10 +163,18 @@ class FaceView extends WatchUi.WatchFace {
         var cy = _h / 2;
         var r = (_w < _h ? _w : _h) / 2;
 
-        var night = nightActive();
-        if (night != _night) {
-            _night = night;
-            loadConfig();
+        // Per-minute work: fresh sensor data, night dimming check, buffer rebuild.
+        var c = Clock.time();
+        var minute = c.hour * 60 + c.min;
+        if (minute != _minute) {
+            _minute = minute;
+            _dirty = true;
+            data.invalidate();
+            var night = nightActive();
+            if (night != _night) {
+                _night = night;
+                loadConfig();
+            }
         }
 
         if (!_awake) {
@@ -169,16 +195,19 @@ class FaceView extends WatchUi.WatchFace {
 
         var bdc = bufferDc();
         if (bdc != null) {
-            if (bdc has :setAntiAlias) {
-                bdc.setAntiAlias(true);
+            if (_dirty || _perSecond) {
+                if (bdc has :setAntiAlias) {
+                    bdc.setAntiAlias(true);
+                }
+                drawBase(bdc, cx, cy, r);
+                _dirty = false;
             }
-            drawBase(bdc, cx, cy, r);
             dc.drawBitmap(0, 0, _buffer as BufferedBitmapReference or BufferedBitmap);
         } else {
             drawBase(dc, cx, cy, r);
         }
 
-        var showSec = (cfg.SecondsMode == 1 && _awake) || (cfg.SecondsMode == 2 && (_awake || bdc != null));
+        var showSec = (cfg.SecondsMode == 1 && _awake) || (cfg.SecondsMode == 2 && (_awake || (bdc != null && _partialOk)));
         if (cfg.Mode == 0) {
             if (showSec) {
                 _lastBox = analog.drawSecond(dc, cx, cy, r);
@@ -227,7 +256,7 @@ class FaceView extends WatchUi.WatchFace {
 
     //! MIP low-power seconds: restore the previous second's area from the buffer, then draw the new one.
     function onPartialUpdate(dc as Dc) as Void {
-        if (_awake || _buffer == null || cfg.SecondsMode != 2 || cfg.AodStyle >= 2) {
+        if (_awake || !_partialOk || _buffer == null || _dirty || cfg.SecondsMode != 2 || cfg.AodStyle >= 2) {
             return;
         }
         var cx = _w / 2;
@@ -253,17 +282,20 @@ class FaceView extends WatchUi.WatchFace {
 
     function onEnterSleep() as Void {
         _awake = false;
+        _dirty = true;
         WatchUi.requestUpdate();
     }
 
     function onExitSleep() as Void {
+        // Wrist raise: refresh data immediately instead of at the next minute.
         _awake = true;
+        _dirty = true;
+        data.invalidate();
         WatchUi.requestUpdate();
     }
 
     function onPowerBudgetExceeded() as Void {
         _partialOk = false;
-        setupBuffer();
     }
 }
 
