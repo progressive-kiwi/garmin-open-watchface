@@ -25,7 +25,8 @@ Approach, Instinct AMOLED).
 | Fonts | System, 6 vector faces, Quartz LCD (filled/outline/thin/upright), dot matrix, pixel blocks, fine dots; unlit-segment effect |
 | Data | 4 fields × 22 sources, 2 edge gauges, status icons |
 | Colors | 10 themes + custom, 28-color MIP-safe palette, per-element overrides |
-| Always-on | AMOLED burn-in-safe low-power face with pixel shift; MIP seconds via partial updates |
+| Always-on | AMOLED burn-in-safe low-power face with pixel shift; MIP: theme colors on any background (white included), seconds via partial updates |
+| Night dimming | Fade colors 10–90 % during Do Not Disturb / sleep mode or the sleep schedule |
 
 Every setting is available in Garmin Connect and on the watch (Watch Face → Customize).
 Reference: [docs/settings.qmd](docs/settings.qmd).

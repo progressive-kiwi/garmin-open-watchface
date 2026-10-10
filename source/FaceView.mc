@@ -1,6 +1,8 @@
+import Toybox.ActivityMonitor;
 import Toybox.Graphics;
 import Toybox.Lang;
 import Toybox.System;
+import Toybox.UserProfile;
 import Toybox.WatchUi;
 
 //! Main watch face view: chooses analog/digital, awake/low-power, and drives partial updates.
@@ -17,6 +19,7 @@ class FaceView extends WatchUi.WatchFace {
     private var _partialOk as Boolean = false;
     private var _buffer as BufferedBitmapReference or BufferedBitmap or Null = null;
     private var _lastBox as Array<Number>? = null;
+    private var _night as Boolean = false;
     private var _w as Number = 0;
     private var _h as Number = 0;
 
@@ -43,15 +46,58 @@ class FaceView extends WatchUi.WatchFace {
 
     //! Re-read properties. Called on start and whenever settings change.
     function reload() as Void {
-        cfg.load();
-        applySettings();
+        loadConfig();
         setupBuffer();
         WatchUi.requestUpdate();
     }
 
+    private function loadConfig() as Void {
+        cfg.load();
+        if (_night) {
+            cfg.fade(cfg.NightFade, !_burnIn);
+        }
+        applySettings();
+    }
+
+    //! Night dimming condition. Connect IQ exposes no focus-mode API; the Sleep focus turns on
+    //! Do Not Disturb, and the profile carries the user's bedtime and wake time.
+    private function nightActive() as Boolean {
+        var t = cfg.NightTrigger;
+        if (t == 0) {
+            return false;
+        }
+        if (t == 1 || t == 3) {
+            var ds = System.getDeviceSettings();
+            if ((ds has :doNotDisturb) && ds.doNotDisturb) {
+                return true;
+            }
+            var am = ActivityMonitor.getInfo();
+            if ((am has :isSleepMode) && am.isSleepMode == true) {
+                return true;
+            }
+        }
+        if (t == 2 || t == 3) {
+            var p = UserProfile.getProfile();
+            var sleep = p.sleepTime;
+            var wake = p.wakeTime;
+            if (sleep != null && wake != null) {
+                var c = Clock.time();
+                var now = c.hour * 3600 + c.min * 60;
+                var s = sleep.value();
+                var w = wake.value();
+                return (s > w) ? (now >= s || now < w) : (now >= s && now < w);
+            }
+        }
+        return false;
+    }
+
     private function applySettings() as Void {
         kit.reset();
-        kit.ghostColor = cfg.GhostColor;
+        kit.ghostColor = cfg.ghost;
+        kit.bgColor = cfg.bg;
+        kit.mip = !_burnIn;
+        analog.amoled = _burnIn;
+        digital.amoled = _burnIn;
     }
 
     //! Seconds while sleeping (MIP only) need an off-screen copy of the face to erase the previous second.
@@ -98,6 +144,12 @@ class FaceView extends WatchUi.WatchFace {
         var cx = _w / 2;
         var cy = _h / 2;
         var r = (_w < _h ? _w : _h) / 2;
+
+        var night = nightActive();
+        if (night != _night) {
+            _night = night;
+            loadConfig();
+        }
 
         if (!_awake) {
             var style = cfg.AodStyle;
@@ -151,9 +203,13 @@ class FaceView extends WatchUi.WatchFace {
     }
 
     private function drawAod(dc as Dc, cx as Numeric, cy as Numeric, r as Numeric, style as Number) as Void {
-        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
+        // AMOLED: black background and the dim AOD color (burn-in). MIP: lit pixels cost nothing,
+        // so keep the theme (white backgrounds included).
+        var bg = _burnIn ? Graphics.COLOR_BLACK : cfg.bg;
+        var color = _burnIn ? cfg.AodColor : cfg.fg;
+        dc.setColor(bg, bg);
         dc.clear();
-        if (cfg.AodShift) {
+        if (_burnIn && cfg.AodShift) {
             // Move the whole face a few pixels every minute to spread pixel wear.
             var shifts = [[0, 0], [1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]];
             var s = shifts[Clock.time().min % 9];
@@ -163,9 +219,9 @@ class FaceView extends WatchUi.WatchFace {
         }
         kit.ghost = false;
         if (cfg.Mode == 0) {
-            analog.drawAod(dc, cx, cy, r, cfg.AodColor, style, data);
+            analog.drawAod(dc, cx, cy, r, color, style, data);
         } else {
-            digital.drawAod(dc, cx, cy, r, cfg.AodColor, style);
+            digital.drawAod(dc, cx, cy, r, color, style);
         }
     }
 

@@ -22,7 +22,7 @@ Side-loaded apps cannot be configured from the Garmin Connect phone app. Use the
 
 - **Garmin Connect app** (store installs): *Device → Watch Faces → Open Face → Settings*.
 - **On the watch**: hold the menu button on the face → **Watch Face** → **Open Face** → **Customize**.
-  Settings are grouped like the [settings reference](settings.qmd): General, Analog, Dial, Digital, Data, Always-on.
+  Settings are grouped like the [settings reference](settings.qmd): General, Analog, Dial, Digital, Data, Always-on, Night.
 
 ## Supported devices
 

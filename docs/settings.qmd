@@ -72,7 +72,7 @@ Time font and layout.
 | `LeadingZero` | Leading zero | off | on / off |
 | `Separator` | Separator | Colon | Colon, None, Space |
 | `Ghost` | Unlit segments / dots | on | on / off |
-| `GhostColor` | Unlit color | Dark gray | 28 colors |
+| `GhostColor` | Unlit color | Auto (theme) | 28 colors + Auto |
 | `HourDigitColor` | Hours color | Auto (theme) | 28 colors + Auto |
 | `MinuteDigitColor` | Minutes color | Auto (theme) | 28 colors + Auto |
 
@@ -96,16 +96,25 @@ Fields, gauges and date.
 
 ## Always on
 
-Always-on / low power display.
+Low power display. AMOLED: burn-in safe face. MIP: theme colors, any background.
 
 | Key | Setting | Default | Options |
 |---|---|---|---|
 | `AodStyle` | AOD style | Auto | Auto, Full face, Minimal, Minimal + date, Time only |
-| `AodColor` | AOD color | Light gray | 28 colors |
+| `AodColor` | AOD color (AMOLED) | Light gray | 28 colors |
 | `AodFont` | AOD font | Same as time | Same as time, System, Condensed bold, Roboto, Roboto black, Bionic, Serif, Condensed italic, Quartz LCD, Quartz outline, Quartz thin, Dot matrix, Pixel blocks, Dotted fine, Segment upright |
-| `AodOutline` | Outline hands / digits | on | on / off |
+| `AodOutline` | Outline hands / digits (AMOLED) | on | on / off |
 | `AodMarkers` | AOD markers | Quarters | None, Quarters, Hours |
-| `AodShift` | Pixel shift | on | on / off |
+| `AodShift` | Pixel shift (AMOLED) | on | on / off |
+
+## Night
+
+Fade all colors toward the background while sleeping.
+
+| Key | Setting | Default | Options |
+|---|---|---|---|
+| `NightTrigger` | Night dimming | Off | Off, Do Not Disturb / sleep mode, Sleep schedule, Either |
+| `NightFade` | Fade amount | 50% | 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90% |
 
 ## Color palette
 

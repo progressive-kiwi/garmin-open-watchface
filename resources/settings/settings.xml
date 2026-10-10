@@ -563,6 +563,7 @@
         </setting>
         <setting propertyKey="@Properties.GhostColor" title="@Strings.t_GhostColor">
             <settingConfig type="list">
+                <listEntry value="-1">@Strings.o_AutoTheme</listEntry>
                 <listEntry value="0">@Strings.o_Black</listEntry>
                 <listEntry value="85">@Strings.o_Midnight</listEntry>
                 <listEntry value="170">@Strings.o_Navy</listEntry>
@@ -971,6 +972,29 @@
         </setting>
         <setting propertyKey="@Properties.AodShift" title="@Strings.t_AodShift">
             <settingConfig type="boolean" />
+        </setting>
+    </group>
+    <group id="Night" title="@Strings.g_Night" description="@Strings.gd_Night">
+        <setting propertyKey="@Properties.NightTrigger" title="@Strings.t_NightTrigger">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Off</listEntry>
+                <listEntry value="1">@Strings.o_DoNotDisturbSlashSleepMode</listEntry>
+                <listEntry value="2">@Strings.o_SleepSchedule</listEntry>
+                <listEntry value="3">@Strings.o_Either</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.NightFade" title="@Strings.t_NightFade">
+            <settingConfig type="list">
+                <listEntry value="10">@Strings.o_10PctN</listEntry>
+                <listEntry value="20">@Strings.o_20PctN</listEntry>
+                <listEntry value="30">@Strings.o_30PctN</listEntry>
+                <listEntry value="40">@Strings.o_40PctN</listEntry>
+                <listEntry value="50">@Strings.o_50PctN</listEntry>
+                <listEntry value="60">@Strings.o_60PctN</listEntry>
+                <listEntry value="70">@Strings.o_70PctN</listEntry>
+                <listEntry value="80">@Strings.o_80PctN</listEntry>
+                <listEntry value="90">@Strings.o_90PctN</listEntry>
+            </settingConfig>
         </setting>
     </group>
 </settings>

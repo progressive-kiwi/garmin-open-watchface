@@ -65,6 +65,10 @@ module Schema {
                 return [[0, Rez.Strings.o_Auto], [1, Rez.Strings.o_FullFace], [2, Rez.Strings.o_Minimal], [3, Rez.Strings.o_MinimalPlusDate], [4, Rez.Strings.o_TimeOnly]];
             case 27:
                 return [[0, Rez.Strings.o_None], [1, Rez.Strings.o_Quarters], [2, Rez.Strings.o_Hours]];
+            case 28:
+                return [[0, Rez.Strings.o_Off], [1, Rez.Strings.o_DoNotDisturbSlashSleepMode], [2, Rez.Strings.o_SleepSchedule], [3, Rez.Strings.o_Either]];
+            case 29:
+                return [[10, Rez.Strings.o_10PctN], [20, Rez.Strings.o_20PctN], [30, Rez.Strings.o_30PctN], [40, Rez.Strings.o_40PctN], [50, Rez.Strings.o_50PctN], [60, Rez.Strings.o_60PctN], [70, Rez.Strings.o_70PctN], [80, Rez.Strings.o_80PctN], [90, Rez.Strings.o_90PctN]];
         }
         return [];
     }
@@ -116,7 +120,7 @@ module Schema {
                 ["LeadingZero", Rez.Strings.t_LeadingZero, -1],
                 ["Separator", Rez.Strings.t_Separator, 21],
                 ["Ghost", Rez.Strings.t_Ghost, -1],
-                ["GhostColor", Rez.Strings.t_GhostColor, 2],
+                ["GhostColor", Rez.Strings.t_GhostColor, 3],
                 ["HourDigitColor", Rez.Strings.t_HourDigitColor, 3],
                 ["MinuteDigitColor", Rez.Strings.t_MinuteDigitColor, 3]
             ]],
@@ -140,6 +144,10 @@ module Schema {
                 ["AodOutline", Rez.Strings.t_AodOutline, -1],
                 ["AodMarkers", Rez.Strings.t_AodMarkers, 27],
                 ["AodShift", Rez.Strings.t_AodShift, -1]
+            ]],
+            [Rez.Strings.g_Night, [
+                ["NightTrigger", Rez.Strings.t_NightTrigger, 28],
+                ["NightFade", Rez.Strings.t_NightFade, 29]
             ]]
         ];
     }

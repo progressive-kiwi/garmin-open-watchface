@@ -8,6 +8,8 @@ class DigitalFace {
     var kit as TextKit;
     var fields as Fields;
     var data as DataSource;
+    //! Burn-in rules apply (AMOLED): always-on digits may switch to hollow variants.
+    var amoled as Boolean = false;
 
     //! Where seconds go for the current layout: [x, y, h, just]. Set by draw().
     var secAnchor as Array<Numeric> = [0, 0, 0, 0];
@@ -206,7 +208,7 @@ class DigitalFace {
     function drawAod(dc as Dc, cx as Numeric, cy as Numeric, r as Numeric, color as Number, style as Number) as Void {
         var parts = data.timeParts();
         var font = (cfg.AodFont == 99) ? cfg.TimeFont : cfg.AodFont;
-        if (cfg.AodOutline) {
+        if (amoled && cfg.AodOutline) {
             font = Fonts.outlineOf(font);
         }
         var t = fitTime(dc, parts, font, r * 0.34, r * 1.4);

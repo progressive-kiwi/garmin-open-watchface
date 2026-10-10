@@ -36,7 +36,7 @@
     <property id="LeadingZero" type="boolean">false</property>
     <property id="Separator" type="number">0</property>
     <property id="Ghost" type="boolean">true</property>
-    <property id="GhostColor" type="number">5592405</property>
+    <property id="GhostColor" type="number">-1</property>
     <property id="HourDigitColor" type="number">-1</property>
     <property id="MinuteDigitColor" type="number">-1</property>
     <property id="Field1" type="number">1</property>
@@ -56,4 +56,6 @@
     <property id="AodOutline" type="boolean">true</property>
     <property id="AodMarkers" type="number">1</property>
     <property id="AodShift" type="boolean">true</property>
+    <property id="NightTrigger" type="number">0</property>
+    <property id="NightFade" type="number">50</property>
 </properties>

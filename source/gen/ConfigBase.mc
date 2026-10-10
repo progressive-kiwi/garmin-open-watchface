@@ -42,7 +42,7 @@ class ConfigBase {
     var LeadingZero as Boolean = false;
     var Separator as Number = 0;
     var Ghost as Boolean = true;
-    var GhostColor as Number = 5592405;
+    var GhostColor as Number = -1;
     var HourDigitColor as Number = -1;
     var MinuteDigitColor as Number = -1;
     var Field1 as Number = 1;
@@ -62,6 +62,8 @@ class ConfigBase {
     var AodOutline as Boolean = true;
     var AodMarkers as Number = 1;
     var AodShift as Boolean = true;
+    var NightTrigger as Number = 0;
+    var NightFade as Number = 50;
 
     function initialize() {
     }
@@ -104,7 +106,7 @@ class ConfigBase {
         LeadingZero = readBool("LeadingZero", false);
         Separator = readNum("Separator", 0);
         Ghost = readBool("Ghost", true);
-        GhostColor = readNum("GhostColor", 5592405);
+        GhostColor = readNum("GhostColor", -1);
         HourDigitColor = readNum("HourDigitColor", -1);
         MinuteDigitColor = readNum("MinuteDigitColor", -1);
         Field1 = readNum("Field1", 1);
@@ -124,6 +126,8 @@ class ConfigBase {
         AodOutline = readBool("AodOutline", true);
         AodMarkers = readNum("AodMarkers", 1);
         AodShift = readBool("AodShift", true);
+        NightTrigger = readNum("NightTrigger", 0);
+        NightFade = readNum("NightFade", 50);
     }
 
     static function readNum(key as String, def as Number) as Number {

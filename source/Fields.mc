@@ -131,7 +131,7 @@ class Fields {
             var start = (i == 0) ? 180 + span / 2 : 360 - span / 2;
             var cw = (i == 0);
             dc.setPenWidth(pen);
-            dc.setColor(cfg.GhostColor == cfg.bg ? cfg.fg2 : cfg.GhostColor, Graphics.COLOR_TRANSPARENT);
+            dc.setColor(cfg.ghost, Graphics.COLOR_TRANSPARENT);
             Geo.arc(dc, cx, cy, gr, start, span, cw);
             if (f != null) {
                 dc.setColor(cfg.accent, Graphics.COLOR_TRANSPARENT);

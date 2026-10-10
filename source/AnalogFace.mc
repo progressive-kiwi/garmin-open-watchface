@@ -8,6 +8,8 @@ class AnalogFace {
     var cfg as Config;
     var kit as TextKit;
     var fields as Fields;
+    //! Burn-in rules apply (AMOLED): always-on hands are slim and may be hollow.
+    var amoled as Boolean = false;
 
     private const ROMAN = ["XII", "I", "II", "III", "IIII", "V", "VI", "VII", "VIII", "IX", "X", "XI"];
 
@@ -233,13 +235,13 @@ class AnalogFace {
     function drawHands(dc as Dc, cx as Numeric, cy as Numeric, r as Numeric, aodColor as Number?) as Void {
         var ang = handAngles();
         var aod = aodColor != null;
-        var size = aod ? 0 : cfg.HandSize;
+        var size = (aod && amoled) ? 0 : cfg.HandSize;
         var hl = r * [0.45, 0.52, 0.58][cfg.HandLength];
         var ml = r * [0.70, 0.80, 0.88][cfg.HandLength];
         var hw = r * [0.045, 0.065, 0.09][size];
         var mw = r * [0.035, 0.05, 0.07][size];
         var outline = (cfg.HandOutline && !aod) ? cfg.bg : null;
-        var hollow = aod && cfg.AodOutline;
+        var hollow = aod && amoled && cfg.AodOutline;
         Hands.draw(dc, cx, cy, ang[0], cfg.HourHand, hl, hw, r * 0.1, (aodColor != null) ? aodColor : cfg.cHourHand, outline, hollow);
         Hands.draw(dc, cx, cy, ang[1], cfg.MinuteHand, ml, mw, r * 0.1, (aodColor != null) ? aodColor : cfg.cMinuteHand, outline, hollow);
     }

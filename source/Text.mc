@@ -49,6 +49,8 @@ module Fonts {
 class TextKit {
     var ghost as Boolean = false;
     var ghostColor as Number = 0x555555;
+    var bgColor as Number = 0x000000;
+    var mip as Boolean = false;
 
     private var _vectorCache as Dictionary<Number, VectorFont or Null> = {};
 
@@ -395,7 +397,8 @@ class TextKit {
             sq = 1.0;
         }
         // Unlit dots at half the ghost intensity: dense matrices read poorly otherwise.
-        var dim = (ghostColor >> 1) & 0x7F7F7F;
+        // MIP has no in-between levels: halving would round to the background, so keep the ghost color.
+        var dim = mip ? ghostColor : Config.mix(bgColor, ghostColor, 1, 2, false);
         var chars = text.toUpper().toCharArray();
         for (var i = 0; i < chars.size(); i++) {
             var ch = chars[i];

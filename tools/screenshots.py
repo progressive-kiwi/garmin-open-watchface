@@ -73,6 +73,13 @@ VARIANTS = [
     ("mip-analog", "MIP display (fēnix 8 Solar) · Analog classic", "fenix8solar47mm", {"Theme": 2}, False),
     ("mip-digital", "MIP display (fēnix 8 Solar) · Digital quartz", "fenix8solar47mm",
      {"Mode": 1, "TimeFont": 7, "Theme": 10}, False),
+    ("mip-paper-analog", "MIP · White background (Paper theme), Arabic numerals, railway track", "fenix8solar47mm",
+     {"Theme": 8, "Numerals": 2, "NumeralFont": 1, "MinuteTicks": 3, "HourTicks": 1, "HourHand": 2,
+      "MinuteHand": 2}, False),
+    ("mip-paper-digital", "MIP · White background, Quartz LCD with unlit segments", "fenix8solar47mm",
+     {"Theme": 8, "Mode": 1, "TimeFont": 7, "GaugeLeft": 2, "GaugeRight": 1}, False),
+    ("mip-paper-lowpower", "MIP · Low power, Minimal + date style on white", "fenix8solar47mm",
+     {"Theme": 8, "AodStyle": 3}, True),
 ]
 
 

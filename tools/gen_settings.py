@@ -124,6 +124,8 @@ ENUMS = {
         (4, "Time only"),
     ],
     "aodmarks": [(0, "None"), (1, "Quarters"), (2, "Hours")],
+    "nighttrig": [(0, "Off"), (1, "Do Not Disturb / sleep mode"), (2, "Sleep schedule"), (3, "Either")],
+    "fade": [(p, "%d%%" % p) for p in range(10, 100, 10)],
 }
 
 # --------------------------------------------------------------- schema ----
@@ -174,7 +176,7 @@ GROUPS = [
         ("LeadingZero", "Leading zero", "bool", False),
         ("Separator", "Separator", "sep", 0),
         ("Ghost", "Unlit segments / dots", "bool", True),
-        ("GhostColor", "Unlit color", "palette", 0x555555),
+        ("GhostColor", "Unlit color", "palauto", -1),
         ("HourDigitColor", "Hours color", "palauto", -1),
         ("MinuteDigitColor", "Minutes color", "palauto", -1),
     ]),
@@ -191,13 +193,17 @@ GROUPS = [
         ("GaugeRight", "Right gauge", "gauges", 0),
         ("DateFormat", "Date format", "datefmt", 0),
     ]),
-    ("AlwaysOn", "Always-on / low power display", [
+    ("AlwaysOn", "Low power display. AMOLED: burn-in safe face. MIP: theme colors, any background", [
         ("AodStyle", "AOD style", "aodstyle", 0),
-        ("AodColor", "AOD color", "palette", 0xAAAAAA),
+        ("AodColor", "AOD color (AMOLED)", "palette", 0xAAAAAA),
         ("AodFont", "AOD font", "aodfont", 99),
-        ("AodOutline", "Outline hands / digits", "bool", True),
+        ("AodOutline", "Outline hands / digits (AMOLED)", "bool", True),
         ("AodMarkers", "AOD markers", "aodmarks", 1),
-        ("AodShift", "Pixel shift", "bool", True),
+        ("AodShift", "Pixel shift (AMOLED)", "bool", True),
+    ]),
+    ("Night", "Fade all colors toward the background while sleeping", [
+        ("NightTrigger", "Night dimming", "nighttrig", 0),
+        ("NightFade", "Fade amount", "fade", 50),
     ]),
 ]
 

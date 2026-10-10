@@ -40,7 +40,8 @@ on the watch itself.
 | Font effects | Unlit LCD segments / dots ("ghost"), two-tone hours/minutes, separator style |
 | Data | 4 fields from 22 sources (date, battery, steps, heart rate, Body Battery, stress, weather, sunrise/sunset, …), 2 edge gauges, status icons |
 | Colors | 10 themes + custom; 28-color MIP-safe palette; per-element overrides |
-| Always-on | Style (auto, full, minimal, minimal + date, time only), color, font, outline hands/digits, markers, pixel shift |
+| Always-on | Style, color, font, outline hands/digits, markers, pixel shift (AMOLED); theme colors on any background (MIP) |
+| Night dimming | Fade all colors 10–90 % during Do Not Disturb / sleep mode or the sleep schedule |
 
 ## Supported devices
 
@@ -51,8 +52,42 @@ See [Install](install.qmd) for the full list.
 
 ## Display handling
 
-- **AMOLED**: while the watch sleeps, the face switches to a low-pixel always-on rendering (outline hands or
-  hollow digits, a few markers) and shifts by a few pixels every minute, keeping within Garmin's burn-in
-  rules (≤ 10 % lit pixels, no pixel lit for over 3 minutes).
-- **MIP**: the full face stays visible in low power. With *Seconds → Always (MIP)*, the second hand or
-  seconds digits keep updating every second through partial updates from an off-screen buffer.
+### AMOLED always-on
+
+While the watch sleeps, AMOLED models show a separate low-pixel face that stays within Garmin's burn-in
+rules (≤ 10 % lit pixels, no pixel lit for more than 3 minutes). Settings, group **Always-on**:
+
+| Setting | Effect |
+|---|---|
+| AOD style | *Auto* / *Full face* → minimal face with date (a full face is never shown on AMOLED); *Minimal*; *Minimal + date*; *Time only* |
+| AOD color | Single color for everything drawn while asleep; default light gray |
+| AOD font | Digital mode: *Same as time* or any font family |
+| Outline hands / digits | Hollow hands; filled Quartz and dot fonts switch to their outline / fine-dot variants |
+| AOD markers | None, 12/3/6/9 bars, or 12 hour dots |
+| Pixel shift | Moves the face by up to ±r/60 px every minute in a 9-step cycle |
+
+### MIP (memory-in-pixel)
+
+Lit pixels cost no power on MIP screens, so the full face stays visible in low power, in the theme colors.
+White and other light backgrounds work in every mode: the *Paper* theme, or *Custom* with a light
+background. Unlit segment/dot color and gauge tracks default to *Auto*, a step from the background
+toward the primary color, so they stay subtle on both dark and light backgrounds.
+
+- *AOD style* also applies: *Minimal*, *Minimal + date* and *Time only* use the theme background and
+  primary color, with filled hands. *AOD color*, *Outline* and *Pixel shift* are AMOLED-only.
+- *Seconds → Always (MIP)* keeps the second hand or seconds digits running every second in low power,
+  through partial updates from an off-screen buffer.
+
+### Night dimming
+
+Fades every color by a set percentage toward the background (on AMOLED always-on, the AOD color toward
+black). Settings, group **Night**:
+
+| Setting | Options |
+|---|---|
+| Night dimming | Off · Do Not Disturb / sleep mode · Sleep schedule · Either |
+| Fade amount | 10–90 % |
+
+Connect IQ does not expose Garmin focus modes to watch faces. The Sleep focus turns on Do Not Disturb,
+which the face reads (`DeviceSettings.doNotDisturb`); *Sleep schedule* uses the bedtime and wake time from
+the user profile (`UserProfile`).

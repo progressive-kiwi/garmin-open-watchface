@@ -98,5 +98,20 @@
     "slug": "mip-digital",
     "caption": "MIP display (f\u0113nix 8 Solar) \u00b7 Digital quartz",
     "device": "fenix8solar47mm"
+  },
+  {
+    "slug": "mip-paper-analog",
+    "caption": "MIP \u00b7 White background (Paper theme), Arabic numerals, railway track",
+    "device": "fenix8solar47mm"
+  },
+  {
+    "slug": "mip-paper-digital",
+    "caption": "MIP \u00b7 White background, Quartz LCD with unlit segments",
+    "device": "fenix8solar47mm"
+  },
+  {
+    "slug": "mip-paper-lowpower",
+    "caption": "MIP \u00b7 Low power, Minimal + date style on white",
+    "device": "fenix8solar47mm"
   }
 ]
