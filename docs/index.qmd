@@ -24,6 +24,7 @@ color themes and always-on behavior, and every option is available both in the G
 on the watch itself.
 
 [Download the latest release](https://github.com/progressive-kiwi/open-garmin-watchface/releases/latest){.btn .btn-primary}
+[Open the configurator](configurator.qmd){.btn .btn-outline-primary}
 [Browse the gallery](gallery.qmd){.btn .btn-outline-secondary}
 
 ## Features

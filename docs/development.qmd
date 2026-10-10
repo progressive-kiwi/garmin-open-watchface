@@ -19,6 +19,8 @@ title: Development
 | `tools/setup_sdk.sh` | Headless SDK + device definitions + simulator font stand-ins |
 | `tools/build.sh` | Type-check, `.iq` and per-device `.prg` builds |
 | `tools/screenshots.py` | Simulator screenshots for this site |
+| `docs/configurator/` | Web configurator: `render.js` (port of the drawing code), `app.js` (UI), generated `schema.json`, `devices.json` (`tools/gen_devices.py`) |
+| `tools/apply_preset.py` | Writes a configurator preset into the property defaults for side-loaded builds |
 
 ## Build locally
 
@@ -38,8 +40,9 @@ your SDK path.
 
 1. Add a row to `GROUPS` (and an enum to `ENUMS` if needed) in `tools/gen_settings.py`.
 2. Run `python3 tools/gen_settings.py`. The property, settings entry, strings, the field on `ConfigBase`,
-   the on-device menu entry and the settings reference page are regenerated.
-3. Read the value through `cfg.<Key>` in the renderer.
+   the on-device menu entry, the settings reference page and the configurator schema are regenerated.
+3. Read the value through `cfg.<Key>` in the renderer, and mirror the drawing change in
+   `docs/configurator/render.js` so the web preview matches.
 
 CI fails if generated files are out of date.
 

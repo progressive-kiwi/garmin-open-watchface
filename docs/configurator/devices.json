@@ -1,0 +1,380 @@
+[
+ {
+  "id": "approachs50",
+  "name": "Approach® S50",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "approachs7042mm",
+  "name": "Approach® S70 42mm",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "approachs7047mm",
+  "name": "Approach® S70 47mm",
+  "display": "amoled",
+  "size": 454
+ },
+ {
+  "id": "d2airx10",
+  "name": "D2™ Air X10",
+  "display": "amoled",
+  "size": 416
+ },
+ {
+  "id": "d2mach1",
+  "name": "D2™ Mach 1",
+  "display": "amoled",
+  "size": 416
+ },
+ {
+  "id": "d2mach2",
+  "name": "D2™ Mach 2",
+  "display": "amoled",
+  "size": 454
+ },
+ {
+  "id": "d2mach2pro",
+  "name": "D2™ Mach 2 Pro",
+  "display": "amoled",
+  "size": 454
+ },
+ {
+  "id": "descentg2",
+  "name": "Descent™ G2",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "descentmk343mm",
+  "name": "Descent™ Mk3 43mm / Mk3i 43mm",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "descentmk351mm",
+  "name": "Descent™ Mk3i 51mm",
+  "display": "amoled",
+  "size": 454
+ },
+ {
+  "id": "enduro3",
+  "name": "Enduro™ 3",
+  "display": "mip",
+  "size": 280
+ },
+ {
+  "id": "fr165",
+  "name": "Forerunner® 165",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "fr165m",
+  "name": "Forerunner® 165 Music",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "fr170",
+  "name": "Forerunner® 170",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "fr170m",
+  "name": "Forerunner® 170 Music",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "fr255",
+  "name": "Forerunner® 255",
+  "display": "mip",
+  "size": 260
+ },
+ {
+  "id": "fr255m",
+  "name": "Forerunner® 255 Music",
+  "display": "mip",
+  "size": 260
+ },
+ {
+  "id": "fr255s",
+  "name": "Forerunner® 255s",
+  "display": "mip",
+  "size": 218
+ },
+ {
+  "id": "fr255sm",
+  "name": "Forerunner® 255s Music",
+  "display": "mip",
+  "size": 218
+ },
+ {
+  "id": "fr265",
+  "name": "Forerunner® 265",
+  "display": "amoled",
+  "size": 416
+ },
+ {
+  "id": "fr265s",
+  "name": "Forerunner® 265s",
+  "display": "amoled",
+  "size": 360
+ },
+ {
+  "id": "fr57042mm",
+  "name": "Forerunner® 570 42mm",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "fr57047mm",
+  "name": "Forerunner® 570 47mm",
+  "display": "amoled",
+  "size": 454
+ },
+ {
+  "id": "fr70",
+  "name": "Forerunner® 70",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "fr955",
+  "name": "Forerunner® 955 / Solar",
+  "display": "mip",
+  "size": 260
+ },
+ {
+  "id": "fr965",
+  "name": "Forerunner® 965",
+  "display": "amoled",
+  "size": 454
+ },
+ {
+  "id": "fr970",
+  "name": "Forerunner® 970",
+  "display": "amoled",
+  "size": 454
+ },
+ {
+  "id": "instinct3amoled45mm",
+  "name": "Instinct® 3 AMOLED 45mm",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "instinct3amoled50mm",
+  "name": "Instinct® 3 AMOLED 50mm",
+  "display": "amoled",
+  "size": 416
+ },
+ {
+  "id": "instinctcrossoveramoled",
+  "name": "Instinct® Crossover AMOLED",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "marq2",
+  "name": "MARQ® (Gen 2) Athlete / Adventurer / Captain / Golfer / Carbon Edition / Commander - Carbon Edition",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "marq2aviator",
+  "name": "MARQ® (Gen 2) Aviator",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "venu2",
+  "name": "Venu® 2",
+  "display": "amoled",
+  "size": 416
+ },
+ {
+  "id": "venu2plus",
+  "name": "Venu® 2 Plus",
+  "display": "amoled",
+  "size": 416
+ },
+ {
+  "id": "venu2s",
+  "name": "Venu® 2S",
+  "display": "amoled",
+  "size": 360
+ },
+ {
+  "id": "venu3",
+  "name": "Venu® 3",
+  "display": "amoled",
+  "size": 454
+ },
+ {
+  "id": "venu3s",
+  "name": "Venu® 3S",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "venu441mm",
+  "name": "Venu® 4 41mm",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "venu445mm",
+  "name": "Venu® 4 45mm / D2™ Air X15",
+  "display": "amoled",
+  "size": 454
+ },
+ {
+  "id": "epix2",
+  "name": "epix™ (Gen 2) / quatix® 7 Sapphire",
+  "display": "amoled",
+  "size": 416
+ },
+ {
+  "id": "epix2pro42mm",
+  "name": "epix™ Pro (Gen 2) 42mm",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "epix2pro47mm",
+  "name": "epix™ Pro (Gen 2) 47mm / quatix® 7 Pro",
+  "display": "amoled",
+  "size": 416
+ },
+ {
+  "id": "epix2pro51mm",
+  "name": "epix™ Pro (Gen 2) 51mm / D2™ Mach 1 Pro / tactix® 7 – AMOLED Edition",
+  "display": "amoled",
+  "size": 454
+ },
+ {
+  "id": "fenix7pro",
+  "name": "fēnix® 7 Pro",
+  "display": "mip",
+  "size": 260
+ },
+ {
+  "id": "fenix7pronowifi",
+  "name": "fēnix® 7 Pro - Solar Edition (no Wi-Fi)",
+  "display": "mip",
+  "size": 260
+ },
+ {
+  "id": "fenix7spro",
+  "name": "fēnix® 7S Pro",
+  "display": "mip",
+  "size": 240
+ },
+ {
+  "id": "fenix7xpro",
+  "name": "fēnix® 7X Pro",
+  "display": "mip",
+  "size": 280
+ },
+ {
+  "id": "fenix7xpronowifi",
+  "name": "fēnix® 7X Pro - Solar Edition (no Wi-Fi)",
+  "display": "mip",
+  "size": 280
+ },
+ {
+  "id": "fenix843mm",
+  "name": "fēnix® 8 43mm",
+  "display": "amoled",
+  "size": 416
+ },
+ {
+  "id": "fenix847mm",
+  "name": "fēnix® 8 47mm / 51mm / tactix® 8 47mm / 51mm / quatix® 8 47mm / 51mm",
+  "display": "amoled",
+  "size": 454
+ },
+ {
+  "id": "fenix8pro47mm",
+  "name": "fēnix® 8 Pro 47mm / 51mm / MicroLED / quatix® 8 Pro 47mm / 51mm",
+  "display": "amoled",
+  "size": 454
+ },
+ {
+  "id": "fenix8solar47mm",
+  "name": "fēnix® 8 Solar 47mm",
+  "display": "mip",
+  "size": 260
+ },
+ {
+  "id": "fenix8solar51mm",
+  "name": "fēnix® 8 Solar 51mm / tactix® 8 Solar 51mm",
+  "display": "mip",
+  "size": 280
+ },
+ {
+  "id": "fenix943mm",
+  "name": "fēnix® 9 43mm",
+  "display": "amoled",
+  "size": 416
+ },
+ {
+  "id": "fenix947mm",
+  "name": "fēnix® 9 47mm / 51mm",
+  "display": "amoled",
+  "size": 454
+ },
+ {
+  "id": "fenix9pro43mm",
+  "name": "fēnix® 9 Pro 43mm",
+  "display": "amoled",
+  "size": 416
+ },
+ {
+  "id": "fenix9pro47mm",
+  "name": "fēnix® 9 Pro 47mm",
+  "display": "amoled",
+  "size": 454
+ },
+ {
+  "id": "fenix9pro51mm",
+  "name": "fēnix® 9 Pro 51mm",
+  "display": "amoled",
+  "size": 466
+ },
+ {
+  "id": "fenix9prosolar47mm",
+  "name": "fēnix® 9 Pro Solar 47mm",
+  "display": "mip",
+  "size": 260
+ },
+ {
+  "id": "fenix9prosolar51mm",
+  "name": "fēnix® 9 Pro Solar 51mm",
+  "display": "mip",
+  "size": 280
+ },
+ {
+  "id": "fenixe",
+  "name": "fēnix® E",
+  "display": "amoled",
+  "size": 416
+ },
+ {
+  "id": "vivoactive5",
+  "name": "vívoactive® 5",
+  "display": "amoled",
+  "size": 390
+ },
+ {
+  "id": "vivoactive6",
+  "name": "vívoactive® 6",
+  "display": "amoled",
+  "size": 390
+ }
+]

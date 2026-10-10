@@ -5,6 +5,7 @@ Forerunner 965 generation onward (Forerunner, fēnix, epix, enduro, Venu, vívoa
 Approach, Instinct AMOLED).
 
 **Docs and gallery:** https://progressive-kiwi.github.io/open-garmin-watchface/
+**Configurator:** https://progressive-kiwi.github.io/open-garmin-watchface/configurator.html
 **Download:** [latest release](https://github.com/progressive-kiwi/open-garmin-watchface/releases/latest)
 
 <p align="center">

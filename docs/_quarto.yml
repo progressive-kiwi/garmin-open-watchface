@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: _site
+  resources:
+    - configurator/
 
 website:
   title: "Open Face"
@@ -13,6 +15,8 @@ website:
         text: Overview
       - href: gallery.qmd
         text: Gallery
+      - href: configurator.qmd
+        text: Configurator
       - href: settings.qmd
         text: Settings
       - href: install.qmd

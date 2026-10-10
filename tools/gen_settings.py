@@ -8,6 +8,8 @@ Outputs:
   source/gen/ConfigBase.mc              typed property cache (ConfigBase)
   source/gen/Schema.mc                  on-device settings menu schema
   docs/settings.qmd                     settings reference page
+  source/gen/Themes.mc                  theme color table
+  docs/configurator/schema.json         schema for the web configurator
 
 Run from the repository root:  python3 tools/gen_settings.py
 """
@@ -35,6 +37,24 @@ PALETTE = [
 ]
 
 AUTO = [(-1, "Auto (theme)")]
+
+# Theme colors [background, primary, secondary, accent]; index = Theme value, 0 = custom (from settings).
+THEMES = [
+    [0x000000, 0xFFFFFF, 0xAAAAAA, 0xFF5500],  # custom placeholder
+    [0x000000, 0xFFFFFF, 0xAAAAAA, 0xFF0000],  # classic
+    [0x000000, 0xFFFFFF, 0xAAAAAA, 0xFF5500],  # racing
+    [0x000055, 0xFFFFFF, 0x55AAAA, 0x00FFFF],  # ocean
+    [0x000000, 0xFFFFAA, 0x00AA55, 0xAAFF00],  # forest
+    [0x000000, 0xFFAA00, 0xAA5500, 0xFFFFAA],  # gold
+    [0x000000, 0xFFFFFF, 0x55AAAA, 0x00AAFF],  # ice
+    [0x000000, 0x00FFFF, 0xAA00FF, 0xFF00FF],  # neon
+    [0xFFFFFF, 0x000000, 0x555555, 0xFF0000],  # paper
+    [0x000000, 0xAAAAAA, 0x555555, 0xFFFFFF],  # stealth
+    [0x000000, 0x00FF00, 0x00AA00, 0xFFAA00],  # tactical
+]
+
+# Settings that only matter on one display technology (used by the web configurator).
+AMOLED_ONLY = {"AodColor", "AodOutline", "AodShift"}
 
 FONTS = [
     (0, "System"), (1, "Condensed bold"), (2, "Roboto"), (3, "Roboto black"),
@@ -407,6 +427,27 @@ def main():
         md.append('| <span style="display:inline-block;width:1em;height:1em;border:1px solid #888;background:#%06X"></span> %s | `#%06X` |' % (v, label, v))
     md.append("")
     write("docs/settings.qmd", "\n".join(md))
+
+    # ---- Themes.mc
+    rows = ",\n".join("        [%s]" % ", ".join("0x%06X" % c for c in t) for t in THEMES)
+    write("source/gen/Themes.mc", header + "import Toybox.Lang;\n\nmodule Themes {\n"
+          "    //! [background, primary, secondary, accent] per Theme value; 0 = custom.\n"
+          "    const TABLE = [\n%s\n    ];\n}\n" % rows)
+
+    # ---- configurator schema
+    import json
+    schema = {
+        "themes": THEMES,
+        "palette": PALETTE,
+        "enums": {k: v for k, v in ENUMS.items()},
+        "amoledOnly": sorted(AMOLED_ONLY),
+        "groups": [
+            {"id": g, "title": strings["g_" + g], "description": d,
+             "settings": [{"key": k, "title": t, "kind": kind, "default": dflt} for k, t, kind, dflt in settings]}
+            for g, d, settings in GROUPS
+        ],
+    }
+    write("docs/configurator/schema.json", json.dumps(schema, indent=1, ensure_ascii=False) + "\n")
 
 
 if __name__ == "__main__":

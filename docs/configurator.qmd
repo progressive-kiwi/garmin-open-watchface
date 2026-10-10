@@ -1,0 +1,24 @@
+---
+title: Configurator
+subtitle: Pick a screen type, change any setting, preview it, then apply or share
+page-layout: full
+toc: false
+include-in-header:
+  text: |
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pridi:wght@600&family=Roboto+Condensed:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;500;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="configurator/configurator.css">
+---
+
+```{=html}
+<div id="of-config" data-base="configurator/">
+  <noscript>The configurator needs JavaScript. All settings are listed on the <a href="settings.html">settings reference</a>.</noscript>
+</div>
+<script src="configurator/render.js"></script>
+<script src="configurator/app.js"></script>
+```
+
+The preview is drawn in the browser by a port of the watch face's drawing code, using sample sensor data
+(steps, heart rate, battery, …). Fonts are web stand-ins for Garmin's device fonts, so text differs slightly
+from the watch; Quartz and dot-matrix fonts are drawn the same way as on the watch.

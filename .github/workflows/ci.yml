@@ -15,7 +15,7 @@ jobs:
       - name: Generated files are up to date
         run: |
           python3 tools/gen_settings.py
-          git diff --exit-code -- resources source docs/settings.qmd
+          git diff --exit-code -- resources source docs/settings.qmd docs/configurator/schema.json
 
       - name: Cache SDK and device definitions
         uses: actions/cache@v4
