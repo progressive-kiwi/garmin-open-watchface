@@ -12,6 +12,19 @@
 .of-screen.active { border-color: var(--bs-primary); box-shadow: 0 0 0 .2rem rgba(var(--bs-primary-rgb), .2); }
 .of-device { display: flex; align-items: center; gap: .6rem; margin-top: .8rem; max-width: 520px; }
 .of-device span { white-space: nowrap; font-weight: 600; }
+.of-faces { display: flex; flex-wrap: wrap; align-items: flex-start; gap: .6rem 1.4rem; margin-top: .9rem; }
+.of-faces-title { font-weight: 600; padding-top: .35rem; }
+.of-category { display: flex; flex-direction: column; gap: .3rem; }
+.of-category strong { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; opacity: .7; }
+.of-category-faces { display: flex; flex-wrap: wrap; gap: .4rem; }
+.of-face {
+  display: flex; flex-direction: column; align-items: flex-start; gap: .05rem; padding: .35rem .75rem;
+  border-radius: .45rem; border: 2px solid var(--bs-border-color); background: var(--bs-body-bg);
+  color: var(--bs-body-color); cursor: pointer;
+}
+.of-face span { font-weight: 600; }
+.of-face code { font-size: .7rem; opacity: .7; color: inherit; background: none; padding: 0; }
+.of-face.active { border-color: var(--bs-primary); box-shadow: 0 0 0 .2rem rgba(var(--bs-primary-rgb), .2); }
 
 .of-main { display: none; grid-template-columns: minmax(0, 1fr) 380px; gap: 2rem; align-items: start; }
 #of-config.ready .of-main { display: grid; }

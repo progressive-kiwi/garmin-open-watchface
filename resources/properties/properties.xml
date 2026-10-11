@@ -7,6 +7,7 @@
     <property id="AccentColor" type="number">16733440</property>
     <property id="SecondsMode" type="number">1</property>
     <property id="StatusIcons" type="boolean">true</property>
+    <property id="HourFormat" type="number">0</property>
     <property id="AnalogLayout" type="number">0</property>
     <property id="HourHand" type="number">0</property>
     <property id="MinuteHand" type="number">0</property>
@@ -32,7 +33,6 @@
     <property id="DigitalLayout" type="number">0</property>
     <property id="TimeFont" type="number">1</property>
     <property id="TimeSize" type="number">2</property>
-    <property id="HourFormat" type="number">0</property>
     <property id="LeadingZero" type="boolean">false</property>
     <property id="Separator" type="number">0</property>
     <property id="Ghost" type="boolean">true</property>
@@ -50,6 +50,10 @@
     <property id="GaugeLeft" type="number">0</property>
     <property id="GaugeRight" type="number">0</property>
     <property id="DateFormat" type="number">0</property>
+    <property id="TactixColor" type="number">65450</property>
+    <property id="TactixRing" type="number">0</property>
+    <property id="TactixField" type="number">16</property>
+    <property id="TactixGhost" type="boolean">false</property>
     <property id="AodStyle" type="number">0</property>
     <property id="AodColor" type="number">11184810</property>
     <property id="AodFont" type="number">99</property>

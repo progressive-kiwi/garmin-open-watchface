@@ -8,113 +8,135 @@ Colors set to **Auto (theme)** follow the selected color theme.
 
 This page is generated from `tools/gen_settings.py`.
 
+## Watch faces
+
+*Watch face* picks a category (Analog, Digital) and a face within it. Each face uses its own
+subset of the settings below; the *Faces* column lists where a setting applies.
+
+| Value | Id | Category | Face | Description |
+|---|---|---|---|---|
+| 0 | `analog/plain` | Analog | Plain | Fully configurable analog: layouts, hands, dial, fields and gauges |
+| 1 | `digital/plain` | Digital | Plain | Fully configurable digital: layouts, fonts, fields and gauges |
+| 2 | `digital/tactix` | Digital | Tactix | The original tactix: upright LCD digits, seconds ring, battery and moon |
+
 ## General
 
-Mode, theme and base colors.
+Watch face, theme and base colors.
 
-| Key | Setting | Default | Options |
-|---|---|---|---|
-| `Mode` | Watch mode | Analog | Analog, Digital |
-| `Theme` | Color theme | Classic | Custom, Classic, Racing, Ocean, Forest, Gold, Ice, Neon, Paper, Stealth, Tactical |
-| `BgColor` | Custom background | Black | 28 colors |
-| `PrimaryColor` | Custom primary | White | 28 colors |
-| `SecondaryColor` | Custom secondary | Light gray | 28 colors |
-| `AccentColor` | Custom accent | Orange | 28 colors |
-| `SecondsMode` | Seconds | Awake only | Off, Awake only, Always (MIP) |
-| `StatusIcons` | Status icons | on | on / off |
+| Key | Setting | Default | Options | Faces |
+|---|---|---|---|---|
+| `Mode` | Watch face | Analog · Plain | Analog · Plain, Digital · Plain, Digital · Tactix | all |
+| `Theme` | Color theme | Classic | Custom, Classic, Racing, Ocean, Forest, Gold, Ice, Neon, Paper, Stealth, Tactical | `analog/plain`, `digital/plain` |
+| `BgColor` | Custom background | Black | 28 colors | `analog/plain`, `digital/plain` |
+| `PrimaryColor` | Custom primary | White | 28 colors | `analog/plain`, `digital/plain` |
+| `SecondaryColor` | Custom secondary | Light gray | 28 colors | `analog/plain`, `digital/plain` |
+| `AccentColor` | Custom accent | Orange | 28 colors | `analog/plain`, `digital/plain` |
+| `SecondsMode` | Seconds | Awake only | Off, Awake only, Always (MIP) | all |
+| `StatusIcons` | Status icons | on | on / off | all |
+| `HourFormat` | Hour format | System | System, 12 hour, 24 hour | all |
 
 ## Analog
 
 Layout and hands.
 
-| Key | Setting | Default | Options |
-|---|---|---|---|
-| `AnalogLayout` | Analog layout | Classic | Classic, Chronograph, Top + bottom, Minimal, Gauges, Pilot |
-| `HourHand` | Hour hand | Baton | Baton, Dauphine, Sword, Leaf, Skeleton, Arrow, Needle, Rounded, Breguet |
-| `MinuteHand` | Minute hand | Baton | Baton, Dauphine, Sword, Leaf, Skeleton, Arrow, Needle, Rounded, Breguet |
-| `SecondHand` | Second hand | Lollipop | Needle, Lollipop, Counterweight, Arrow tip, Square tip |
-| `HandSize` | Hand width | Regular | Slim, Regular, Bold |
-| `HandLength` | Hand length | Regular | Short, Regular, Long |
-| `HandOutline` | Hand outline | on | on / off |
-| `CenterCap` | Center cap | Dot | None, Dot, Ring, Large |
-| `HourHandColor` | Hour hand color | Auto (theme) | 28 colors + Auto |
-| `MinuteHandColor` | Minute hand color | Auto (theme) | 28 colors + Auto |
-| `SecondHandColor` | Second hand color | Auto (theme) | 28 colors + Auto |
+| Key | Setting | Default | Options | Faces |
+|---|---|---|---|---|
+| `AnalogLayout` | Analog layout | Classic | Classic, Chronograph, Top + bottom, Minimal, Gauges, Pilot | `analog/plain` |
+| `HourHand` | Hour hand | Baton | Baton, Dauphine, Sword, Leaf, Skeleton, Arrow, Needle, Rounded, Breguet | `analog/plain` |
+| `MinuteHand` | Minute hand | Baton | Baton, Dauphine, Sword, Leaf, Skeleton, Arrow, Needle, Rounded, Breguet | `analog/plain` |
+| `SecondHand` | Second hand | Lollipop | Needle, Lollipop, Counterweight, Arrow tip, Square tip | `analog/plain` |
+| `HandSize` | Hand width | Regular | Slim, Regular, Bold | `analog/plain` |
+| `HandLength` | Hand length | Regular | Short, Regular, Long | `analog/plain` |
+| `HandOutline` | Hand outline | on | on / off | `analog/plain` |
+| `CenterCap` | Center cap | Dot | None, Dot, Ring, Large | `analog/plain` |
+| `HourHandColor` | Hour hand color | Auto (theme) | 28 colors + Auto | `analog/plain` |
+| `MinuteHandColor` | Minute hand color | Auto (theme) | 28 colors + Auto | `analog/plain` |
+| `SecondHandColor` | Second hand color | Auto (theme) | 28 colors + Auto | `analog/plain` |
 
 ## Dial
 
 Ticks, numerals and ring.
 
-| Key | Setting | Default | Options |
-|---|---|---|---|
-| `HourTicks` | Hour ticks | Bar | None, Line, Bar, Dot, Triangle, Double line, Diamond |
-| `MinuteTicks` | Minute ticks | Line | None, Line, Dot, Railway |
-| `TickLength` | Tick length | Medium | Small, Medium, Large |
-| `QuarterEmphasis` | Emphasize 12/3/6/9 | on | on / off |
-| `Numerals` | Numerals | None | None, Quarters, All, Roman quarters, Roman all, 12 only |
-| `NumeralFont` | Numeral font | Condensed bold | System, Condensed bold, Roboto, Roboto black, Bionic, Serif, Condensed italic, Quartz LCD, Quartz outline, Quartz thin, Dot matrix, Pixel blocks, Dotted fine, Segment upright |
-| `NumeralSize` | Numeral size | Medium | Small, Medium, Large |
-| `DialRing` | Dial ring | None | None, Thin, Bezel, Double |
-| `HourTickColor` | Hour tick color | Auto (theme) | 28 colors + Auto |
-| `MinuteTickColor` | Minute tick color | Auto (theme) | 28 colors + Auto |
-| `NumeralColor` | Numeral color | Auto (theme) | 28 colors + Auto |
+| Key | Setting | Default | Options | Faces |
+|---|---|---|---|---|
+| `HourTicks` | Hour ticks | Bar | None, Line, Bar, Dot, Triangle, Double line, Diamond | `analog/plain` |
+| `MinuteTicks` | Minute ticks | Line | None, Line, Dot, Railway | `analog/plain` |
+| `TickLength` | Tick length | Medium | Small, Medium, Large | `analog/plain` |
+| `QuarterEmphasis` | Emphasize 12/3/6/9 | on | on / off | `analog/plain` |
+| `Numerals` | Numerals | None | None, Quarters, All, Roman quarters, Roman all, 12 only | `analog/plain` |
+| `NumeralFont` | Numeral font | Condensed bold | System, Condensed bold, Roboto, Roboto black, Bionic, Serif, Condensed italic, Quartz LCD, Quartz outline, Quartz thin, Dot matrix, Pixel blocks, Dotted fine, Segment upright | `analog/plain` |
+| `NumeralSize` | Numeral size | Medium | Small, Medium, Large | `analog/plain` |
+| `DialRing` | Dial ring | None | None, Thin, Bezel, Double | `analog/plain` |
+| `HourTickColor` | Hour tick color | Auto (theme) | 28 colors + Auto | `analog/plain` |
+| `MinuteTickColor` | Minute tick color | Auto (theme) | 28 colors + Auto | `analog/plain` |
+| `NumeralColor` | Numeral color | Auto (theme) | 28 colors + Auto | `analog/plain` |
 
 ## Digital
 
 Time font and layout.
 
-| Key | Setting | Default | Options |
-|---|---|---|---|
-| `DigitalLayout` | Digital layout | Classic | Classic, Stacked, Big, Sport, Minimal, Side |
-| `TimeFont` | Time font | Condensed bold | System, Condensed bold, Roboto, Roboto black, Bionic, Serif, Condensed italic, Quartz LCD, Quartz outline, Quartz thin, Dot matrix, Pixel blocks, Dotted fine, Segment upright |
-| `TimeSize` | Time size | Large | Small, Medium, Large, Extra large |
-| `HourFormat` | Hour format | System | System, 12 hour, 24 hour |
-| `LeadingZero` | Leading zero | off | on / off |
-| `Separator` | Separator | Colon | Colon, None, Space |
-| `Ghost` | Unlit segments / dots | on | on / off |
-| `GhostColor` | Unlit color | Auto (theme) | 28 colors + Auto |
-| `HourDigitColor` | Hours color | Auto (theme) | 28 colors + Auto |
-| `MinuteDigitColor` | Minutes color | Auto (theme) | 28 colors + Auto |
+| Key | Setting | Default | Options | Faces |
+|---|---|---|---|---|
+| `DigitalLayout` | Digital layout | Classic | Classic, Stacked, Big, Sport, Minimal, Side | `digital/plain` |
+| `TimeFont` | Time font | Condensed bold | System, Condensed bold, Roboto, Roboto black, Bionic, Serif, Condensed italic, Quartz LCD, Quartz outline, Quartz thin, Dot matrix, Pixel blocks, Dotted fine, Segment upright | `digital/plain` |
+| `TimeSize` | Time size | Large | Small, Medium, Large, Extra large | `digital/plain` |
+| `LeadingZero` | Leading zero | off | on / off | `digital/plain` |
+| `Separator` | Separator | Colon | Colon, None, Space | `digital/plain` |
+| `Ghost` | Unlit segments / dots | on | on / off | `digital/plain` |
+| `GhostColor` | Unlit color | Auto (theme) | 28 colors + Auto | `digital/plain` |
+| `HourDigitColor` | Hours color | Auto (theme) | 28 colors + Auto | `digital/plain` |
+| `MinuteDigitColor` | Minutes color | Auto (theme) | 28 colors + Auto | `digital/plain` |
 
 ## Data
 
 Fields, gauges and date.
 
-| Key | Setting | Default | Options |
-|---|---|---|---|
-| `Field1` | Field 1 | Date | Off, Date, Weekday + day, Battery %, Battery days, Steps, Heart rate, Calories, Distance, Floors, Active minutes, Body Battery, Stress, Notifications, Altitude, Temperature, Sunrise / sunset, Week number, Digital time, Seconds, Respiration, Recovery time, Day progress |
-| `Field2` | Field 2 | Heart rate | Off, Date, Weekday + day, Battery %, Battery days, Steps, Heart rate, Calories, Distance, Floors, Active minutes, Body Battery, Stress, Notifications, Altitude, Temperature, Sunrise / sunset, Week number, Digital time, Seconds, Respiration, Recovery time, Day progress |
-| `Field3` | Field 3 | Steps | Off, Date, Weekday + day, Battery %, Battery days, Steps, Heart rate, Calories, Distance, Floors, Active minutes, Body Battery, Stress, Notifications, Altitude, Temperature, Sunrise / sunset, Week number, Digital time, Seconds, Respiration, Recovery time, Day progress |
-| `Field4` | Field 4 | Battery % | Off, Date, Weekday + day, Battery %, Battery days, Steps, Heart rate, Calories, Distance, Floors, Active minutes, Body Battery, Stress, Notifications, Altitude, Temperature, Sunrise / sunset, Week number, Digital time, Seconds, Respiration, Recovery time, Day progress |
-| `FieldFont` | Field font | System | System, Condensed bold, Roboto, Roboto black, Bionic, Serif, Condensed italic, Quartz LCD, Quartz outline, Quartz thin, Dot matrix, Pixel blocks, Dotted fine, Segment upright |
-| `FieldLabels` | Field labels | Text | None, Text |
-| `FieldColor` | Field value color | Auto (theme) | 28 colors + Auto |
-| `LabelColor` | Field label color | Auto (theme) | 28 colors + Auto |
-| `GaugeLeft` | Left gauge | Off | Off, Battery, Steps goal, Body Battery, Stress, Active minutes goal, Floors goal, Seconds, Heart rate, Day progress |
-| `GaugeRight` | Right gauge | Off | Off, Battery, Steps goal, Body Battery, Stress, Active minutes goal, Floors goal, Seconds, Heart rate, Day progress |
-| `DateFormat` | Date format | FRI 9 | FRI 9, 9 OCT, FRI 9 OCT, 2026-10-09, 09.10, 10/09 |
+| Key | Setting | Default | Options | Faces |
+|---|---|---|---|---|
+| `Field1` | Field 1 | Date | Off, Date, Weekday + day, Battery %, Battery days, Steps, Heart rate, Calories, Distance, Floors, Active minutes, Body Battery, Stress, Notifications, Altitude, Temperature, Sunrise / sunset, Week number, Digital time, Seconds, Respiration, Recovery time, Day progress | `analog/plain`, `digital/plain` |
+| `Field2` | Field 2 | Heart rate | Off, Date, Weekday + day, Battery %, Battery days, Steps, Heart rate, Calories, Distance, Floors, Active minutes, Body Battery, Stress, Notifications, Altitude, Temperature, Sunrise / sunset, Week number, Digital time, Seconds, Respiration, Recovery time, Day progress | `analog/plain`, `digital/plain` |
+| `Field3` | Field 3 | Steps | Off, Date, Weekday + day, Battery %, Battery days, Steps, Heart rate, Calories, Distance, Floors, Active minutes, Body Battery, Stress, Notifications, Altitude, Temperature, Sunrise / sunset, Week number, Digital time, Seconds, Respiration, Recovery time, Day progress | `analog/plain`, `digital/plain` |
+| `Field4` | Field 4 | Battery % | Off, Date, Weekday + day, Battery %, Battery days, Steps, Heart rate, Calories, Distance, Floors, Active minutes, Body Battery, Stress, Notifications, Altitude, Temperature, Sunrise / sunset, Week number, Digital time, Seconds, Respiration, Recovery time, Day progress | `analog/plain`, `digital/plain` |
+| `FieldFont` | Field font | System | System, Condensed bold, Roboto, Roboto black, Bionic, Serif, Condensed italic, Quartz LCD, Quartz outline, Quartz thin, Dot matrix, Pixel blocks, Dotted fine, Segment upright | `analog/plain`, `digital/plain` |
+| `FieldLabels` | Field labels | Text | None, Text | `analog/plain`, `digital/plain` |
+| `FieldColor` | Field value color | Auto (theme) | 28 colors + Auto | `analog/plain`, `digital/plain` |
+| `LabelColor` | Field label color | Auto (theme) | 28 colors + Auto | `analog/plain`, `digital/plain` |
+| `GaugeLeft` | Left gauge | Off | Off, Battery, Steps goal, Body Battery, Stress, Active minutes goal, Floors goal, Seconds, Heart rate, Day progress | `analog/plain`, `digital/plain` |
+| `GaugeRight` | Right gauge | Off | Off, Battery, Steps goal, Body Battery, Stress, Active minutes goal, Floors goal, Seconds, Heart rate, Day progress | `analog/plain`, `digital/plain` |
+| `DateFormat` | Date format | FRI 9 | FRI 9, 9 OCT, FRI 9 OCT, 2026-10-09, 09.10, 10/09 | `analog/plain`, `digital/plain` |
+
+## Tactix
+
+The original tactix look.
+
+| Key | Setting | Default | Options | Faces |
+|---|---|---|---|---|
+| `TactixColor` | Display color | Mint | 28 colors | `digital/tactix` |
+| `TactixRing` | Outer ring | Seconds | Seconds, Minutes, Unlit, Off | `digital/tactix` |
+| `TactixField` | Bottom field | Sunrise / sunset | Off, Date, Weekday + day, Battery %, Battery days, Steps, Heart rate, Calories, Distance, Floors, Active minutes, Body Battery, Stress, Notifications, Altitude, Temperature, Sunrise / sunset, Week number, Digital time, Seconds, Respiration, Recovery time, Day progress | `digital/tactix` |
+| `TactixGhost` | Unlit segments | off | on / off | `digital/tactix` |
 
 ## Always on
 
 AMOLED only: burn-in safe face while the watch sleeps. MIP shows the full face at all times.
 
-| Key | Setting | Default | Options |
-|---|---|---|---|
-| `AodStyle` | AOD style | Auto | Auto, Full face, Minimal, Minimal + date, Time only |
-| `AodColor` | AOD color (AMOLED) | Light gray | 28 colors |
-| `AodFont` | AOD font | Same as time | Same as time, System, Condensed bold, Roboto, Roboto black, Bionic, Serif, Condensed italic, Quartz LCD, Quartz outline, Quartz thin, Dot matrix, Pixel blocks, Dotted fine, Segment upright |
-| `AodOutline` | Outline hands / digits (AMOLED) | on | on / off |
-| `AodMarkers` | AOD markers | Quarters | None, Quarters, Hours |
-| `AodShift` | Pixel shift (AMOLED) | on | on / off |
+| Key | Setting | Default | Options | Faces |
+|---|---|---|---|---|
+| `AodStyle` | AOD style | Auto | Auto, Full face, Minimal, Minimal + date, Time only | all |
+| `AodColor` | AOD color (AMOLED) | Light gray | 28 colors | all |
+| `AodFont` | AOD font | Same as time | Same as time, System, Condensed bold, Roboto, Roboto black, Bionic, Serif, Condensed italic, Quartz LCD, Quartz outline, Quartz thin, Dot matrix, Pixel blocks, Dotted fine, Segment upright | `digital/plain`, `digital/tactix` |
+| `AodOutline` | Outline hands / digits (AMOLED) | on | on / off | all |
+| `AodMarkers` | AOD markers | Quarters | None, Quarters, Hours | `analog/plain` |
+| `AodShift` | Pixel shift (AMOLED) | on | on / off | all |
 
 ## Night
 
 AMOLED only: fade all colors toward the background at night.
 
-| Key | Setting | Default | Options |
-|---|---|---|---|
-| `NightTrigger` | Night dimming | Off | Off, Do Not Disturb / sleep mode, Sleep schedule, Either |
-| `NightFade` | Fade amount | 50% | 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90% |
+| Key | Setting | Default | Options | Faces |
+|---|---|---|---|---|
+| `NightTrigger` | Night dimming | Off | Off, Do Not Disturb / sleep mode, Sleep schedule, Either | all |
+| `NightFade` | Fade amount | 50% | 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90% | all |
 
 ## Color palette
 

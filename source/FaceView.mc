@@ -5,7 +5,8 @@ import Toybox.System;
 import Toybox.UserProfile;
 import Toybox.WatchUi;
 
-//! Main watch face view: chooses analog/digital, awake/always-on, and drives partial updates.
+//! Main watch face view: chooses the face (Mode: analog/plain, digital/plain, digital/tactix),
+//! awake/always-on, and drives partial updates.
 //!
 //! Compute budget: everything except the seconds is drawn into an off-screen buffer once per minute
 //! (or after a settings, sleep/wake or night-dimming change). Every other frame only copies the buffer
@@ -20,6 +21,7 @@ class FaceView extends WatchUi.WatchFace {
     var fields as Fields;
     var analog as AnalogFace;
     var digital as DigitalFace;
+    var tactix as TactixFace;
 
     private var _awake as Boolean = true;
     private var _burnIn as Boolean = false;
@@ -45,6 +47,7 @@ class FaceView extends WatchUi.WatchFace {
         fields = new Fields(cfg, kit, data);
         analog = new AnalogFace(cfg, kit, fields);
         digital = new DigitalFace(cfg, kit, fields, data);
+        tactix = new TactixFace(cfg, kit, fields, data);
         var ds = System.getDeviceSettings();
         _burnIn = (ds has :requiresBurnInProtection) && ds.requiresBurnInProtection;
         _partialOk = (WatchUi.WatchFace has :onPartialUpdate) && !_burnIn;
@@ -108,14 +111,19 @@ class FaceView extends WatchUi.WatchFace {
 
     private function applySettings() as Void {
         _dirty = true;
-        _perSecond = cfg.Field1 == F.SECONDS || cfg.Field2 == F.SECONDS || cfg.Field3 == F.SECONDS
-            || cfg.Field4 == F.SECONDS || cfg.GaugeLeft == 7 || cfg.GaugeRight == 7;
+        if (cfg.Mode == 2) {
+            _perSecond = cfg.TactixField == F.SECONDS;
+        } else {
+            _perSecond = cfg.Field1 == F.SECONDS || cfg.Field2 == F.SECONDS || cfg.Field3 == F.SECONDS
+                || cfg.Field4 == F.SECONDS || cfg.GaugeLeft == 7 || cfg.GaugeRight == 7;
+        }
         kit.reset();
         kit.ghostColor = cfg.ghost;
         kit.bgColor = cfg.bg;
         kit.mip = !_burnIn;
         analog.amoled = _burnIn;
         digital.amoled = _burnIn;
+        tactix.amoled = _burnIn;
     }
 
     //! Off-screen copy of the face without seconds. Lives in the graphics pool, not the app heap.
@@ -212,7 +220,7 @@ class FaceView extends WatchUi.WatchFace {
                 analog.drawCap(dc, cx, cy, r, cfg.cMinuteHand);
             }
         } else if (showSec) {
-            _lastBox = digital.drawSeconds(dc);
+            _lastBox = (cfg.Mode == 2) ? tactix.drawSeconds(dc) : digital.drawSeconds(dc);
         }
     }
 
@@ -223,6 +231,8 @@ class FaceView extends WatchUi.WatchFace {
         if (cfg.Mode == 0) {
             analog.drawDial(dc, cx, cy, r);
             analog.drawHands(dc, cx, cy, r, null);
+        } else if (cfg.Mode == 2) {
+            tactix.draw(dc, cx, cy, r);
         } else {
             digital.draw(dc, cx, cy, r);
         }
@@ -243,6 +253,8 @@ class FaceView extends WatchUi.WatchFace {
         kit.ghost = false;
         if (cfg.Mode == 0) {
             analog.drawAod(dc, cx, cy, r, cfg.AodColor, style, data);
+        } else if (cfg.Mode == 2) {
+            tactix.drawAod(dc, cx, cy, r, cfg.AodColor, style);
         } else {
             digital.drawAod(dc, cx, cy, r, cfg.AodColor, style);
         }
@@ -262,16 +274,26 @@ class FaceView extends WatchUi.WatchFace {
             dc.setClip(b[0], b[1], b[2], b[3]);
             dc.drawBitmap(0, 0, buf);
         }
-        var box = (cfg.Mode == 0) ? analog.secondBox(cx, cy, r) : digital.secondsBox(dc);
+        var box = secondsBox(dc, cx, cy, r);
         dc.setClip(box[0], box[1], box[2], box[3]);
         dc.drawBitmap(0, 0, buf);
         if (cfg.Mode == 0) {
             analog.drawSecond(dc, cx, cy, r);
+        } else if (cfg.Mode == 2) {
+            tactix.drawSecondsDigits(dc);
+            tactix.drawSecondDash(dc);
         } else {
             digital.drawSeconds(dc);
         }
         _lastBox = box;
         dc.clearClip();
+    }
+
+    private function secondsBox(dc as Dc, cx as Numeric, cy as Numeric, r as Numeric) as Array<Number> {
+        if (cfg.Mode == 0) {
+            return analog.secondBox(cx, cy, r);
+        }
+        return (cfg.Mode == 2) ? tactix.secondsBox(dc) : digital.secondsBox(dc);
     }
 
     function onEnterSleep() as Void {

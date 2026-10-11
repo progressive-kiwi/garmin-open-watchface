@@ -53,6 +53,14 @@ THEMES = [
     [0x000000, 0x00FF00, 0x00AA00, 0xFFAA00],  # tactical
 ]
 
+# Watch faces: (Mode value, id, category, name, description). Analog and Digital are categories; each
+# face is one style within its category and has its own set of settings (see FACE_SETTINGS).
+FACES = [
+    (0, "analog/plain", "Analog", "Plain", "Fully configurable analog: layouts, hands, dial, fields and gauges"),
+    (1, "digital/plain", "Digital", "Plain", "Fully configurable digital: layouts, fonts, fields and gauges"),
+    (2, "digital/tactix", "Digital", "Tactix", "The original tactix: upright LCD digits, seconds ring, battery and moon"),
+]
+
 # Settings that only matter on one display technology (used by the web configurator).
 # MIP displays show the full face at all times: no always-on face, no night dimming.
 AMOLED_ONLY = {"AodStyle", "AodColor", "AodFont", "AodOutline", "AodMarkers", "AodShift", "NightTrigger", "NightFade"}
@@ -95,7 +103,7 @@ SECOND_HANDS = [
 SIZES3 = [(0, "Small"), (1, "Medium"), (2, "Large")]
 
 ENUMS = {
-    "mode": [(0, "Analog"), (1, "Digital")],
+    "mode": [(v, "%s · %s" % (cat, name)) for v, _, cat, name, _ in FACES],
     "theme": [
         (0, "Custom"), (1, "Classic"), (2, "Racing"), (3, "Ocean"),
         (4, "Forest"), (5, "Gold"), (6, "Ice"), (7, "Neon"), (8, "Paper"),
@@ -147,14 +155,15 @@ ENUMS = {
     "aodmarks": [(0, "None"), (1, "Quarters"), (2, "Hours")],
     "nighttrig": [(0, "Off"), (1, "Do Not Disturb / sleep mode"), (2, "Sleep schedule"), (3, "Either")],
     "fade": [(p, "%d%%" % p) for p in range(10, 100, 10)],
+    "tring": [(0, "Seconds"), (1, "Minutes"), (2, "Unlit"), (3, "Off")],
 }
 
 # --------------------------------------------------------------- schema ----
 # (key, title, kind, default) ; kind = enum name or "bool".
 
 GROUPS = [
-    ("General", "Mode, theme and base colors", [
-        ("Mode", "Watch mode", "mode", 0),
+    ("General", "Watch face, theme and base colors", [
+        ("Mode", "Watch face", "mode", 0),
         ("Theme", "Color theme", "theme", 1),
         ("BgColor", "Custom background", "palette", 0x000000),
         ("PrimaryColor", "Custom primary", "palette", 0xFFFFFF),
@@ -162,6 +171,7 @@ GROUPS = [
         ("AccentColor", "Custom accent", "palette", 0xFF5500),
         ("SecondsMode", "Seconds", "secmode", 1),
         ("StatusIcons", "Status icons", "bool", True),
+        ("HourFormat", "Hour format", "hourfmt", 0),
     ]),
     ("Analog", "Layout and hands", [
         ("AnalogLayout", "Analog layout", "alayout", 0),
@@ -193,7 +203,6 @@ GROUPS = [
         ("DigitalLayout", "Digital layout", "dlayout", 0),
         ("TimeFont", "Time font", "fonts", 1),
         ("TimeSize", "Time size", "size4", 2),
-        ("HourFormat", "Hour format", "hourfmt", 0),
         ("LeadingZero", "Leading zero", "bool", False),
         ("Separator", "Separator", "sep", 0),
         ("Ghost", "Unlit segments / dots", "bool", True),
@@ -214,6 +223,12 @@ GROUPS = [
         ("GaugeRight", "Right gauge", "gauges", 0),
         ("DateFormat", "Date format", "datefmt", 0),
     ]),
+    ("Tactix", "The original tactix look", [
+        ("TactixColor", "Display color", "palette", 0x00FFAA),
+        ("TactixRing", "Outer ring", "tring", 0),
+        ("TactixField", "Bottom field", "fields", 16),
+        ("TactixGhost", "Unlit segments", "bool", False),
+    ]),
     ("AlwaysOn", "AMOLED only: burn-in safe face while the watch sleeps. MIP shows the full face at all times", [
         ("AodStyle", "AOD style", "aodstyle", 0),
         ("AodColor", "AOD color (AMOLED)", "palette", 0xAAAAAA),
@@ -227,6 +242,38 @@ GROUPS = [
         ("NightFade", "Fade amount", "fade", 50),
     ]),
 ]
+
+
+# Which faces each setting belongs to: group default, then per-setting overrides.
+ALL_FACES = [f[1] for f in FACES]
+GROUP_FACES = {
+    "General": ALL_FACES,
+    "Analog": ["analog/plain"],
+    "Dial": ["analog/plain"],
+    "Digital": ["digital/plain"],
+    "Data": ["analog/plain", "digital/plain"],
+    "Tactix": ["digital/tactix"],
+    "AlwaysOn": ALL_FACES,
+    "Night": ALL_FACES,
+}
+SETTING_FACES = {
+    "Theme": ["analog/plain", "digital/plain"],
+    "BgColor": ["analog/plain", "digital/plain"],
+    "PrimaryColor": ["analog/plain", "digital/plain"],
+    "SecondaryColor": ["analog/plain", "digital/plain"],
+    "AccentColor": ["analog/plain", "digital/plain"],
+    "AodFont": ["digital/plain", "digital/tactix"],
+    "AodMarkers": ["analog/plain"],
+}
+
+
+def faces_of(group, key):
+    return SETTING_FACES.get(key, GROUP_FACES[group])
+
+
+def face_mask(group, key):
+    ids = faces_of(group, key)
+    return sum(1 << v for v, fid, _, _, _ in FACES if fid in ids)
 
 
 def sid(text):
@@ -378,14 +425,15 @@ def main():
     sc.append("        return [];")
     sc.append("    }")
     sc.append("")
-    sc.append("    //! Groups: Array of [title, Array of [key, title, enumIndex or -1 for boolean]].")
+    sc.append("    //! Groups: Array of [title, Array of [key, title, enumIndex or -1 for boolean, face mask]].")
+    sc.append("    //! Face mask: bit n set = the setting applies to the face with Mode value n.")
     sc.append("    function groups() as Array<Array> {")
     sc.append("        return [")
     for gname, _, settings in GROUPS:
         rows = []
         for key, _, kind, _ in settings:
             ei = -1 if kind == "bool" else enum_names.index(kind)
-            rows.append('                ["%s", Rez.Strings.t_%s, %d]' % (key, key, ei))
+            rows.append('                ["%s", Rez.Strings.t_%s, %d, %d]' % (key, key, ei, face_mask(gname, key)))
         sc.append("            [Rez.Strings.g_%s, [\n%s\n            ]]," % (gname, ",\n".join(rows)))
     sc[-1] = sc[-1].rstrip(",")
     sc.append("        ];")
@@ -398,14 +446,21 @@ def main():
           "Every setting is available in the Garmin Connect app, Garmin Express, and on the watch",
           "(hold the menu button on the watch face → **Watch Face** → **Customize**).",
           "Colors set to **Auto (theme)** follow the selected color theme.", "",
-          "This page is generated from `tools/gen_settings.py`.", ""]
+          "This page is generated from `tools/gen_settings.py`.", "",
+          "## Watch faces", "",
+          "*Watch face* picks a category (Analog, Digital) and a face within it. Each face uses its own",
+          "subset of the settings below; the *Faces* column lists where a setting applies.", "",
+          "| Value | Id | Category | Face | Description |", "|---|---|---|---|---|"]
+    for v, fid, cat, name, desc in FACES:
+        md.append("| %d | `%s` | %s | %s | %s |" % (v, fid, cat, name, desc))
+    md.append("")
     for gname, gdesc, settings in GROUPS:
         md.append("## %s" % strings["g_" + gname])
         md.append("")
         md.append(gdesc + ".")
         md.append("")
-        md.append("| Key | Setting | Default | Options |")
-        md.append("|---|---|---|---|")
+        md.append("| Key | Setting | Default | Options | Faces |")
+        md.append("|---|---|---|---|---|")
         for key, title, kind, default in settings:
             if kind == "bool":
                 opts, d = "on / off", ("on" if default else "off")
@@ -416,7 +471,9 @@ def main():
                     opts = "%d colors%s" % (len(PALETTE), " + Auto" if kind == "palauto" else "")
                 else:
                     opts = ", ".join(l for _, l in entries)
-            md.append("| `%s` | %s | %s | %s |" % (key, title, d, opts))
+            fs = faces_of(gname, key)
+            md.append("| `%s` | %s | %s | %s | %s |" % (key, title, d, opts,
+                                                    "all" if fs == ALL_FACES else ", ".join("`%s`" % f for f in fs)))
         md.append("")
     md.append("## Color palette")
     md.append("")
@@ -442,6 +499,11 @@ def main():
         "palette": PALETTE,
         "enums": {k: v for k, v in ENUMS.items()},
         "amoledOnly": sorted(AMOLED_ONLY),
+        "faces": [
+            {"value": v, "id": fid, "category": cat, "name": name, "description": desc,
+             "settings": [k for g, _, st in GROUPS for k, _, _, _ in st if fid in faces_of(g, k)]}
+            for v, fid, cat, name, desc in FACES
+        ],
         "groups": [
             {"id": g, "title": strings["g_" + g], "description": d,
              "settings": [{"key": k, "title": t, "kind": kind, "default": dflt} for k, t, kind, dflt in settings]}

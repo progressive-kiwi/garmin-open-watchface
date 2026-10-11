@@ -300,6 +300,13 @@ class DataSource {
         return dow + " " + day.toString();
     }
 
+    //! Moon phase as a fraction of the synodic month: 0 new, 0.25 first quarter, 0.5 full, 0.75 last quarter.
+    //! Reference new moon: 2000-01-06 18:14 UTC (day 10962.7597 of the Unix epoch).
+    function moonPhase() as Float {
+        var p = (Time.now().value() / 86400.0 - 10962.7597) / 29.530588853;
+        return (p - p.toNumber()).toFloat();
+    }
+
     // --------------------------------------------------------- helpers --
 
     private function num(v as Numeric?) as String {

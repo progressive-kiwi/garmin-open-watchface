@@ -68,6 +68,7 @@ VARIANTS = [
      {"Mode": 1, "TimeFont": 8, "Theme": 1, "Ghost": False}, False),
     ("digital-serif", "Digital · Serif, Minimal layout, Gold theme", "fr970",
      {"Mode": 1, "TimeFont": 5, "DigitalLayout": 4, "Theme": 5, "TimeSize": 3}, False),
+    ("digital-tactix", "Digital · Tactix, the original tactix look", "fr970", {"Mode": 2}, False),
     ("aod-analog", "Always-on · Analog, outline hands, quarter markers, date", "fr970", {}, True),
     ("aod-digital", "Always-on · Digital, quartz outline", "fr970", {"Mode": 1, "TimeFont": 7}, True),
     ("mip-analog", "MIP display (fēnix 8 Solar) · Analog classic", "fenix8solar47mm", {"Theme": 2}, False),
@@ -78,6 +79,7 @@ VARIANTS = [
       "MinuteHand": 2}, False),
     ("mip-paper-digital", "MIP · White background, Quartz LCD with unlit segments", "fenix8solar47mm",
      {"Theme": 8, "Mode": 1, "TimeFont": 7, "GaugeLeft": 2, "GaugeRight": 1}, False),
+    ("mip-tactix", "MIP · Tactix", "fenix8solar47mm", {"Mode": 2}, False),
 ]
 
 

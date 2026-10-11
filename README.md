@@ -19,7 +19,7 @@ Approach, Instinct AMOLED).
 
 | Area | Options |
 |---|---|
-| Modes | Analog, Digital |
+| Faces | Analog · Plain, Digital · Plain, Digital · Tactix (the original tactix: LCD time, seconds ring, battery, moon phase) |
 | Layouts | Analog: Classic, Chronograph, Top + bottom, Minimal, Gauges, Pilot · Digital: Classic, Stacked, Big, Sport, Minimal, Side |
 | Hands | 9 hour/minute styles, 5 second-hand styles, width, length, outline, per-hand color, center cap |
 | Dial | 7 hour-tick and 4 minute-tick styles, tick length, quarter emphasis, Arabic/Roman numerals, dial ring |

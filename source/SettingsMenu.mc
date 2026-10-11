@@ -3,12 +3,15 @@ import Toybox.Lang;
 import Toybox.WatchUi;
 
 //! On-device settings, generated from Schema: groups > settings > options.
+//! Only settings of the current watch face are listed.
 class SettingsRootMenu extends WatchUi.Menu2 {
     function initialize() {
         Menu2.initialize({:title => Rez.Strings.AppName});
         var groups = Schema.groups();
         for (var i = 0; i < groups.size(); i++) {
-            addItem(new WatchUi.MenuItem(groups[i][0] as ResourceId, null, i, {}));
+            if (SettingsUtil.rowsForFace(groups[i][1] as Array<Array>).size() > 0) {
+                addItem(new WatchUi.MenuItem(groups[i][0] as ResourceId, null, i, {}));
+            }
         }
     }
 }
@@ -22,7 +25,7 @@ class SettingsRootDelegate extends WatchUi.Menu2InputDelegate {
         var gi = item.getId() as Number;
         var group = Schema.groups()[gi];
         var menu = new WatchUi.Menu2({:title => group[0] as ResourceId});
-        var rows = group[1] as Array<Array>;
+        var rows = SettingsUtil.rowsForFace(group[1] as Array<Array>);
         for (var i = 0; i < rows.size(); i++) {
             var key = rows[i][0] as String;
             var title = rows[i][1] as ResourceId;
@@ -98,6 +101,18 @@ class SettingsOptionDelegate extends WatchUi.Menu2InputDelegate {
 }
 
 module SettingsUtil {
+    //! Rows whose face mask includes the current watch face (Mode).
+    function rowsForFace(rows as Array<Array>) as Array<Array> {
+        var bit = 1 << ConfigBase.readNum("Mode", 0);
+        var out = [] as Array<Array>;
+        for (var i = 0; i < rows.size(); i++) {
+            if (((rows[i][3] as Number) & bit) != 0) {
+                out.add(rows[i]);
+            }
+        }
+        return out;
+    }
+
     function currentLabel(key as String, e as Number) as ResourceId? {
         var v = ConfigBase.readNum(key, 0);
         var opts = Schema.options(e);

@@ -2,8 +2,9 @@
     <group id="General" title="@Strings.g_General" description="@Strings.gd_General">
         <setting propertyKey="@Properties.Mode" title="@Strings.t_Mode">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.o_Analog</listEntry>
-                <listEntry value="1">@Strings.o_Digital</listEntry>
+                <listEntry value="0">@Strings.o_AnalogPlain</listEntry>
+                <listEntry value="1">@Strings.o_DigitalPlain</listEntry>
+                <listEntry value="2">@Strings.o_DigitalTactix</listEntry>
             </settingConfig>
         </setting>
         <setting propertyKey="@Properties.Theme" title="@Strings.t_Theme">
@@ -158,6 +159,13 @@
         </setting>
         <setting propertyKey="@Properties.StatusIcons" title="@Strings.t_StatusIcons">
             <settingConfig type="boolean" />
+        </setting>
+        <setting propertyKey="@Properties.HourFormat" title="@Strings.t_HourFormat">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_System</listEntry>
+                <listEntry value="1">@Strings.o_12HourN</listEntry>
+                <listEntry value="2">@Strings.o_24HourN</listEntry>
+            </settingConfig>
         </setting>
     </group>
     <group id="Analog" title="@Strings.g_Analog" description="@Strings.gd_Analog">
@@ -541,13 +549,6 @@
                 <listEntry value="3">@Strings.o_ExtraLarge</listEntry>
             </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.HourFormat" title="@Strings.t_HourFormat">
-            <settingConfig type="list">
-                <listEntry value="0">@Strings.o_System</listEntry>
-                <listEntry value="1">@Strings.o_12HourN</listEntry>
-                <listEntry value="2">@Strings.o_24HourN</listEntry>
-            </settingConfig>
-        </setting>
         <setting propertyKey="@Properties.LeadingZero" title="@Strings.t_LeadingZero">
             <settingConfig type="boolean" />
         </setting>
@@ -897,6 +898,78 @@
                 <listEntry value="4">@Strings.o_09Dot10N</listEntry>
                 <listEntry value="5">@Strings.o_10Slash09N</listEntry>
             </settingConfig>
+        </setting>
+    </group>
+    <group id="Tactix" title="@Strings.g_Tactix" description="@Strings.gd_Tactix">
+        <setting propertyKey="@Properties.TactixColor" title="@Strings.t_TactixColor">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Black</listEntry>
+                <listEntry value="85">@Strings.o_Midnight</listEntry>
+                <listEntry value="170">@Strings.o_Navy</listEntry>
+                <listEntry value="21845">@Strings.o_DeepTeal</listEntry>
+                <listEntry value="5592405">@Strings.o_DarkGray</listEntry>
+                <listEntry value="11184810">@Strings.o_LightGray</listEntry>
+                <listEntry value="16777215">@Strings.o_White</listEntry>
+                <listEntry value="16777130">@Strings.o_Cream</listEntry>
+                <listEntry value="16711680">@Strings.o_Red</listEntry>
+                <listEntry value="11141120">@Strings.o_DarkRed</listEntry>
+                <listEntry value="16733440">@Strings.o_Orange</listEntry>
+                <listEntry value="16755200">@Strings.o_Amber</listEntry>
+                <listEntry value="16776960">@Strings.o_Yellow</listEntry>
+                <listEntry value="11206400">@Strings.o_Lime</listEntry>
+                <listEntry value="65280">@Strings.o_Green</listEntry>
+                <listEntry value="43520">@Strings.o_Forest</listEntry>
+                <listEntry value="43605">@Strings.o_Emerald</listEntry>
+                <listEntry value="65450">@Strings.o_Mint</listEntry>
+                <listEntry value="65535">@Strings.o_Cyan</listEntry>
+                <listEntry value="43775">@Strings.o_Sky</listEntry>
+                <listEntry value="22015">@Strings.o_Blue</listEntry>
+                <listEntry value="5570815">@Strings.o_Indigo</listEntry>
+                <listEntry value="11141375">@Strings.o_Purple</listEntry>
+                <listEntry value="16711935">@Strings.o_Magenta</listEntry>
+                <listEntry value="16733610">@Strings.o_Pink</listEntry>
+                <listEntry value="16755285">@Strings.o_Peach</listEntry>
+                <listEntry value="11162880">@Strings.o_Bronze</listEntry>
+                <listEntry value="5614250">@Strings.o_Steel</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.TactixRing" title="@Strings.t_TactixRing">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Seconds</listEntry>
+                <listEntry value="1">@Strings.o_Minutes</listEntry>
+                <listEntry value="2">@Strings.o_Unlit</listEntry>
+                <listEntry value="3">@Strings.o_Off</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.TactixField" title="@Strings.t_TactixField">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.o_Off</listEntry>
+                <listEntry value="1">@Strings.o_Date</listEntry>
+                <listEntry value="2">@Strings.o_WeekdayPlusDay</listEntry>
+                <listEntry value="3">@Strings.o_BatteryPct</listEntry>
+                <listEntry value="4">@Strings.o_BatteryDays</listEntry>
+                <listEntry value="5">@Strings.o_Steps</listEntry>
+                <listEntry value="6">@Strings.o_HeartRate</listEntry>
+                <listEntry value="7">@Strings.o_Calories</listEntry>
+                <listEntry value="8">@Strings.o_Distance</listEntry>
+                <listEntry value="9">@Strings.o_Floors</listEntry>
+                <listEntry value="10">@Strings.o_ActiveMinutes</listEntry>
+                <listEntry value="11">@Strings.o_BodyBattery</listEntry>
+                <listEntry value="12">@Strings.o_Stress</listEntry>
+                <listEntry value="13">@Strings.o_Notifications</listEntry>
+                <listEntry value="14">@Strings.o_Altitude</listEntry>
+                <listEntry value="15">@Strings.o_Temperature</listEntry>
+                <listEntry value="16">@Strings.o_SunriseSlashSunset</listEntry>
+                <listEntry value="17">@Strings.o_WeekNumber</listEntry>
+                <listEntry value="18">@Strings.o_DigitalTime</listEntry>
+                <listEntry value="19">@Strings.o_Seconds</listEntry>
+                <listEntry value="20">@Strings.o_Respiration</listEntry>
+                <listEntry value="21">@Strings.o_RecoveryTime</listEntry>
+                <listEntry value="22">@Strings.o_DayProgress</listEntry>
+            </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.TactixGhost" title="@Strings.t_TactixGhost">
+            <settingConfig type="boolean" />
         </setting>
     </group>
     <group id="AlwaysOn" title="@Strings.g_AlwaysOn" description="@Strings.gd_AlwaysOn">

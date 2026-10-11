@@ -10,7 +10,7 @@ module Schema {
     function options(e as Number) as Array<Array> {
         switch (e) {
             case 0:
-                return [[0, Rez.Strings.o_Analog], [1, Rez.Strings.o_Digital]];
+                return [[0, Rez.Strings.o_AnalogPlain], [1, Rez.Strings.o_DigitalPlain], [2, Rez.Strings.o_DigitalTactix]];
             case 1:
                 return [[0, Rez.Strings.o_Custom], [1, Rez.Strings.o_Classic], [2, Rez.Strings.o_Racing], [3, Rez.Strings.o_Ocean], [4, Rez.Strings.o_Forest], [5, Rez.Strings.o_Gold], [6, Rez.Strings.o_Ice], [7, Rez.Strings.o_Neon], [8, Rez.Strings.o_Paper], [9, Rez.Strings.o_Stealth], [10, Rez.Strings.o_Tactical]];
             case 2:
@@ -69,85 +69,94 @@ module Schema {
                 return [[0, Rez.Strings.o_Off], [1, Rez.Strings.o_DoNotDisturbSlashSleepMode], [2, Rez.Strings.o_SleepSchedule], [3, Rez.Strings.o_Either]];
             case 29:
                 return [[10, Rez.Strings.o_10PctN], [20, Rez.Strings.o_20PctN], [30, Rez.Strings.o_30PctN], [40, Rez.Strings.o_40PctN], [50, Rez.Strings.o_50PctN], [60, Rez.Strings.o_60PctN], [70, Rez.Strings.o_70PctN], [80, Rez.Strings.o_80PctN], [90, Rez.Strings.o_90PctN]];
+            case 30:
+                return [[0, Rez.Strings.o_Seconds], [1, Rez.Strings.o_Minutes], [2, Rez.Strings.o_Unlit], [3, Rez.Strings.o_Off]];
         }
         return [];
     }
 
-    //! Groups: Array of [title, Array of [key, title, enumIndex or -1 for boolean]].
+    //! Groups: Array of [title, Array of [key, title, enumIndex or -1 for boolean, face mask]].
+    //! Face mask: bit n set = the setting applies to the face with Mode value n.
     function groups() as Array<Array> {
         return [
             [Rez.Strings.g_General, [
-                ["Mode", Rez.Strings.t_Mode, 0],
-                ["Theme", Rez.Strings.t_Theme, 1],
-                ["BgColor", Rez.Strings.t_BgColor, 2],
-                ["PrimaryColor", Rez.Strings.t_PrimaryColor, 2],
-                ["SecondaryColor", Rez.Strings.t_SecondaryColor, 2],
-                ["AccentColor", Rez.Strings.t_AccentColor, 2],
-                ["SecondsMode", Rez.Strings.t_SecondsMode, 10],
-                ["StatusIcons", Rez.Strings.t_StatusIcons, -1]
+                ["Mode", Rez.Strings.t_Mode, 0, 7],
+                ["Theme", Rez.Strings.t_Theme, 1, 3],
+                ["BgColor", Rez.Strings.t_BgColor, 2, 3],
+                ["PrimaryColor", Rez.Strings.t_PrimaryColor, 2, 3],
+                ["SecondaryColor", Rez.Strings.t_SecondaryColor, 2, 3],
+                ["AccentColor", Rez.Strings.t_AccentColor, 2, 3],
+                ["SecondsMode", Rez.Strings.t_SecondsMode, 10, 7],
+                ["StatusIcons", Rez.Strings.t_StatusIcons, -1, 7],
+                ["HourFormat", Rez.Strings.t_HourFormat, 20, 7]
             ]],
             [Rez.Strings.g_Analog, [
-                ["AnalogLayout", Rez.Strings.t_AnalogLayout, 6],
-                ["HourHand", Rez.Strings.t_HourHand, 8],
-                ["MinuteHand", Rez.Strings.t_MinuteHand, 8],
-                ["SecondHand", Rez.Strings.t_SecondHand, 9],
-                ["HandSize", Rez.Strings.t_HandSize, 11],
-                ["HandLength", Rez.Strings.t_HandLength, 12],
-                ["HandOutline", Rez.Strings.t_HandOutline, -1],
-                ["CenterCap", Rez.Strings.t_CenterCap, 13],
-                ["HourHandColor", Rez.Strings.t_HourHandColor, 3],
-                ["MinuteHandColor", Rez.Strings.t_MinuteHandColor, 3],
-                ["SecondHandColor", Rez.Strings.t_SecondHandColor, 3]
+                ["AnalogLayout", Rez.Strings.t_AnalogLayout, 6, 1],
+                ["HourHand", Rez.Strings.t_HourHand, 8, 1],
+                ["MinuteHand", Rez.Strings.t_MinuteHand, 8, 1],
+                ["SecondHand", Rez.Strings.t_SecondHand, 9, 1],
+                ["HandSize", Rez.Strings.t_HandSize, 11, 1],
+                ["HandLength", Rez.Strings.t_HandLength, 12, 1],
+                ["HandOutline", Rez.Strings.t_HandOutline, -1, 1],
+                ["CenterCap", Rez.Strings.t_CenterCap, 13, 1],
+                ["HourHandColor", Rez.Strings.t_HourHandColor, 3, 1],
+                ["MinuteHandColor", Rez.Strings.t_MinuteHandColor, 3, 1],
+                ["SecondHandColor", Rez.Strings.t_SecondHandColor, 3, 1]
             ]],
             [Rez.Strings.g_Dial, [
-                ["HourTicks", Rez.Strings.t_HourTicks, 14],
-                ["MinuteTicks", Rez.Strings.t_MinuteTicks, 15],
-                ["TickLength", Rez.Strings.t_TickLength, 16],
-                ["QuarterEmphasis", Rez.Strings.t_QuarterEmphasis, -1],
-                ["Numerals", Rez.Strings.t_Numerals, 18],
-                ["NumeralFont", Rez.Strings.t_NumeralFont, 4],
-                ["NumeralSize", Rez.Strings.t_NumeralSize, 16],
-                ["DialRing", Rez.Strings.t_DialRing, 19],
-                ["HourTickColor", Rez.Strings.t_HourTickColor, 3],
-                ["MinuteTickColor", Rez.Strings.t_MinuteTickColor, 3],
-                ["NumeralColor", Rez.Strings.t_NumeralColor, 3]
+                ["HourTicks", Rez.Strings.t_HourTicks, 14, 1],
+                ["MinuteTicks", Rez.Strings.t_MinuteTicks, 15, 1],
+                ["TickLength", Rez.Strings.t_TickLength, 16, 1],
+                ["QuarterEmphasis", Rez.Strings.t_QuarterEmphasis, -1, 1],
+                ["Numerals", Rez.Strings.t_Numerals, 18, 1],
+                ["NumeralFont", Rez.Strings.t_NumeralFont, 4, 1],
+                ["NumeralSize", Rez.Strings.t_NumeralSize, 16, 1],
+                ["DialRing", Rez.Strings.t_DialRing, 19, 1],
+                ["HourTickColor", Rez.Strings.t_HourTickColor, 3, 1],
+                ["MinuteTickColor", Rez.Strings.t_MinuteTickColor, 3, 1],
+                ["NumeralColor", Rez.Strings.t_NumeralColor, 3, 1]
             ]],
             [Rez.Strings.g_Digital, [
-                ["DigitalLayout", Rez.Strings.t_DigitalLayout, 7],
-                ["TimeFont", Rez.Strings.t_TimeFont, 4],
-                ["TimeSize", Rez.Strings.t_TimeSize, 17],
-                ["HourFormat", Rez.Strings.t_HourFormat, 20],
-                ["LeadingZero", Rez.Strings.t_LeadingZero, -1],
-                ["Separator", Rez.Strings.t_Separator, 21],
-                ["Ghost", Rez.Strings.t_Ghost, -1],
-                ["GhostColor", Rez.Strings.t_GhostColor, 3],
-                ["HourDigitColor", Rez.Strings.t_HourDigitColor, 3],
-                ["MinuteDigitColor", Rez.Strings.t_MinuteDigitColor, 3]
+                ["DigitalLayout", Rez.Strings.t_DigitalLayout, 7, 2],
+                ["TimeFont", Rez.Strings.t_TimeFont, 4, 2],
+                ["TimeSize", Rez.Strings.t_TimeSize, 17, 2],
+                ["LeadingZero", Rez.Strings.t_LeadingZero, -1, 2],
+                ["Separator", Rez.Strings.t_Separator, 21, 2],
+                ["Ghost", Rez.Strings.t_Ghost, -1, 2],
+                ["GhostColor", Rez.Strings.t_GhostColor, 3, 2],
+                ["HourDigitColor", Rez.Strings.t_HourDigitColor, 3, 2],
+                ["MinuteDigitColor", Rez.Strings.t_MinuteDigitColor, 3, 2]
             ]],
             [Rez.Strings.g_Data, [
-                ["Field1", Rez.Strings.t_Field1, 22],
-                ["Field2", Rez.Strings.t_Field2, 22],
-                ["Field3", Rez.Strings.t_Field3, 22],
-                ["Field4", Rez.Strings.t_Field4, 22],
-                ["FieldFont", Rez.Strings.t_FieldFont, 4],
-                ["FieldLabels", Rez.Strings.t_FieldLabels, 23],
-                ["FieldColor", Rez.Strings.t_FieldColor, 3],
-                ["LabelColor", Rez.Strings.t_LabelColor, 3],
-                ["GaugeLeft", Rez.Strings.t_GaugeLeft, 24],
-                ["GaugeRight", Rez.Strings.t_GaugeRight, 24],
-                ["DateFormat", Rez.Strings.t_DateFormat, 25]
+                ["Field1", Rez.Strings.t_Field1, 22, 3],
+                ["Field2", Rez.Strings.t_Field2, 22, 3],
+                ["Field3", Rez.Strings.t_Field3, 22, 3],
+                ["Field4", Rez.Strings.t_Field4, 22, 3],
+                ["FieldFont", Rez.Strings.t_FieldFont, 4, 3],
+                ["FieldLabels", Rez.Strings.t_FieldLabels, 23, 3],
+                ["FieldColor", Rez.Strings.t_FieldColor, 3, 3],
+                ["LabelColor", Rez.Strings.t_LabelColor, 3, 3],
+                ["GaugeLeft", Rez.Strings.t_GaugeLeft, 24, 3],
+                ["GaugeRight", Rez.Strings.t_GaugeRight, 24, 3],
+                ["DateFormat", Rez.Strings.t_DateFormat, 25, 3]
+            ]],
+            [Rez.Strings.g_Tactix, [
+                ["TactixColor", Rez.Strings.t_TactixColor, 2, 4],
+                ["TactixRing", Rez.Strings.t_TactixRing, 30, 4],
+                ["TactixField", Rez.Strings.t_TactixField, 22, 4],
+                ["TactixGhost", Rez.Strings.t_TactixGhost, -1, 4]
             ]],
             [Rez.Strings.g_AlwaysOn, [
-                ["AodStyle", Rez.Strings.t_AodStyle, 26],
-                ["AodColor", Rez.Strings.t_AodColor, 2],
-                ["AodFont", Rez.Strings.t_AodFont, 5],
-                ["AodOutline", Rez.Strings.t_AodOutline, -1],
-                ["AodMarkers", Rez.Strings.t_AodMarkers, 27],
-                ["AodShift", Rez.Strings.t_AodShift, -1]
+                ["AodStyle", Rez.Strings.t_AodStyle, 26, 7],
+                ["AodColor", Rez.Strings.t_AodColor, 2, 7],
+                ["AodFont", Rez.Strings.t_AodFont, 5, 6],
+                ["AodOutline", Rez.Strings.t_AodOutline, -1, 7],
+                ["AodMarkers", Rez.Strings.t_AodMarkers, 27, 1],
+                ["AodShift", Rez.Strings.t_AodShift, -1, 7]
             ]],
             [Rez.Strings.g_Night, [
-                ["NightTrigger", Rez.Strings.t_NightTrigger, 28],
-                ["NightFade", Rez.Strings.t_NightFade, 29]
+                ["NightTrigger", Rez.Strings.t_NightTrigger, 28, 7],
+                ["NightFade", Rez.Strings.t_NightFade, 29, 7]
             ]]
         ];
     }

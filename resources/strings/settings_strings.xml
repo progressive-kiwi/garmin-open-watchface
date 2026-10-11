@@ -6,13 +6,15 @@
     <string id="g_Digital">Digital</string>
     <string id="g_General">General</string>
     <string id="g_Night">Night</string>
+    <string id="g_Tactix">Tactix</string>
     <string id="gd_AlwaysOn">AMOLED only: burn-in safe face while the watch sleeps. MIP shows the full face at all times</string>
     <string id="gd_Analog">Layout and hands</string>
     <string id="gd_Data">Fields, gauges and date</string>
     <string id="gd_Dial">Ticks, numerals and ring</string>
     <string id="gd_Digital">Time font and layout</string>
-    <string id="gd_General">Mode, theme and base colors</string>
+    <string id="gd_General">Watch face, theme and base colors</string>
     <string id="gd_Night">AMOLED only: fade all colors toward the background at night</string>
+    <string id="gd_Tactix">The original tactix look</string>
     <string id="o_09Dot10N">09.10</string>
     <string id="o_10PctN">10%</string>
     <string id="o_10Slash09N">10/09</string>
@@ -35,7 +37,7 @@
     <string id="o_Altitude">Altitude</string>
     <string id="o_AlwaysMip">Always (MIP)</string>
     <string id="o_Amber">Amber</string>
-    <string id="o_Analog">Analog</string>
+    <string id="o_AnalogPlain">Analog · Plain</string>
     <string id="o_Arrow">Arrow</string>
     <string id="o_ArrowTip">Arrow tip</string>
     <string id="o_Auto">Auto</string>
@@ -72,7 +74,8 @@
     <string id="o_DayProgress">Day progress</string>
     <string id="o_DeepTeal">Deep teal</string>
     <string id="o_Diamond">Diamond</string>
-    <string id="o_Digital">Digital</string>
+    <string id="o_DigitalPlain">Digital · Plain</string>
+    <string id="o_DigitalTactix">Digital · Tactix</string>
     <string id="o_DigitalTime">Digital time</string>
     <string id="o_Distance">Distance</string>
     <string id="o_DoNotDisturbSlashSleepMode">Do Not Disturb / sleep mode</string>
@@ -110,6 +113,7 @@
     <string id="o_Minimal">Minimal</string>
     <string id="o_MinimalPlusDate">Minimal + date</string>
     <string id="o_Mint">Mint</string>
+    <string id="o_Minutes">Minutes</string>
     <string id="o_Navy">Navy</string>
     <string id="o_Needle">Needle</string>
     <string id="o_Neon">Neon</string>
@@ -170,6 +174,7 @@
     <string id="o_TimeOnly">Time only</string>
     <string id="o_TopPlusBottom">Top + bottom</string>
     <string id="o_Triangle">Triangle</string>
+    <string id="o_Unlit">Unlit</string>
     <string id="o_WeekNumber">Week number</string>
     <string id="o_WeekdayPlusDay">Weekday + day</string>
     <string id="o_White">White</string>
@@ -214,7 +219,7 @@
     <string id="t_MinuteHandColor">Minute hand color</string>
     <string id="t_MinuteTickColor">Minute tick color</string>
     <string id="t_MinuteTicks">Minute ticks</string>
-    <string id="t_Mode">Watch mode</string>
+    <string id="t_Mode">Watch face</string>
     <string id="t_NightFade">Fade amount</string>
     <string id="t_NightTrigger">Night dimming</string>
     <string id="t_NumeralColor">Numeral color</string>
@@ -229,6 +234,10 @@
     <string id="t_SecondsMode">Seconds</string>
     <string id="t_Separator">Separator</string>
     <string id="t_StatusIcons">Status icons</string>
+    <string id="t_TactixColor">Display color</string>
+    <string id="t_TactixField">Bottom field</string>
+    <string id="t_TactixGhost">Unlit segments</string>
+    <string id="t_TactixRing">Outer ring</string>
     <string id="t_Theme">Color theme</string>
     <string id="t_TickLength">Tick length</string>
     <string id="t_TimeFont">Time font</string>

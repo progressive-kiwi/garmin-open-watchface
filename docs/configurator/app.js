@@ -13,6 +13,10 @@
   const byKey = Object.fromEntries(settings.map((s) => [s.key, s]));
   const defaults = Object.fromEntries(settings.map((s) => [s.key, s.default]));
   const amoledOnly = new Set(schema.amoledOnly);
+  // Watch faces (Mode values): Analog and Digital categories, each face with its own settings.
+  const faces = schema.faces;
+  const faceSettings = Object.fromEntries(faces.map((f) => [f.value, new Set(f.settings)]));
+  const categories = [...new Set(faces.map((f) => f.category))];
   const hour12 = (new Intl.DateTimeFormat(undefined, {hour: "numeric"}).resolvedOptions().hourCycle || "h23").startsWith("h1");
 
   // Fields shown per layout (AnalogFace.slots / DigitalFace.draw).
@@ -27,7 +31,7 @@
     preview: "awake",
     live: false,
     backlight: false,
-    open: new Set(["General", "Analog", "Digital"]),
+    open: new Set(["General", "Analog", "Digital", "Tactix"]),
   };
 
   // ------------------------------------------------------------ helpers --
@@ -53,6 +57,8 @@
   // Which settings apply to the current screen and choices.
   function relevant(s) {
     const v = state.values, k = s.key;
+    // The face itself is picked in step 1.
+    if (k === "Mode" || !faceSettings[v.Mode]?.has(k)) return false;
     if (state.screen === "mip" && amoledOnly.has(k)) return false;
     if (s.group === "Analog" || s.group === "Dial") {
       if (v.Mode !== 0) return false;
@@ -108,7 +114,23 @@
       h("div", {class: "of-screens"},
         card("amoled", "AMOLED", "Forerunner 165/265/570/965/970, fēnix 8/9/E, epix Pro, Venu, vívoactive 5/6. Always-on uses a burn-in-safe face."),
         card("mip", "MIP (memory-in-pixel)", "fēnix 7 Pro / 8 Solar / 9 Pro Solar, enduro 3, Forerunner 255/955. Full face at all times, any background, seconds every second.")),
-      h("label", {class: "of-device"}, h("span", {}, "Device"), sel));
+      h("label", {class: "of-device"}, h("span", {}, "Device"), sel),
+      state.screen ? renderFaces() : null);
+  }
+
+  function renderFaces() {
+    const pick = (f) => { state.values.Mode = f.value; update(); };
+    return h("div", {class: "of-faces"},
+      h("span", {class: "of-faces-title"}, "Watch face"),
+      categories.map((cat) => h("div", {class: "of-category", role: "group", "aria-label": cat},
+        h("strong", {}, cat),
+        h("div", {class: "of-category-faces"}, faces.filter((f) => f.category === cat).map((f) => {
+          const active = state.values.Mode === f.value;
+          return h("button", {
+            type: "button", class: "of-face" + (active ? " active" : ""), "aria-pressed": active ? "true" : "false",
+            title: f.description, onclick: () => pick(f),
+          }, h("span", {}, f.name), h("code", {}, f.id));
+        })))));
   }
 
   // ----------------------------------------------------------- step 2 --

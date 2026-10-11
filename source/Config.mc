@@ -53,6 +53,9 @@ class Config extends ConfigBase {
         cField = pick(FieldColor, fg);
         cLabel = pick(LabelColor, fg2);
         ghost = pick(GhostColor, mix(bg, fg, 1, 3, true));
+        if (Mode == 2) {
+            tactix();
+        }
 
         if (HourFormat == 1) {
             use24h = false;
@@ -61,6 +64,19 @@ class Config extends ConfigBase {
         } else {
             use24h = System.getDeviceSettings().is24Hour;
         }
+    }
+
+    //! Tactix: one display color on black, unlit segments a third of the way toward it.
+    private function tactix() as Void {
+        bg = 0x000000;
+        fg = TactixColor;
+        fg2 = TactixColor;
+        accent = TactixColor;
+        cHourDigits = TactixColor;
+        cMinuteDigits = TactixColor;
+        cField = TactixColor;
+        cLabel = TactixColor;
+        ghost = mix(bg, fg, 1, 3, true);
     }
 
     //! Night dimming (AMOLED only): move every color pct % toward the background (AOD color toward black).

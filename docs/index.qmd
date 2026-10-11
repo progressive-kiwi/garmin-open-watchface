@@ -19,7 +19,9 @@ toc: false
 :::
 :::
 
-Open Face is one watch face with 60+ settings. Analog and digital modes share the data fields, gauges,
+Open Face is one watch face with 60+ settings. Faces come in two categories, Analog and Digital:
+*Plain* (`analog/plain`, `digital/plain`) is the fully configurable face of each category, and
+*Tactix* (`digital/tactix`) recreates the original tactix. Plain faces share the data fields, gauges,
 color themes and always-on behavior, and every option is available both in the Garmin Connect app and
 on the watch itself.
 
@@ -31,7 +33,7 @@ on the watch itself.
 
 | Area | Options |
 |---|---|
-| Modes | Analog, Digital |
+| Faces | Analog · Plain, Digital · Plain, Digital · Tactix |
 | Analog layouts | Classic (date window), Chronograph (4 subdials), Top + bottom, Minimal, Gauges, Pilot |
 | Digital layouts | Classic, Stacked, Big, Sport, Minimal, Side |
 | Hands | Baton, Dauphine, Sword, Leaf, Skeleton, Arrow, Needle, Rounded, Breguet; width, length, outline, color per hand |
@@ -53,6 +55,22 @@ Descent Mk3/G2, Approach S50/S70, Instinct 3 AMOLED and Instinct Crossover AMOLE
 See [Install](install.qmd) for the full list.
 
 ## Display handling
+
+### Tactix
+
+*Watch face → Digital · Tactix* recreates the original tactix (2014): upright LCD time without a
+separator, small seconds at its top right, the date above, battery, moon phase and one field below, and a
+ring of 60 dashes that fills with the seconds. Settings, group **Tactix**:
+
+| Setting | Effect |
+|---|---|
+| Display color | One color for everything; default Mint |
+| Outer ring | *Seconds* (fills each minute), *Minutes* (fills each hour), *Unlit*, *Off* |
+| Bottom field | Any data field; default sunrise / sunset |
+| Unlit segments | Show the unlit LCD segments of the time |
+
+*Seconds*, *Status icons*, *Hour format* and the always-on and night settings apply as on the other
+faces. On the watch, the settings menu lists only the settings of the selected face.
 
 ### AMOLED always-on
 

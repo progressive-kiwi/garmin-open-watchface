@@ -13,6 +13,7 @@ class ConfigBase {
     var AccentColor as Number = 16733440;
     var SecondsMode as Number = 1;
     var StatusIcons as Boolean = true;
+    var HourFormat as Number = 0;
     var AnalogLayout as Number = 0;
     var HourHand as Number = 0;
     var MinuteHand as Number = 0;
@@ -38,7 +39,6 @@ class ConfigBase {
     var DigitalLayout as Number = 0;
     var TimeFont as Number = 1;
     var TimeSize as Number = 2;
-    var HourFormat as Number = 0;
     var LeadingZero as Boolean = false;
     var Separator as Number = 0;
     var Ghost as Boolean = true;
@@ -56,6 +56,10 @@ class ConfigBase {
     var GaugeLeft as Number = 0;
     var GaugeRight as Number = 0;
     var DateFormat as Number = 0;
+    var TactixColor as Number = 65450;
+    var TactixRing as Number = 0;
+    var TactixField as Number = 16;
+    var TactixGhost as Boolean = false;
     var AodStyle as Number = 0;
     var AodColor as Number = 11184810;
     var AodFont as Number = 99;
@@ -77,6 +81,7 @@ class ConfigBase {
         AccentColor = readNum("AccentColor", 16733440);
         SecondsMode = readNum("SecondsMode", 1);
         StatusIcons = readBool("StatusIcons", true);
+        HourFormat = readNum("HourFormat", 0);
         AnalogLayout = readNum("AnalogLayout", 0);
         HourHand = readNum("HourHand", 0);
         MinuteHand = readNum("MinuteHand", 0);
@@ -102,7 +107,6 @@ class ConfigBase {
         DigitalLayout = readNum("DigitalLayout", 0);
         TimeFont = readNum("TimeFont", 1);
         TimeSize = readNum("TimeSize", 2);
-        HourFormat = readNum("HourFormat", 0);
         LeadingZero = readBool("LeadingZero", false);
         Separator = readNum("Separator", 0);
         Ghost = readBool("Ghost", true);
@@ -120,6 +124,10 @@ class ConfigBase {
         GaugeLeft = readNum("GaugeLeft", 0);
         GaugeRight = readNum("GaugeRight", 0);
         DateFormat = readNum("DateFormat", 0);
+        TactixColor = readNum("TactixColor", 65450);
+        TactixRing = readNum("TactixRing", 0);
+        TactixField = readNum("TactixField", 16);
+        TactixGhost = readBool("TactixGhost", false);
         AodStyle = readNum("AodStyle", 0);
         AodColor = readNum("AodColor", 11184810);
         AodFont = readNum("AodFont", 99);

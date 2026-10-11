@@ -288,6 +288,12 @@ const OF = (() => {
     cfg.cField = pick(v.FieldColor, cfg.fg);
     cfg.cLabel = pick(v.LabelColor, cfg.fg2);
     cfg.ghost = pick(v.GhostColor, mix(cfg.bg, cfg.fg, 1, 3, true));
+    if (v.Mode === 2) {
+      // Tactix: one display color on black.
+      const t = v.TactixColor;
+      Object.assign(cfg, {bg: 0, fg: t, fg2: t, accent: t, cHourDigits: t, cMinuteDigits: t, cField: t, cLabel: t});
+      cfg.ghost = mix(0, t, 1, 3, true);
+    }
     return cfg;
   }
 
@@ -335,6 +341,11 @@ const OF = (() => {
     }
     //! Gauge metric -> field type (DataSource.gauge).
     gauge(m) { const t = [0, 3, 5, 11, 12, 10, 9, 19, 6, 22][m]; return t ? this.fraction(t) : null; }
+    //! Fraction of the synodic month since the 2000-01-06 18:14 UTC new moon.
+    moonPhase() {
+      const p = (this.clock.date.getTime() / 86400000 - 10962.7597) / 29.530588853;
+      return p - Math.floor(p);
+    }
     timeParts() {
       let h = this.clock.hour, ampm = "";
       if (!this.use24h) { ampm = h < 12 ? "AM" : "PM"; h = h % 12; if (h === 0) h = 12; }
@@ -800,6 +811,91 @@ const OF = (() => {
     }
   }
 
+  // -------------------------------------------------------------- Tactix --
+  const UNLIT = 0x555555;
+
+  class TactixFace {
+    constructor(cfg, kit, fields, data, amoled) { Object.assign(this, {cfg, kit, fields, data, amoled}); this.sec = [0, 0, 0]; }
+
+    timeText() { const p = this.data.timeParts(); return (p[0].length < 2 ? "0" + p[0] : p[0]) + p[1]; }
+
+    draw(dc, cx, cy, r) {
+      const cfg = this.cfg, kit = this.kit, color = cfg.fg;
+      Object.assign(this, {cx, cy, r});
+      const time = this.timeText(), t = r * 0.48, sh = t * 0.34;
+      const tw = kit.width(dc, time, Fonts.SEGMENT, t), sw = kit.width(dc, "88", Fonts.SEGMENT, sh), gap = r * 0.05;
+      const x0 = cx - (tw + gap + sw) / 2;
+      kit.ghost = cfg.TactixGhost;
+      kit.draw(dc, x0, cy, time, Fonts.SEGMENT, t, color, 0);
+      kit.ghost = false;
+      this.sec = [x0 + tw + gap, cy - t / 2 + sh / 2, sh];
+      const ampm = this.data.timeParts()[2];
+      if (ampm) kit.draw(dc, x0 + tw + gap, cy + t / 2 - r * 0.03, ampm, Fonts.PIXEL, r * 0.06, color, 0);
+      kit.draw(dc, cx, cy - r * 0.4, this.data.dateString(2), Fonts.PIXEL, r * 0.1, color, 1);
+      this.drawBottom(dc, cx, cy + r * 0.42, r, color);
+      if (cfg.TactixRing !== 3) {
+        const lit = cfg.TactixRing === 1 ? this.data.clock.min : -1;
+        for (let i = 0; i < 60; i++) this.dash(dc, i, i <= lit ? color : UNLIT);
+      }
+      if (cfg.StatusIcons) this.fields.drawStatus(dc, cx, cy - r * 0.62, r, color);
+    }
+
+    drawBottom(dc, cx, y, r, color) {
+      const bw = r * 0.17, bh = r * 0.085, mr = r * 0.055, gap = r * 0.06, vh = r * 0.1;
+      const val = this.cfg.TactixField === 0 ? "" : this.data.value(this.cfg.TactixField);
+      const vw = val ? this.kit.width(dc, val, Fonts.SEGMENT, vh) + gap : 0;
+      let x = cx - (bw + gap + mr * 2 + vw) / 2;
+      this.battery(dc, x, y, bw, bh, color);
+      x += bw + gap;
+      this.moon(dc, x + mr, y, mr, color);
+      x += mr * 2 + gap;
+      if (vw) this.kit.draw(dc, x, y, val, Fonts.SEGMENT, vh, color, 0);
+    }
+
+    battery(dc, x, y, w, h, color) {
+      const nub = w * 0.08, bw = w - nub, line = Math.max(1, Math.floor(h * 0.15)), top = y - h / 2;
+      dc.setColor(color); dc.fillRectangle(x, top, bw, h); dc.fillRectangle(x + bw, y - h * 0.25, nub, h * 0.5);
+      dc.setColor(this.cfg.bg); dc.fillRectangle(x + line, top + line, bw - line * 2, h - line * 2);
+      const f = this.data.fraction(3), pad = line * 2;
+      if (f !== null) { dc.setColor(color); dc.fillRectangle(x + pad, top + pad, (bw - pad * 2) * f, h - pad * 2); }
+    }
+
+    moon(dc, x, y, mr, color) {
+      const p = this.data.moonPhase(), d = p < 0.5 ? -4 * mr * p : 4 * mr * (1 - p), c = dc.c;
+      c.save(); c.beginPath(); c.rect(x - mr - 1, y - mr - 1, mr * 2 + 3, mr * 2 + 3); c.clip();
+      dc.setColor(color); dc.fillCircle(x, y, mr);
+      dc.setColor(this.cfg.bg); dc.fillCircle(x + d, y, mr);
+      dc.setColor(UNLIT); dc.drawCircle(x, y, mr);
+      c.restore();
+    }
+
+    dash(dc, i, color) {
+      const a = i * Math.PI / 30, hw = 0.03, ri = this.r * 0.87, ro = this.r * 0.97, {cx, cy} = this;
+      dc.setColor(color);
+      dc.fillPolygon([Geo.polar(cx, cy, ri, a - hw), Geo.polar(cx, cy, ro, a - hw), Geo.polar(cx, cy, ro, a + hw), Geo.polar(cx, cy, ri, a + hw)]);
+    }
+
+    drawSeconds(dc) {
+      const sec = this.data.clock.sec, [x, y, h] = this.sec;
+      this.kit.ghost = this.cfg.TactixGhost;
+      this.kit.draw(dc, x, y, pad(sec), Fonts.SEGMENT, h, this.cfg.fg, 0);
+      this.kit.ghost = false;
+      if (this.cfg.TactixRing === 0) for (let i = 0; i <= sec; i++) this.dash(dc, i, this.cfg.fg);
+    }
+
+    drawAod(dc, cx, cy, r, color, style) {
+      const cfg = this.cfg;
+      let font = cfg.AodFont === 99 ? Fonts.SEGMENT : cfg.AodFont;
+      if (this.amoled && cfg.AodOutline) font = Fonts.outlineOf(font);
+      const time = this.timeText();
+      let t = r * 0.34;
+      const w = this.kit.width(dc, time, font, t);
+      if (w > r * 1.4) t = t * r * 1.4 / w;
+      this.kit.draw(dc, cx, cy, time, font, t, color, 1);
+      if (style === 3) this.kit.draw(dc, cx, cy + t / 2 + r * 0.16, this.data.dateString(2), Fonts.PIXEL, r * 0.055, color, 1);
+    }
+  }
+
   // ---------------------------------------------------------------- View --
   //! Port of FaceView.onUpdate for one frame.
   //! opts: {size, amoled, state: "awake"|"low"|"night-awake"|"night-low", clock: {hour,min,sec,date}, use24h, themes}
@@ -817,6 +913,7 @@ const OF = (() => {
     const fields = new Fields(cfg, kit, data);
     const analog = new AnalogFace(cfg, kit, fields, clock, amoled);
     const digital = new DigitalFace(cfg, kit, fields, data, amoled);
+    const tactix = new TactixFace(cfg, kit, fields, data, amoled);
     const cx = size / 2, cy = size / 2, r = size / 2;
 
     if (!awake) {
@@ -824,15 +921,17 @@ const OF = (() => {
       if (style === 0 || style === 1) style = 3;
       dc.clear(0);
       if (cfg.Mode === 0) analog.drawAod(dc, cx, cy, r, cfg.AodColor, style, data);
+      else if (cfg.Mode === 2) tactix.drawAod(dc, cx, cy, r, cfg.AodColor, style);
       else digital.drawAod(dc, cx, cy, r, cfg.AodColor, style);
       return;
     }
     dc.clear(cfg.bg);
     if (cfg.Mode === 0) { analog.drawDial(dc, cx, cy, r); analog.drawHands(dc, cx, cy, r, null); }
+    else if (cfg.Mode === 2) tactix.draw(dc, cx, cy, r);
     else digital.draw(dc, cx, cy, r);
     const showSec = (cfg.SecondsMode === 1 && awake) || (cfg.SecondsMode === 2 && (awake || !amoled));
     if (cfg.Mode === 0) { if (showSec) analog.drawSecond(dc, cx, cy, r); else analog.drawCap(dc, cx, cy, r, cfg.cMinuteHand); }
-    else if (showSec) digital.drawSeconds(dc);
+    else if (showSec) (cfg.Mode === 2 ? tactix : digital).drawSeconds(dc);
   }
 
   //! Approximate share of lit pixels (AMOLED burn-in budget is 10 %).

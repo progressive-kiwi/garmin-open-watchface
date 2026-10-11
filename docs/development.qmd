@@ -9,13 +9,14 @@ title: Development
 | `source/FaceView.mc` | View: awake / always-on switching, off-screen buffer, partial updates (MIP seconds) |
 | `source/AnalogFace.mc` | Dial (ring, ticks, numerals, pilot marker), analog layouts, hands, analog always-on |
 | `source/DigitalFace.mc` | Digital layouts, two-tone time, seconds, digital always-on |
+| `source/TactixFace.mc` | Face `digital/tactix`: LCD time, seconds ring, battery, moon phase |
 | `source/Hands.mc` | Hand shapes as local polygons, second hands |
 | `source/Text.mc` | `TextKit`: system, vector (`Graphics.getVectorFont`) and procedural fonts (7-segment, 5×7 dot matrix) |
 | `source/Fields.mc` | Data field slots (stacked, window, subdial, inline), edge gauges, status icons |
 | `source/DataSource.mc` | Sensor and system data (ActivityMonitor, SensorHistory, Weather) |
 | `source/Config.mc` | Theme resolution on top of the generated `ConfigBase` |
 | `source/SettingsMenu.mc` | On-device settings (Menu2), driven by the generated `Schema` |
-| `tools/gen_settings.py` | **Single source of truth** for settings → properties, settings UI, strings, `ConfigBase`, `Schema`, docs |
+| `tools/gen_settings.py` | **Single source of truth** for settings → properties, settings UI, strings, `ConfigBase`, `Schema`, docs; `FACES` and `GROUP_FACES` / `SETTING_FACES` define the faces and which settings each one uses |
 | `tools/setup_sdk.sh` | Headless SDK + device definitions + simulator font stand-ins |
 | `tools/build.sh` | Type-check, `.iq` and per-device `.prg` builds |
 | `tools/screenshots.py` | Simulator screenshots for this site |
