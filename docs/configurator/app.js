@@ -26,6 +26,7 @@
     values: {...defaults},
     preview: "awake",
     live: false,
+    backlight: false,
     open: new Set(["General", "Analog", "Digital"]),
   };
 
@@ -158,10 +159,34 @@
 
   const use24h = () => state.values.HourFormat === 2 || (state.values.HourFormat === 0 && !hour12);
 
+  // MIP look: reflective transflective panel. Calibrated by eye against fēnix 8 Solar photos:
+  // black reads as dark slate, white as light gray, colors lose about a third of their saturation.
+  const MIP_TONE = {
+    off: {black: [40, 44, 50], white: [200, 204, 206], sat: 0.62},
+    light: {black: [46, 54, 66], white: [222, 230, 238], sat: 0.7},
+  };
+
+  //! Quantize to the 64-color MIP palette, then apply the panel's tone response.
+  function mipFilter(img, backlight) {
+    const t = backlight ? MIP_TONE.light : MIP_TONE.off;
+    const d = img.data;
+    for (let i = 0; i < d.length; i += 4) {
+      if (d[i + 3] === 0) continue;
+      let r = Math.round(d[i] / 85) * 85, g = Math.round(d[i + 1] / 85) * 85, b = Math.round(d[i + 2] / 85) * 85;
+      const l = 0.299 * r + 0.587 * g + 0.114 * b;
+      r = l + (r - l) * t.sat; g = l + (g - l) * t.sat; b = l + (b - l) * t.sat;
+      d[i] = t.black[0] + r / 255 * (t.white[0] - t.black[0]);
+      d[i + 1] = t.black[1] + g / 255 * (t.white[1] - t.black[1]);
+      d[i + 2] = t.black[2] + b / 255 * (t.white[2] - t.black[2]);
+    }
+    return img;
+  }
+
   function draw() {
     if (!state.screen) return;
     const dev = devices.find((d) => d.id === state.device);
     const size = dev.size;
+    const mip = state.screen === "mip";
     const css = Math.min(340, root.clientWidth - 32);
     const dpr = window.devicePixelRatio || 1;
     canvas.width = Math.round(css * dpr);
@@ -171,17 +196,53 @@
     const ctx = canvas.getContext("2d");
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.scale(canvas.width / size, canvas.height / size);
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
-    ctx.clip();
-    OF.render(ctx, state.values, {
-      size, amoled: state.screen === "amoled", state: state.preview, clock: clock(),
-      use24h: use24h(), themes: schema.themes,
-    });
-    ctx.restore();
-    canvas.parentElement.classList.toggle("mip", state.screen === "mip");
+    const opts = {size, amoled: !mip, state: state.preview, clock: clock(), use24h: use24h(), themes: schema.themes};
+    canvas.parentElement.classList.toggle("mip", mip);
+
+    if (!mip) {
+      ctx.scale(canvas.width / size, canvas.height / size);
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+      ctx.clip();
+      OF.render(ctx, state.values, opts);
+      ctx.restore();
+    } else {
+      // Render at the panel's native resolution, filter, then upscale without smoothing so
+      // individual MIP pixels stay visible.
+      const off = document.createElement("canvas");
+      off.width = off.height = size;
+      const octx = off.getContext("2d");
+      OF.render(octx, state.values, opts);
+      octx.putImageData(mipFilter(octx.getImageData(0, 0, size, size), state.backlight), 0, 0);
+      const k = canvas.width / size;
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, 0, Math.PI * 2);
+      ctx.clip();
+      ctx.imageSmoothingEnabled = false;
+      ctx.drawImage(off, 0, 0, canvas.width, canvas.height);
+      // Pixel grid, visible once a panel pixel spans at least 3 screen pixels.
+      if (k >= 3) {
+        ctx.strokeStyle = "rgba(0, 0, 0, 0.13)";
+        ctx.lineWidth = Math.max(1, Math.floor(k / 4));
+        ctx.beginPath();
+        for (let i = 1; i < size; i++) {
+          const p = Math.round(i * k) + 0.5;
+          ctx.moveTo(p, 0); ctx.lineTo(p, canvas.height);
+          ctx.moveTo(0, p); ctx.lineTo(canvas.width, p);
+        }
+        ctx.stroke();
+      }
+      // Glare of the reflective layer and the glass.
+      const g = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      g.addColorStop(0, "rgba(255, 255, 255, 0.10)");
+      g.addColorStop(0.45, "rgba(255, 255, 255, 0.02)");
+      g.addColorStop(1, "rgba(0, 0, 0, 0.10)");
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.restore();
+    }
 
     // Burn-in budget readout for AMOLED always-on.
     const info = $("#of-lit");
@@ -300,6 +361,9 @@
         h("div", {class: "of-preview"},
           h("div", {class: "of-watch"}, canvas),
           h("div", {id: "of-tabs", class: "of-tabs"}),
+          h("label", {class: "form-check of-live of-backlight"},
+            h("input", {class: "form-check-input", type: "checkbox", onchange: (e) => { state.backlight = e.target.checked; draw(); }}),
+            h("span", {class: "form-check-label"}, "Backlight (MIP)")),
           h("label", {class: "form-check of-live"},
             h("input", {class: "form-check-input", type: "checkbox", onchange: (e) => { state.live = e.target.checked; draw(); }}),
             h("span", {class: "form-check-label"}, "Live time (otherwise 10:09:36)")),

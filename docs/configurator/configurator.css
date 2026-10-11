@@ -50,8 +50,11 @@
   box-shadow: 0 6px 24px rgba(0, 0, 0, .35);
 }
 .of-watch canvas { display: block; border-radius: 50%; background: #000; }
-/* MIP screens are reflective with lower contrast and saturation. */
-.of-watch.mip canvas { filter: saturate(.85) contrast(.92) brightness(.97); }
+/* MIP preview: color work happens in app.js (mipFilter); only the bezel tint differs. */
+.of-watch.mip { background: radial-gradient(circle at 30% 30%, #6a6c6e, #2a2b2c 70%); }
+.of-watch.mip canvas { background: #282c32; image-rendering: pixelated; }
+.of-backlight { display: none; }
+#of-config:has(.of-watch.mip) .of-backlight { display: block; }
 .of-tabs { display: flex; flex-wrap: wrap; gap: .3rem; justify-content: center; }
 .of-live { font-size: .85rem; }
 .of-lit { font-size: .82rem; margin: 0; min-height: 1.2em; }

@@ -22,3 +22,8 @@ include-in-header:
 The preview is drawn in the browser by a port of the watch face's drawing code, using sample sensor data
 (steps, heart rate, battery, …). Fonts are web stand-ins for Garmin's device fonts, so text differs slightly
 from the watch; Quartz and dot-matrix fonts are drawn the same way as on the watch.
+
+MIP previews imitate the transflective panel: the face is rendered at the watch's native resolution,
+reduced to the 64 MIP colors, then given the panel's muted tone (slate-gray black, off-white white,
+lower saturation), visible pixels and glass glare. *Backlight (MIP)* shows the brighter, cooler look with
+the backlight on. Real panels also vary with ambient light.
