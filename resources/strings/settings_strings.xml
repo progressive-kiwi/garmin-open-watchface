@@ -6,13 +6,13 @@
     <string id="g_Digital">Digital</string>
     <string id="g_General">General</string>
     <string id="g_Night">Night</string>
-    <string id="gd_AlwaysOn">Low power display. AMOLED: burn-in safe face. MIP: theme colors, any background</string>
+    <string id="gd_AlwaysOn">AMOLED only: burn-in safe face while the watch sleeps. MIP shows the full face at all times</string>
     <string id="gd_Analog">Layout and hands</string>
     <string id="gd_Data">Fields, gauges and date</string>
     <string id="gd_Dial">Ticks, numerals and ring</string>
     <string id="gd_Digital">Time font and layout</string>
     <string id="gd_General">Mode, theme and base colors</string>
-    <string id="gd_Night">Fade all colors toward the background while sleeping</string>
+    <string id="gd_Night">AMOLED only: fade all colors toward the background at night</string>
     <string id="o_09Dot10N">09.10</string>
     <string id="o_10PctN">10%</string>
     <string id="o_10Slash09N">10/09</string>

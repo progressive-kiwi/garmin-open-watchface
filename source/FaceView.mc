@@ -5,11 +5,14 @@ import Toybox.System;
 import Toybox.UserProfile;
 import Toybox.WatchUi;
 
-//! Main watch face view: chooses analog/digital, awake/low-power, and drives partial updates.
+//! Main watch face view: chooses analog/digital, awake/always-on, and drives partial updates.
 //!
 //! Compute budget: everything except the seconds is drawn into an off-screen buffer once per minute
 //! (or after a settings, sleep/wake or night-dimming change). Every other frame only copies the buffer
 //! and draws the second hand or seconds digits.
+//!
+//! MIP displays have no always-on or night look: the full face is shown at all times, and sleep only
+//! stops the per-second redraw (seconds then continue through partial updates if enabled).
 class FaceView extends WatchUi.WatchFace {
     var cfg as Config;
     var kit as TextKit;
@@ -66,16 +69,16 @@ class FaceView extends WatchUi.WatchFace {
     private function loadConfig() as Void {
         cfg.load();
         if (_night) {
-            cfg.fade(cfg.NightFade, !_burnIn);
+            cfg.fade(cfg.NightFade);
         }
         applySettings();
     }
 
-    //! Night dimming condition. Connect IQ exposes no focus-mode API; the Sleep focus turns on
-    //! Do Not Disturb, and the profile carries the user's bedtime and wake time.
+    //! Night dimming condition (AMOLED only). Connect IQ exposes no focus-mode API; the Sleep focus
+    //! turns on Do Not Disturb, and the profile carries the user's bedtime and wake time.
     private function nightActive() as Boolean {
         var t = cfg.NightTrigger;
-        if (t == 0) {
+        if (t == 0 || !_burnIn) {
             return false;
         }
         if (t == 1 || t == 3) {
@@ -177,20 +180,14 @@ class FaceView extends WatchUi.WatchFace {
             }
         }
 
-        if (!_awake) {
+        if (!_awake && _burnIn) {
+            // AMOLED: never draw the full face while sleeping.
             var style = cfg.AodStyle;
-            if (_burnIn) {
-                // AMOLED: never draw the full face while sleeping.
-                if (style == 0 || style == 1) {
-                    style = 3;
-                }
-                drawAod(dc, cx, cy, r, style);
-                return;
+            if (style == 0 || style == 1) {
+                style = 3;
             }
-            if (style >= 2) {
-                drawAod(dc, cx, cy, r, style);
-                return;
-            }
+            drawAod(dc, cx, cy, r, style);
+            return;
         }
 
         var bdc = bufferDc();
@@ -231,14 +228,11 @@ class FaceView extends WatchUi.WatchFace {
         }
     }
 
+    //! AMOLED always-on face: black background and the dim AOD color (burn-in).
     private function drawAod(dc as Dc, cx as Numeric, cy as Numeric, r as Numeric, style as Number) as Void {
-        // AMOLED: black background and the dim AOD color (burn-in). MIP: lit pixels cost nothing,
-        // so keep the theme (white backgrounds included).
-        var bg = _burnIn ? Graphics.COLOR_BLACK : cfg.bg;
-        var color = _burnIn ? cfg.AodColor : cfg.fg;
-        dc.setColor(bg, bg);
+        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
         dc.clear();
-        if (_burnIn && cfg.AodShift) {
+        if (cfg.AodShift) {
             // Move the whole face a few pixels every minute to spread pixel wear.
             var shifts = [[0, 0], [1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]];
             var s = shifts[Clock.time().min % 9];
@@ -248,15 +242,15 @@ class FaceView extends WatchUi.WatchFace {
         }
         kit.ghost = false;
         if (cfg.Mode == 0) {
-            analog.drawAod(dc, cx, cy, r, color, style, data);
+            analog.drawAod(dc, cx, cy, r, cfg.AodColor, style, data);
         } else {
-            digital.drawAod(dc, cx, cy, r, color, style);
+            digital.drawAod(dc, cx, cy, r, cfg.AodColor, style);
         }
     }
 
-    //! MIP low-power seconds: restore the previous second's area from the buffer, then draw the new one.
+    //! MIP seconds while the watch sleeps: restore the previous second's area from the buffer, then draw the new one.
     function onPartialUpdate(dc as Dc) as Void {
-        if (_awake || !_partialOk || _buffer == null || _dirty || cfg.SecondsMode != 2 || cfg.AodStyle >= 2) {
+        if (_awake || !_partialOk || _buffer == null || _dirty || cfg.SecondsMode != 2) {
             return;
         }
         var cx = _w / 2;

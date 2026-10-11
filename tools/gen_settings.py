@@ -54,7 +54,8 @@ THEMES = [
 ]
 
 # Settings that only matter on one display technology (used by the web configurator).
-AMOLED_ONLY = {"AodColor", "AodOutline", "AodShift"}
+# MIP displays show the full face at all times: no always-on face, no night dimming.
+AMOLED_ONLY = {"AodStyle", "AodColor", "AodFont", "AodOutline", "AodMarkers", "AodShift", "NightTrigger", "NightFade"}
 
 FONTS = [
     (0, "System"), (1, "Condensed bold"), (2, "Roboto"), (3, "Roboto black"),
@@ -213,7 +214,7 @@ GROUPS = [
         ("GaugeRight", "Right gauge", "gauges", 0),
         ("DateFormat", "Date format", "datefmt", 0),
     ]),
-    ("AlwaysOn", "Low power display. AMOLED: burn-in safe face. MIP: theme colors, any background", [
+    ("AlwaysOn", "AMOLED only: burn-in safe face while the watch sleeps. MIP shows the full face at all times", [
         ("AodStyle", "AOD style", "aodstyle", 0),
         ("AodColor", "AOD color (AMOLED)", "palette", 0xAAAAAA),
         ("AodFont", "AOD font", "aodfont", 99),
@@ -221,7 +222,7 @@ GROUPS = [
         ("AodMarkers", "AOD markers", "aodmarks", 1),
         ("AodShift", "Pixel shift (AMOLED)", "bool", True),
     ]),
-    ("Night", "Fade all colors toward the background while sleeping", [
+    ("Night", "AMOLED only: fade all colors toward the background at night", [
         ("NightTrigger", "Night dimming", "nighttrig", 0),
         ("NightFade", "Fade amount", "fade", 50),
     ]),

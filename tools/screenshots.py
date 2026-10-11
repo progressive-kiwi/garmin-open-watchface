@@ -78,8 +78,6 @@ VARIANTS = [
       "MinuteHand": 2}, False),
     ("mip-paper-digital", "MIP · White background, Quartz LCD with unlit segments", "fenix8solar47mm",
      {"Theme": 8, "Mode": 1, "TimeFont": 7, "GaugeLeft": 2, "GaugeRight": 1}, False),
-    ("mip-paper-lowpower", "MIP · Low power, Minimal + date style on white", "fenix8solar47mm",
-     {"Theme": 8, "AodStyle": 3}, True),
 ]
 
 

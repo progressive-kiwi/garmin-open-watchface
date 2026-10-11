@@ -93,6 +93,7 @@
       const pref = screen === "amoled" ? "fr970" : "fenix8solar47mm";
       state.device = (list.find((d) => d.id === pref) || list[0]).id;
       if (screen === "amoled" && state.values.SecondsMode === 2) state.values.SecondsMode = 1;
+      if (screen === "mip") state.preview = "awake";
       update();
     };
     const card = (screen, title, text) => h("button", {
@@ -106,7 +107,7 @@
     $("#of-step1").replaceChildren(
       h("div", {class: "of-screens"},
         card("amoled", "AMOLED", "Forerunner 165/265/570/965/970, fēnix 8/9/E, epix Pro, Venu, vívoactive 5/6. Always-on uses a burn-in-safe face."),
-        card("mip", "MIP (memory-in-pixel)", "fēnix 7 Pro / 8 Solar / 9 Pro Solar, enduro 3, Forerunner 255/955. Full face in low power, any background, seconds every second.")),
+        card("mip", "MIP (memory-in-pixel)", "fēnix 7 Pro / 8 Solar / 9 Pro Solar, enduro 3, Forerunner 255/955. Full face at all times, any background, seconds every second.")),
       h("label", {class: "of-device"}, h("span", {}, "Device"), sel));
   }
 
@@ -260,8 +261,9 @@
   }
 
   function renderPreviewControls() {
-    const tabs = [["awake", "Awake"], ["low", state.screen === "amoled" ? "Always-on" : "Low power"],
-      ["night-awake", "Night"], ["night-low", "Night, asleep"]];
+    // MIP shows the same face at all times: nothing to switch between.
+    const tabs = state.screen === "amoled" ? [["awake", "Awake"], ["low", "Always-on"],
+      ["night-awake", "Night"], ["night-low", "Night, asleep"]] : [];
     $("#of-tabs").replaceChildren(...tabs.map(([id, label]) => h("button", {
       type: "button", class: "btn btn-sm " + (state.preview === id ? "btn-primary" : "btn-outline-secondary"),
       "aria-pressed": state.preview === id ? "true" : "false", onclick: () => { state.preview = id; update(); },

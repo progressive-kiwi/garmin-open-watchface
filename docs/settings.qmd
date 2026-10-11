@@ -96,7 +96,7 @@ Fields, gauges and date.
 
 ## Always on
 
-Low power display. AMOLED: burn-in safe face. MIP: theme colors, any background.
+AMOLED only: burn-in safe face while the watch sleeps. MIP shows the full face at all times.
 
 | Key | Setting | Default | Options |
 |---|---|---|---|
@@ -109,7 +109,7 @@ Low power display. AMOLED: burn-in safe face. MIP: theme colors, any background.
 
 ## Night
 
-Fade all colors toward the background while sleeping.
+AMOLED only: fade all colors toward the background at night.
 
 | Key | Setting | Default | Options |
 |---|---|---|---|

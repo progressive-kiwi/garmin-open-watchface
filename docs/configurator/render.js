@@ -291,10 +291,10 @@ const OF = (() => {
     return cfg;
   }
 
-  function fade(cfg, pct, snap) {
+  function fade(cfg, pct) {
     for (const k of ["fg", "fg2", "accent", "cHourHand", "cMinuteHand", "cSecondHand", "cHourTick", "cMinuteTick",
       "cNumeral", "cHourDigits", "cMinuteDigits", "cField", "cLabel", "ghost"]) {
-      cfg[k] = mix(cfg[k], cfg.bg, pct, 100, snap);
+      cfg[k] = mix(cfg[k], cfg.bg, pct, 100, false);
     }
     cfg.AodColor = mix(cfg.AodColor, 0, pct, 100, false);
   }
@@ -805,10 +805,11 @@ const OF = (() => {
   //! opts: {size, amoled, state: "awake"|"low"|"night-awake"|"night-low", clock: {hour,min,sec,date}, use24h, themes}
   function render(ctx, values, opts) {
     const {size, amoled, state, clock, use24h, themes} = opts;
-    const awake = state === "awake" || state === "night-awake";
-    const night = state.startsWith("night");
+    // MIP has no always-on face and no night dimming: always the awake face.
+    const awake = !amoled || state === "awake" || state === "night-awake";
+    const night = amoled && state.startsWith("night");
     const cfg = resolve(values, themes);
-    if (night && cfg.NightTrigger) fade(cfg, cfg.NightFade, !amoled);
+    if (night && cfg.NightTrigger) fade(cfg, cfg.NightFade);
     const dc = new Dc(ctx, size);
     const kit = new TextKit();
     kit.ghostColor = cfg.ghost; kit.bgColor = cfg.bg; kit.mip = !amoled;
@@ -820,14 +821,11 @@ const OF = (() => {
 
     if (!awake) {
       let style = cfg.AodStyle;
-      if (amoled && (style === 0 || style === 1)) style = 3;
-      if (amoled || style >= 2) {
-        const bg = amoled ? 0 : cfg.bg, color = amoled ? cfg.AodColor : cfg.fg;
-        dc.clear(bg);
-        if (cfg.Mode === 0) analog.drawAod(dc, cx, cy, r, color, style, data);
-        else digital.drawAod(dc, cx, cy, r, color, style);
-        return;
-      }
+      if (style === 0 || style === 1) style = 3;
+      dc.clear(0);
+      if (cfg.Mode === 0) analog.drawAod(dc, cx, cy, r, cfg.AodColor, style, data);
+      else digital.drawAod(dc, cx, cy, r, cfg.AodColor, style);
+      return;
     }
     dc.clear(cfg.bg);
     if (cfg.Mode === 0) { analog.drawDial(dc, cx, cy, r); analog.drawHands(dc, cx, cy, r, null); }

@@ -41,8 +41,9 @@ on the watch itself.
 | Font effects | Unlit LCD segments / dots ("ghost"), two-tone hours/minutes, separator style |
 | Data | 4 fields from 22 sources (date, battery, steps, heart rate, Body Battery, stress, weather, sunrise/sunset, …), 2 edge gauges, status icons |
 | Colors | 10 themes + custom; 28-color MIP-safe palette; per-element overrides |
-| Always-on | Style, color, font, outline hands/digits, markers, pixel shift (AMOLED); theme colors on any background (MIP) |
-| Night dimming | Fade all colors 10–90 % during Do Not Disturb / sleep mode or the sleep schedule |
+| Always-on (AMOLED) | Style, color, font, outline hands/digits, markers, pixel shift |
+| Night dimming (AMOLED) | Fade all colors 10–90 % during Do Not Disturb / sleep mode or the sleep schedule |
+| MIP | Full face at all times in the theme colors, any background, seconds every second |
 
 ## Supported devices
 
@@ -69,20 +70,19 @@ rules (≤ 10 % lit pixels, no pixel lit for more than 3 minutes). Settings, gro
 
 ### MIP (memory-in-pixel)
 
-Lit pixels cost no power on MIP screens, so the full face stays visible in low power, in the theme colors.
-White and other light backgrounds work in every mode: the *Paper* theme, or *Custom* with a light
-background. Unlit segment/dot color and gauge tracks default to *Auto*, a step from the background
+MIP screens have no separate low-power, always-on or night look: lit pixels cost no power, so the full
+face is shown at all times in the theme colors. The **Always-on** and **Night** settings are AMOLED-only
+and have no effect on MIP. White and other light backgrounds work: the *Paper* theme, or *Custom* with a
+light background. Unlit segment/dot color and gauge tracks default to *Auto*, a step from the background
 toward the primary color, so they stay subtle on both dark and light backgrounds.
 
-- *AOD style* also applies: *Minimal*, *Minimal + date* and *Time only* use the theme background and
-  primary color, with filled hands. *AOD color*, *Outline* and *Pixel shift* are AMOLED-only.
-- *Seconds → Always (MIP)* keeps the second hand or seconds digits running every second in low power,
-  through partial updates from an off-screen buffer.
+- *Seconds → Always (MIP)* keeps the second hand or seconds digits running every second after the watch
+  goes to sleep, through partial updates from an off-screen buffer. *Awake only* hides them then.
 
-### Night dimming
+### Night dimming (AMOLED)
 
-Fades every color by a set percentage toward the background (on AMOLED always-on, the AOD color toward
-black). Settings, group **Night**:
+Fades every color by a set percentage toward the background (in always-on, the AOD color toward black).
+Settings, group **Night**:
 
 | Setting | Options |
 |---|---|

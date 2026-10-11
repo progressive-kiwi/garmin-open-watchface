@@ -116,8 +116,4 @@ are listed in `VARIANTS` in `tools/screenshots.py`.
 ![MIP · White background, Quartz LCD with unlit segments](images/mip-paper-digital.png){fig-alt="MIP · White background, Quartz LCD with unlit segments"}
 :::
 
-::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .shot}
-![MIP · Low power, Minimal + date style on white](images/mip-paper-lowpower.png){fig-alt="MIP · Low power, Minimal + date style on white"}
-:::
-
 :::

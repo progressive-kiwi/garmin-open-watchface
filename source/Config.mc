@@ -63,22 +63,22 @@ class Config extends ConfigBase {
         }
     }
 
-    //! Night dimming: move every color pct % toward the background (AOD color toward black).
-    function fade(pct as Number, snap as Boolean) as Void {
-        fg = mix(fg, bg, pct, 100, snap);
-        fg2 = mix(fg2, bg, pct, 100, snap);
-        accent = mix(accent, bg, pct, 100, snap);
-        cHourHand = mix(cHourHand, bg, pct, 100, snap);
-        cMinuteHand = mix(cMinuteHand, bg, pct, 100, snap);
-        cSecondHand = mix(cSecondHand, bg, pct, 100, snap);
-        cHourTick = mix(cHourTick, bg, pct, 100, snap);
-        cMinuteTick = mix(cMinuteTick, bg, pct, 100, snap);
-        cNumeral = mix(cNumeral, bg, pct, 100, snap);
-        cHourDigits = mix(cHourDigits, bg, pct, 100, snap);
-        cMinuteDigits = mix(cMinuteDigits, bg, pct, 100, snap);
-        cField = mix(cField, bg, pct, 100, snap);
-        cLabel = mix(cLabel, bg, pct, 100, snap);
-        ghost = mix(ghost, bg, pct, 100, snap);
+    //! Night dimming (AMOLED only): move every color pct % toward the background (AOD color toward black).
+    function fade(pct as Number) as Void {
+        fg = mix(fg, bg, pct, 100, false);
+        fg2 = mix(fg2, bg, pct, 100, false);
+        accent = mix(accent, bg, pct, 100, false);
+        cHourHand = mix(cHourHand, bg, pct, 100, false);
+        cMinuteHand = mix(cMinuteHand, bg, pct, 100, false);
+        cSecondHand = mix(cSecondHand, bg, pct, 100, false);
+        cHourTick = mix(cHourTick, bg, pct, 100, false);
+        cMinuteTick = mix(cMinuteTick, bg, pct, 100, false);
+        cNumeral = mix(cNumeral, bg, pct, 100, false);
+        cHourDigits = mix(cHourDigits, bg, pct, 100, false);
+        cMinuteDigits = mix(cMinuteDigits, bg, pct, 100, false);
+        cField = mix(cField, bg, pct, 100, false);
+        cLabel = mix(cLabel, bg, pct, 100, false);
+        ghost = mix(ghost, bg, pct, 100, false);
         AodColor = mix(AodColor, 0x000000, pct, 100, false);
     }
 

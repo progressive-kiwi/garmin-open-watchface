@@ -1181,8 +1181,13 @@
  },
  "amoledOnly": [
   "AodColor",
+  "AodFont",
+  "AodMarkers",
   "AodOutline",
-  "AodShift"
+  "AodShift",
+  "AodStyle",
+  "NightFade",
+  "NightTrigger"
  ],
  "groups": [
   {
@@ -1529,7 +1534,7 @@
   {
    "id": "AlwaysOn",
    "title": "Always on",
-   "description": "Low power display. AMOLED: burn-in safe face. MIP: theme colors, any background",
+   "description": "AMOLED only: burn-in safe face while the watch sleeps. MIP shows the full face at all times",
    "settings": [
     {
      "key": "AodStyle",
@@ -1572,7 +1577,7 @@
   {
    "id": "Night",
    "title": "Night",
-   "description": "Fade all colors toward the background while sleeping",
+   "description": "AMOLED only: fade all colors toward the background at night",
    "settings": [
     {
      "key": "NightTrigger",

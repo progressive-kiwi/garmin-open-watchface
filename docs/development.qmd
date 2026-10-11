@@ -69,7 +69,7 @@ but not for Connect IQ Store updates.
 | When | Work |
 |---|---|
 | Every second (awake) | Copy the off-screen buffer to the screen; draw the second hand (two polygons) or two seconds digits (cached bitmaps for Quartz / dot fonts) |
-| Every second (MIP low power) | `onPartialUpdate`: restore the previous seconds area from the buffer, draw the new one, both clipped |
+| Every second (MIP, watch asleep) | `onPartialUpdate`: restore the previous seconds area from the buffer, draw the new one, both clipped |
 | Once per minute, on wrist raise, on settings or night-dimming change | Query sensors once (cached per refresh), draw dial, fields, gauges, hands and time into the buffer |
 | AMOLED always-on (once per minute) | Draw the low-pixel face directly (no buffer) |
 
@@ -83,4 +83,4 @@ full-screen buffer copy, which is much cheaper on watch hardware than in the sim
 | Display | Sleep behavior |
 |---|---|
 | AMOLED (`requiresBurnInProtection`) | Low-pixel face only: outline/thin hands or hollow digits, ≤ 12 markers, no fills, black background, 9-step pixel shift per minute. *Full face* is treated as *Minimal + date*. |
-| MIP | Full face (or the chosen minimal style). Seconds via `onPartialUpdate`: the face is drawn into a buffered bitmap, each second restores the previous hand's clip from it and draws the new hand. If the power budget is exceeded, partial updates stop. |
+| MIP | Full face, unchanged; *Always-on* and *Night* settings are ignored. Seconds via `onPartialUpdate`: the face is drawn into a buffered bitmap, each second restores the previous hand's clip from it and draws the new hand. If the power budget is exceeded, partial updates stop. |
